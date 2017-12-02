@@ -5864,3 +5864,18 @@ a.text-dark:focus, a.text-dark:hover {
 
 .invisible {
   visibility: hidden !important; }
+
+.page-container .page-list-tabs .tab-pane {
+  margin-top: 1rem;
+  padding: 0 0.8rem; }
+
+.page-container .block-image {
+  text-align: center;
+  margin-bottom: 1rem;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.2rem; }
+  .page-container .block-image img {
+    max-height: 250px; }
+  .page-container .block-image .image-caption {
+    font-size: 0.9rem;
+    padding: 0.2rem; }

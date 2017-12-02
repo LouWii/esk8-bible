@@ -1,0 +1,26 @@
+.page-container {
+
+    .page-list-tabs {
+
+        .tab-pane {
+            margin-top: 1rem;
+            padding: 0 0.8rem;
+        }
+    }
+
+    .block-image {
+        text-align: center;
+        margin-bottom: 1rem;
+        background: rgba(0, 0, 0, 0.05);
+        padding: 0.2rem;
+
+        img {
+            max-height: 250px;
+        }
+
+        .image-caption {
+            font-size: 0.9rem;
+            padding: 0.2rem;
+        }
+    }
+}
