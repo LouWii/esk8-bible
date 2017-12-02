@@ -28,17 +28,19 @@
                     {% endfor %}
                 </div>
             {% elseif block.displayAs == "tabs" %}
-                <nav class="nav nav-tabs" role="tablist">
-                    {% for page in block.pages.all() %}
-                    <a class="nav-item nav-link" id="nav-{{ page.slug }}-tab" data-toggle="tab" href="#nav-{{ page.slug }}" role="tab" aria-controls="nav-{{ page.slug }}" aria-selected="false">{{ page.title }}</a>
-                    {% endfor %}
-                </nav>
-                <div class="tab-content">
-                    {% for page in block.pages.all() %}
-                    <div class="tab-pane fade" id="nav-{{ page.slug }}" role="tabpanel" aria-labelledby="nav-{{ page.slug }}-tab">
-                        {{ macros.pageBody(page.body) }}
+                <div class="page-list-tabs">
+                    <nav class="nav nav-tabs" role="tablist">
+                        {% for page in block.pages.all() %}
+                        <a class="nav-item nav-link {% if loop.first %}active{% endif %}" id="nav-{{ page.slug }}-tab" data-toggle="tab" href="#nav-{{ page.slug }}" role="tab" aria-controls="nav-{{ page.slug }}" aria-selected="false">{{ page.title }}</a>
+                        {% endfor %}
+                    </nav>
+                    <div class="tab-content">
+                        {% for page in block.pages.all() %}
+                        <div class="tab-pane fade {% if loop.first %}show active{% endif %}" id="nav-{{ page.slug }}" role="tabpanel" aria-labelledby="nav-{{ page.slug }}-tab">
+                            {{ macros.pageBody(page.body) }}
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
             {% endif %}
 
