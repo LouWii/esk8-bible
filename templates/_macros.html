@@ -55,7 +55,7 @@
     {% for fieldLayoutField in entry.getFieldLayout().getFields() %}
 
         {# get the field Model from the fieldId #}
-        {% set field = craft.fields.getFieldById(fieldLayoutField.id) %}
+        {% set field = craft.app.fields.getFieldById(fieldLayoutField.id) %}
 
         {# print the field handle and the field content  #}
         {{ field.handle }} :  entry.getContent()[field.handle] }}
