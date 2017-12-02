@@ -1,8 +1,12 @@
 {% import "_macros.html" as macros %}
 
+{% set entrySlug = "" %}
 {% if entry is defined %}
-	{% set title = entry.title %}
+  {% set title = entry.title %}
+  {% set entrySlug = entry.slug %}
 {% endif %}
+
+{% set globalConfiguration = craft.entries.section('globalConfiguration').one() %}
 
 <!doctype html>
 <html lang="en">
@@ -27,9 +31,24 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+          {% for menuItemBlock in globalConfiguration.navbarMenu.all() %}
+          {% if menuItemBlock.type == "blockSinglePageLink" %}
+          <li class="nav-item {% if entrySlug == menuItemBlock.pageEntry.one().slug %}active{% endif %}">
+            <a class="nav-link" href="{{ menuItemBlock.pageEntry.one().url }}">{{ menuItemBlock.pageEntry.one().title }}</a>
           </li>
+          {% elseif menuItemBlock.type == "blockDropdownMenu" %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ menuItemBlock.menuTitle }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {% for dropdownMenuItem in menuItemBlock.menuItems.all() %}
+                  <a class="dropdown-item {% if entrySlug == dropdownMenuItem.slug %}active{% endif %}" href="{{ dropdownMenuItem.url }}">{{ dropdownMenuItem.title }}</a>
+                  {% endfor %}
+                </div>
+          </li>
+          {% endif %}
+          {% endfor %}
         </ul>
       </div>
     </nav>
