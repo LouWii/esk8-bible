@@ -1,0 +1,54 @@
+
+{% macro pageBody(pageBodyMatrix) %}
+    {% import _self as macros %}
+
+    {# loop through all of our blocks in the matrix #}
+    {% for block in pageBodyMatrix.all() %}
+
+        {% if block.type == "blockRichText" %}
+
+            {{ block.body }}
+
+        {% elseif block.type == "blockSlider" %}
+
+        {% elseif block.type == "blockImage" %}
+
+        {% elseif block.type == "blockPageList" %}
+
+            {% if block.displayAs == "list" %}
+                <div class="list-group">
+                    {% for page in block.pages.all() %}
+                        <a href="{{page.url}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <h5>{{ page.title }}</h5>
+                            
+                            {% if page.summary != "" %}
+                                <p>{{ page.summary }}</p>
+                            {% endif %}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% elseif block.displayAs == "tabs" %}
+
+            {% endif %}
+
+        {% endif %}
+
+    {% endfor %}
+
+{% endmacro %}
+
+{# showEntryFields(entry) #}
+{% macro showEntryFields(entry) %}
+
+
+    {% for fieldLayoutField in entry.getFieldLayout().getFields() %}
+
+        {# get the field Model from the fieldId #}
+        {% set field = craft.fields.getFieldById(fieldLayoutField.id) %}
+
+        {# print the field handle and the field content  #}
+        {{ field.handle }} :  entry.getContent()[field.handle] }}
+
+    {% endfor %}
+
+{% endmacro %}

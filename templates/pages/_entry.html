@@ -1,0 +1,12 @@
+{# We have to re-import it for some reason... #}
+{% import "_macros.html" as macros %}
+
+{% extends "_layout" %}
+
+{% block content %}
+
+<h1>{{ entry.title }}</h1>
+
+{{ macros.pageBody(entry.body) }}
+
+{% endblock %}
