@@ -7,6 +7,8 @@
 
 <h1>{{ entry.title }}</h1>
 
-{{ macros.pageBody(entry.body) }}
+<div class="page-container">
+    {{ macros.pageBody(entry.body) }}
+</div>
 
 {% endblock %}
