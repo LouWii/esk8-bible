@@ -12,7 +12,22 @@
         {% elseif block.type == "blockSlider" %}
 
         {% elseif block.type == "blockImage" %}
+            <div class="block-image">
+                <picture>
+                    <img src="{{block.image.one().url}}" alt="{{block.image.one().imageAlt}}" />
+                </picture>
 
+                {% if block.caption != "" %}
+                <div class="image-caption">
+                    {{ block.caption }}
+                </div>
+                {% elseif block.image.one().caption != "" %}
+                <div class="image-caption">
+                    {{ block.image.one().caption }}
+                </div>
+                {% endif %}
+
+            </div>
         {% elseif block.type == "blockPageList" %}
 
             {% if block.displayAs == "list" %}
