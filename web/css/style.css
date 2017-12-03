@@ -8209,3 +8209,33 @@ a.text-dark:focus, a.text-dark:hover {
   .page-container .block-image .image-caption {
     font-size: 0.9rem;
     padding: 0.2rem; }
+
+.stores-listing {
+  margin: 2.5rem 0; }
+  .stores-listing .col-search {
+    text-align: right; }
+    .stores-listing .col-search .form-control {
+      display: inline;
+      width: 200px;
+      margin-left: 0.5rem; }
+  .stores-listing .col-show .form-control {
+    display: inline;
+    width: 60px;
+    margin-left: 0.5rem; }
+  .stores-listing .col-info {
+    text-align: right; }
+
+.stores-table th .icon-asc, .stores-table th .icon-desc {
+  display: none; }
+
+.stores-table th.sorting_asc .icon-asc {
+  display: inline-block; }
+
+.stores-table th.sorting_desc .icon-desc {
+  display: inline-block; }
+
+.stores-table th[data-sort="yes"] {
+  cursor: pointer; }
+
+.stores-table.dataTable .head-esk8 {
+  min-width: 96px; }

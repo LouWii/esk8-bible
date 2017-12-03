@@ -1,0 +1,52 @@
+.stores-listing {
+    margin: 2.5rem 0;
+
+    .col-search {
+        text-align: right;
+
+        .form-control {
+            display: inline;
+            width: 200px;
+            margin-left: 0.5rem;
+        }
+    }
+    .col-show {
+        .form-control {
+            display: inline;
+            width: 60px;
+            margin-left: 0.5rem;
+        }
+    }
+    .col-info {
+        text-align: right;
+    }
+}
+
+.stores-table {
+    th {
+        .icon-asc, .icon-desc {
+            display: none;
+        }
+
+        &.sorting_asc {
+            .icon-asc {
+                display: inline-block;
+            }
+        }
+        &.sorting_desc {
+            .icon-desc {
+                display: inline-block;
+            }
+        }
+
+        &[data-sort="yes"] {
+            cursor: pointer;
+        }
+    }
+
+    &.dataTable {
+        .head-esk8 {
+            min-width: 96px;
+        }
+    }
+}
