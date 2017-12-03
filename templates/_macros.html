@@ -14,9 +14,11 @@
 
         {% elseif block.type == "blockImage" %}
             <div class="block-image">
-                <picture>
-                    <img src="{{block.image.one().getUrl("pageBodyImageBlockThumbnail")}}" alt="{{block.image.one().imageAlt}}" />
-                </picture>
+                <a href="{{block.image.one().url}}" target="_blank">
+                    <picture>
+                        <img src="{{block.image.one().getUrl("pageBodyImageBlockThumbnail")}}" alt="{{block.image.one().imageAlt}}" />
+                    </picture>
+                </a>
 
                 {% if block.caption != "" %}
                 <div class="image-caption">
