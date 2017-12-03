@@ -1,0 +1,76 @@
+{% extends "_layout" %}
+
+{% import "_macros.html" as macros %}
+
+{% block content %}
+
+<h1>{{ entry.title }}</h1>
+
+<div class="page-container">
+    {{ macros.pageBody(entry.body) }}
+</div>
+
+{% set storeEntries = craft.entries.section("stores").all() %}
+
+<div class="stores-listing">
+    {% if storeEntries|length > 0 %}
+    <table class="table stores-table">
+        <thead>
+            <tr>
+                <th class="head-name" data-sort="yes">
+                    Name
+                    <i class="fa fa-chevron-up icon-asc" aria-hidden="true"></i>
+                    <i class="fa fa-chevron-down icon-desc" aria-hidden="true"></i>
+                </th>
+                <th><i class="fa fa-globe" aria-hidden="true" title="Website access"></i></th>
+                <th class="head-geo-zone" data-filter="yes" data-sort="yes">
+                    Geo. Zone
+                    <i class="fa fa-chevron-up icon-asc" aria-hidden="true"></i>
+                    <i class="fa fa-chevron-down icon-desc" aria-hidden="true"></i>
+                </th>
+                <th class="head-country" data-filter="yes" data-sort="yes">
+                    Country
+                    <i class="fa fa-chevron-up icon-asc" aria-hidden="true"></i>
+                    <i class="fa fa-chevron-down icon-desc" aria-hidden="true"></i>
+                </th>
+                <th class="head-esk8" data-filter="yes" data-sort="yes">
+                    eSk8?
+                    <i class="fa fa-chevron-up icon-asc" aria-hidden="true"></i>
+                    <i class="fa fa-chevron-down icon-desc" aria-hidden="true"></i>
+                </th>
+                <th class="head-parts">Parts</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Filtering:</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for storeEntry in storeEntries %}
+            <tr>
+                <td>{{storeEntry.title}}</td>
+                <td><a href="{{storeEntry.storeURL}}" target="_blank"><i class="fa fa-globe" aria-hidden="true"></i></a></td>
+                <td>{{storeEntry.geographicalZone.label}}</td>
+                <td>{{storeEntry.country}}</td>
+                <td>{% if storeEntry.specializedInEsk8 %}Yes{%else%}No{%endif%}</td>
+                <td>
+                    {% for part in storeEntry.parts %}
+                    {{part.label}}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No stores found.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
