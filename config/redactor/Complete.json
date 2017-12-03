@@ -1,0 +1,6 @@
+{
+    "buttons": ["formatting", "bold", "italic", "deleted", "unorderedlist", "orderedlist", "link", "image", "video", "horizontalrule"],
+    "plugins": ["source", "fullscreen", "video", "table"],
+    "toolbarFixed": true
+  }
+  
