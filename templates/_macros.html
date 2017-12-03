@@ -6,8 +6,9 @@
     {% for block in pageBodyMatrix.all() %}
 
         {% if block.type == "blockRichText" %}
-
-            {{ block.body }}
+            <div class="block-body">
+                {{ block.body }}
+            </div>
 
         {% elseif block.type == "blockSlider" %}
 
