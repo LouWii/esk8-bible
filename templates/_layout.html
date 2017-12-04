@@ -8,70 +8,70 @@
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>{% if title is defined %}{{ title }} - {% endif %}esk8 Bible</title>
-    {# Required meta tags #}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <title>{% if title is defined %}{{ title }} - {% endif %}esk8 Bible</title>
+        {# Required meta tags #}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    {# CSS #}
-    <link rel="stylesheet" href="/css/style.css"/>
+        {# CSS #}
+        <link rel="stylesheet" href="/css/style.css"/>
 
-    {% block head_css %}
+        {% block head_css %}
+        {% endblock %}
+    </head>
+    <body>
+        <header class="header">
+            <nav class="navbar navbar-dark navbar-expand-md">
+                <a class="navbar-brand" href="{{ siteUrl }}">{{ siteName }}</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        {% for menuItemBlock in globalConfiguration.navbarMenu.all() %}
+                        {% if menuItemBlock.type == "blockSinglePageLink" %}
+                        <li class="nav-item {% if entrySlug == menuItemBlock.pageEntry.one().slug %}active{% endif %}">
+                            <a class="nav-link" href="{{ menuItemBlock.pageEntry.one().url }}">{{ menuItemBlock.pageEntry.one().title }}</a>
+                        </li>
+                        {% elseif menuItemBlock.type == "blockDropdownMenu" %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ menuItemBlock.menuTitle }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% for dropdownMenuItem in menuItemBlock.menuItems.all() %}
+                                <a class="dropdown-item {% if entrySlug == dropdownMenuItem.slug %}active{% endif %}" href="{{ dropdownMenuItem.url }}">{{ dropdownMenuItem.title }}</a>
+                                {% endfor %}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main class="container main-container">
+        {% block content %}
+        {% endblock %}
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p><small>&copy; {% if now|date('Y') != '2017' %}2017 - {% endif %}{{ now|date('Y') }} esk8 Bible</small></p>
+            </div>
+        </footer>
+    </body>
+
+    {# JS #}
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/node_modules/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
+    <script src="/js/scripts.js"></script>
+    {% block footer_js %}
     {% endblock %}
-  </head>
-  <body>
-    <header class="header">
-      <nav class="navbar navbar-dark navbar-expand-lg">
-        <a class="navbar-brand" href="{{ siteUrl }}">{{ siteName }}</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            {% for menuItemBlock in globalConfiguration.navbarMenu.all() %}
-            {% if menuItemBlock.type == "blockSinglePageLink" %}
-            <li class="nav-item {% if entrySlug == menuItemBlock.pageEntry.one().slug %}active{% endif %}">
-              <a class="nav-link" href="{{ menuItemBlock.pageEntry.one().url }}">{{ menuItemBlock.pageEntry.one().title }}</a>
-            </li>
-            {% elseif menuItemBlock.type == "blockDropdownMenu" %}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ menuItemBlock.menuTitle }}
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    {% for dropdownMenuItem in menuItemBlock.menuItems.all() %}
-                    <a class="dropdown-item {% if entrySlug == dropdownMenuItem.slug %}active{% endif %}" href="{{ dropdownMenuItem.url }}">{{ dropdownMenuItem.title }}</a>
-                    {% endfor %}
-                  </div>
-            </li>
-            {% endif %}
-            {% endfor %}
-          </ul>
-        </div>
-      </nav>
-    </header>
-
-    <main class="container main-container">
-      {% block content %}
-      {% endblock %}
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-          <p><small>&copy; {% if now|date('Y') != '2017' %}2017 - {% endif %}{{ now|date('Y') }} esk8 Bible</small></p>
-        </div>
-    </footer>
-  </body>
-
-  {# JS #}
-  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="/node_modules/popper.js/dist/umd/popper.min.js"></script>
-  <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="/node_modules/datatables.net/js/jquery.dataTables.js"></script>
-  <script src="/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
-  <script src="/js/scripts.js"></script>
-  {% block footer_js %}
-  {% endblock %}
 </html>
