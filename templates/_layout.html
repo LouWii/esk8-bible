@@ -21,40 +21,42 @@
     {% endblock %}
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-light">
-      <a class="navbar-brand" href="{{ siteUrl }}">{{ siteName }}</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <header class="header">
+      <nav class="navbar navbar-dark navbar-expand-lg">
+        <a class="navbar-brand" href="{{ siteUrl }}">{{ siteName }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          {% for menuItemBlock in globalConfiguration.navbarMenu.all() %}
-          {% if menuItemBlock.type == "blockSinglePageLink" %}
-          <li class="nav-item {% if entrySlug == menuItemBlock.pageEntry.one().slug %}active{% endif %}">
-            <a class="nav-link" href="{{ menuItemBlock.pageEntry.one().url }}">{{ menuItemBlock.pageEntry.one().title }}</a>
-          </li>
-          {% elseif menuItemBlock.type == "blockDropdownMenu" %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ menuItemBlock.menuTitle }}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {% for dropdownMenuItem in menuItemBlock.menuItems.all() %}
-                  <a class="dropdown-item {% if entrySlug == dropdownMenuItem.slug %}active{% endif %}" href="{{ dropdownMenuItem.url }}">{{ dropdownMenuItem.title }}</a>
-                  {% endfor %}
-                </div>
-          </li>
-          {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
-    </nav>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            {% for menuItemBlock in globalConfiguration.navbarMenu.all() %}
+            {% if menuItemBlock.type == "blockSinglePageLink" %}
+            <li class="nav-item {% if entrySlug == menuItemBlock.pageEntry.one().slug %}active{% endif %}">
+              <a class="nav-link" href="{{ menuItemBlock.pageEntry.one().url }}">{{ menuItemBlock.pageEntry.one().title }}</a>
+            </li>
+            {% elseif menuItemBlock.type == "blockDropdownMenu" %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ menuItemBlock.menuTitle }}
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% for dropdownMenuItem in menuItemBlock.menuItems.all() %}
+                    <a class="dropdown-item {% if entrySlug == dropdownMenuItem.slug %}active{% endif %}" href="{{ dropdownMenuItem.url }}">{{ dropdownMenuItem.title }}</a>
+                    {% endfor %}
+                  </div>
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </nav>
+    </header>
 
-    <div class="container">
+    <main class="container main-container">
       {% block content %}
       {% endblock %}
-    </div>
+    </main>
 
     <footer class="footer">
         <div class="container">
