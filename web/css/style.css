@@ -8195,6 +8195,12 @@ a.text-dark:focus, a.text-dark:hover {
   overflow: visible;
   clip: auto; }
 
+.header {
+  margin-bottom: 1.5rem; }
+
+.navbar {
+  background-color: #20706c; }
+
 .page-container .page-list-tabs .tab-pane {
   margin-top: 1rem;
   padding: 0 0.8rem; }
