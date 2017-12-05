@@ -1,3 +1,5 @@
+{% import "_macros.html" as macros %}
+
 {% set entrySlug = "" %}
 {% if entry is defined %}
   {% set title = entry.title %}
@@ -31,22 +33,22 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         {% for menuItemBlock in globalConfiguration.navbarMenu.all() %}
-                        {% if menuItemBlock.type == "blockSinglePageLink" %}
-                        <li class="nav-item {% if entrySlug == menuItemBlock.pageEntry.one().slug %}active{% endif %}">
-                            <a class="nav-link" href="{{ menuItemBlock.pageEntry.one().url }}">{{ menuItemBlock.pageEntry.one().title }}</a>
-                        </li>
-                        {% elseif menuItemBlock.type == "blockDropdownMenu" %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ menuItemBlock.menuTitle }}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                {% for dropdownMenuItem in menuItemBlock.menuItems.all() %}
-                                <a class="dropdown-item {% if entrySlug == dropdownMenuItem.slug %}active{% endif %}" href="{{ dropdownMenuItem.url }}">{{ dropdownMenuItem.title }}</a>
-                                {% endfor %}
-                            </div>
-                        </li>
-                        {% endif %}
+                            {% if menuItemBlock.type == "blockSinglePageLink" %}
+                            <li class="nav-item {% if entrySlug == menuItemBlock.pageEntry.one().slug %}active{% endif %}">
+                                <a class="nav-link" href="{{ menuItemBlock.pageEntry.one().url }}">{{ menuItemBlock.pageEntry.one().title }}</a>
+                            </li>
+                            {% elseif menuItemBlock.type == "blockDropdownMenu" %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ menuItemBlock.menuTitle }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    {% for dropdownMenuItem in menuItemBlock.menuItems.all() %}
+                                    <a class="dropdown-item {% if entrySlug == dropdownMenuItem.slug %}active{% endif %}" href="{{ dropdownMenuItem.url }}">{{ dropdownMenuItem.title }}</a>
+                                    {% endfor %}
+                                </div>
+                            </li>
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
@@ -60,7 +62,17 @@
 
         <footer class="footer">
             <div class="container">
-                <p><small>&copy; {% if now|date('Y') != '2017' %}2017 - {% endif %}{{ now|date('Y') }} esk8 Bible</small></p>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <p class="notice">&copy; {% if now|date('Y') != '2017' %}2017 - {% endif %}{{ now|date('Y') }} esk8 Bible. Use of this material is prohibited without permission. Made in 🇨🇦</p>
+                    </div>
+                    <div class="col-sm-3">
+                        {{ macros.displayFooterLinksList(globalConfiguration.footerLinksColumn1.all()) }}
+                    </div>
+                    <div class="col-sm-3">
+                        {{ macros.displayFooterLinksList(globalConfiguration.footerLinksColumn2.all()) }}
+                    </div>
+                </div>
             </div>
         </footer>
     </body>

@@ -71,7 +71,6 @@
 {# showEntryFields(entry) #}
 {% macro showEntryFields(entry) %}
 
-
     {% for fieldLayoutField in entry.getFieldLayout().getFields() %}
 
         {# get the field Model from the fieldId #}
@@ -81,5 +80,25 @@
         {{ field.handle }} :  entry.getContent()[field.handle] }}
 
     {% endfor %}
+
+{% endmacro %}
+
+{% macro displayFooterLinksList(footerLinksList) %}
+
+    {% if footerLinksList|length %}
+    <ul class="links-list">
+        {% for blockLink in footerLinksList %}
+            {% if blockLink.type == "blockPageLink" %}
+            <li>
+                <a href="{{blockLink.page.one().url}}">{{blockLink.page.one().title}}</a>
+            </li>
+            {% elseif blockLink.type == "blockCustomLink" %}
+            <li>
+                <a href="{{blockLink.linkURL}}">{{blockLink.label}}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
 
 {% endmacro %}
