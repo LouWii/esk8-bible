@@ -1,8 +1,9 @@
 $(function() {
     var typed = new Typed('.typed-in', {
         stringsElement: '.typed-phrases',
-        typeSpeed: 20,
-        backDelay: 1200,
+        typeSpeed: 40,
+        backDelay: 1400,
+        backSpeed: 30,
         loop: true
     });
 
