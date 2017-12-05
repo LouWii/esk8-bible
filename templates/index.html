@@ -1,6 +1,72 @@
 {% extends "_layout" %}
 
-{% block content %}
-hello
+{% block inner_page %}
+
+<div class="main-container homepage-container">
+
+    <div class="hero">
+        <div class="hero-background" style="background-image: url({{entry.heroImage.one().url}});">
+        </div>
+        <div class="hero-content">
+            <h1>{{entry.heroText}} <span class="typed-in"></span></h1>
+            <div class="typed-phrases">
+                {% for row in entry.heroTypedPhrases %}
+                <p>{{row.phrase}}</p>
+                {% endfor %}
+            </div>
+
+            <div class="info-blocks container">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>
+                                    {% if entry.infoBlock1Icon != "" %}<i class="fa {{entry.infoBlock1Icon}}" aria-hidden="true"></i>{% endif %}
+                                    {{entry.infoBlock1Title}}
+                                </h4>
+                                <p>{{entry.infoBlock1Text}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>
+                                    {% if entry.infoBlock2Icon != "" %}<i class="fa {{entry.infoBlock2Icon}}" aria-hidden="true"></i>{% endif %}
+                                    {{entry.infoBlock2Title}}
+                                </h4>
+                                <p>{{entry.infoBlock2Text}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>
+                                    {% if entry.infoBlock3Icon != "" %}<i class="fa {{entry.infoBlock3Icon}}" aria-hidden="true"></i>{% endif %}
+                                    {{entry.infoBlock3Title}}
+                                </h4>
+                                <p>{{entry.infoBlock3Text}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    
+
+    <div class="commandments">
+        <div class="commandments-content">
+            <h2>The 10 commandments of esk8</h2>
+            <div class="list">
+                {{entry.tenCommandments}}
+            </div>
+        </div>
+    </div>
+
+</div>
 
 {% endblock %}
