@@ -3,10 +3,11 @@
 }
 
 .hero {
+    margin-bottom: 2rem;;
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     min-height: 250px;
     background-color: transparentize($color: #000000, $amount: 0.5);
 

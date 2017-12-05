@@ -7,6 +7,7 @@
 @import "node_modules/font-awesome/scss/font-awesome";
 
 // Custom styling
+@import "general";
 @import "body";
 @import "header";
 @import "nav";
@@ -15,3 +16,4 @@
 @import "homepage";
 @import "page";
 @import "stores";
+@import "animations";
