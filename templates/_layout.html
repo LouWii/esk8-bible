@@ -55,10 +55,12 @@
             </nav>
         </header>
 
+        {% block inner_page %}
         <main class="container main-container">
         {% block content %}
         {% endblock %}
         </main>
+        {% endblock %}
 
         <footer class="footer">
             <div class="container">
