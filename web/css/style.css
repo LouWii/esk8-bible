@@ -8195,6 +8195,13 @@ a.text-dark:focus, a.text-dark:hover {
   overflow: visible;
   clip: auto; }
 
+.typed-cursor {
+  opacity: 1;
+  font-weight: 400;
+  font-size: 50px;
+  margin-left: 10px;
+  animation: blink 0.7s infinite; }
+
 body {
   min-height: 100vh;
   display: flex;
@@ -8229,6 +8236,7 @@ body {
   margin-top: -1.5rem; }
 
 .hero {
+  margin-bottom: 2rem;
   position: relative;
   display: flex;
   justify-content: center;
@@ -8329,3 +8337,11 @@ body {
 
 .stores-table.dataTable .head-esk8 {
   min-width: 96px; }
+
+@keyframes blink {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
