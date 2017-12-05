@@ -25,6 +25,9 @@
                                     {{entry.infoBlock1Title}}
                                 </h4>
                                 <p>{{entry.infoBlock1Text}}</p>
+                                {% if entry.infoBlock1LinkPage.one() %}
+                                <a href="{{entry.infoBlock1LinkPage.one().url}}" class="card-link">{% if entry.infoBlock1LinkLabel != "" %}{{entry.infoBlock1LinkLabel}}{% else %}{{entry.infoBlock1LinkPage.one().title}}{% endif %}</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -36,6 +39,9 @@
                                     {{entry.infoBlock2Title}}
                                 </h4>
                                 <p>{{entry.infoBlock2Text}}</p>
+                                {% if entry.infoBlock2LinkPage.one() %}
+                                <a href="{{entry.infoBlock2LinkPage.one().url}}" class="card-link">{% if entry.infoBlock2LinkLabel != "" %}{{entry.infoBlock2LinkLabel}}{% else %}{{entry.infoBlock2LinkPage.one().title}}{% endif %}</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -47,6 +53,9 @@
                                     {{entry.infoBlock3Title}}
                                 </h4>
                                 <p>{{entry.infoBlock3Text}}</p>
+                                {% if entry.infoBlock3LinkPage.one() %}
+                                <a href="{{entry.infoBlock3LinkPage.one().url}}" class="card-link">{% if entry.infoBlock3LinkLabel != "" %}{{entry.infoBlock3LinkLabel}}{% else %}{{entry.infoBlock3LinkPage.one().title}}{% endif %}</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
