@@ -1,0 +1,24 @@
+.footer {
+    background-color: lighten($color-accent-dark, 12);
+    background-color: $color-accent-dark;
+    padding: 1rem 0;
+
+    .links-list {
+        list-style: none;
+        margin: 0;
+
+        a {
+            color: $navbar-dark-color;
+            font-size: 0.9rem;
+
+            &:hover {
+                color: $navbar-dark-hover-color;
+            }
+        }
+    }
+
+    .notice {
+        font-size: 0.7rem;
+        color: transparentize(#ffffff, 0.5);
+    }
+}

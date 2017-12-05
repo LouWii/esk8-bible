@@ -8204,10 +8204,26 @@ body {
   margin-bottom: 1.5rem; }
 
 .navbar {
-  background-color: #20706c; }
+  background-color: #24526d; }
 
 .main-container {
   flex: 2; }
+
+.footer {
+  background-color: #33759b;
+  background-color: #24526d;
+  padding: 1rem 0; }
+  .footer .links-list {
+    list-style: none;
+    margin: 0; }
+    .footer .links-list a {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem; }
+      .footer .links-list a:hover {
+        color: rgba(255, 255, 255, 0.75); }
+  .footer .notice {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5); }
 
 .page-container .page-list-tabs .tab-pane {
   margin-top: 1rem;
