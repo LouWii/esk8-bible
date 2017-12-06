@@ -1,0 +1,48 @@
+{% extends "_layout" %}
+
+{% import "_macros.html" as macros %}
+
+{% block content %}
+
+<h1>{{ entry.title }}</h1>
+
+<div class="page-container">
+    {{ macros.pageBody(entry.body) }}
+</div>
+
+{% set communitiesEntries = craft.entries.section("communities").all() %}
+
+<div class="communities-listing">
+    {% if communitiesEntries|length > 0 %}
+    <table class="table communities-table table-hover">
+        <thead>
+        </thead>
+        <tbody>
+            {% for communityEntry in communitiesEntries %}
+                {% set city = '' %}
+                {% if communityEntry.location.parts['locality'] != "" %}
+                    {% set city = communityEntry.location.parts['locality'] %}
+                {% elseif communityEntry.location.parts['political'] != "" %}
+                    {% set city = communityEntry.location.parts['political'] %}
+                {% else %}
+                    {% set city = '?' %}
+                {% endif %}
+                {% set prov = '' %}
+                {% if communityEntry.location.parts['country_short'] == 'CA' or communityEntry.location.parts['country_short'] == 'US' %}{% set prov = ', ' ~ communityEntry.location.parts['administrative_area_level_1_short'] %}{% endif %}
+                <tr>
+                    <td>{{communityEntry.title}}</td>
+                    <td><a href="{{communityEntry.communityUrl}}" target="_blank"><i class="fa fa-globe" aria-hidden="true"></i></a></td>
+                    <td>
+                        {{city}}{{prov}}
+                    </td>
+                    <td>
+                        {{communityEntry.location.parts['country']}}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+
+{% endblock %}
