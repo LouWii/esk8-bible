@@ -5,3 +5,9 @@
     margin-left: 10px;
     animation: blink 0.7s infinite;
 }
+
+.list-group-item-action {
+    h5 {
+        color: $link-color;
+    }
+}
