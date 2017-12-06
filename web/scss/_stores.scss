@@ -23,6 +23,8 @@
 }
 
 .stores-table {
+    border-bottom: 2px solid $table-border-color;
+
     th {
         .icon-asc, .icon-desc {
             display: none;

@@ -21,6 +21,7 @@ $(function() {
 
     $('.stores-table').DataTable( {
         initComplete: function () {
+            let nbFilters = 0;
             this.api().columns().every( function () {
                 var column = this;
                 window['col'] = column;
@@ -28,12 +29,15 @@ $(function() {
                 // Remove sorting if not set
                 if (column.header().dataset.sort !== 'yes') {
                     $(column.header()).unbind('click');
+                    $(column.header()).unbind('click');
                 }
 
                 // Setup filtering on column
                 if (column.header().dataset.filter === 'yes') {
+                    window['col'] = column;
                     var select = $('<select><option value="">All</option></select>')
-                    .appendTo( $(column.footer()).empty() )
+                    //.appendTo( $(column.footer()).empty() )
+                    .appendTo( $(column.header().dataset.filterCell) )
                     .on( 'change', function () {
                         var val = $.fn.dataTable.util.escapeRegex(
                             $(this).val()
@@ -47,8 +51,13 @@ $(function() {
                     column.data().unique().sort().each( function ( d, j ) {
                         select.append( '<option value="'+d+'">'+d+'</option>' )
                     } );
+                    nbFilters++;
                 }
             } );
+
+            if (nbFilters > 0) {
+                $('.table-filtering').show();
+            }
         }
     } );
 });
