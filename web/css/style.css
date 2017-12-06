@@ -1114,7 +1114,7 @@ pre {
   background-color: rgba(0, 0, 0, 0.05); }
 
 .table-hover tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.075); }
+  background-color: rgba(0, 0, 0, 0.02); }
 
 .table-primary,
 .table-primary > th,
@@ -1207,13 +1207,13 @@ pre {
 .table-active,
 .table-active > th,
 .table-active > td {
-  background-color: rgba(0, 0, 0, 0.075); }
+  background-color: rgba(0, 0, 0, 0.02); }
 
 .table-hover .table-active:hover {
-  background-color: rgba(0, 0, 0, 0.075); }
+  background-color: rgba(0, 0, 0, 0.02); }
   .table-hover .table-active:hover > td,
   .table-hover .table-active:hover > th {
-    background-color: rgba(0, 0, 0, 0.075); }
+    background-color: rgba(0, 0, 0, 0.02); }
 
 .table .thead-dark th, .page-container .block-body table .thead-dark th {
   color: #FFF;
@@ -8202,6 +8202,9 @@ a.text-dark:focus, a.text-dark:hover {
   margin-left: 10px;
   animation: blink 0.7s infinite; }
 
+.list-group-item-action h5 {
+  color: #007bff; }
+
 body {
   min-height: 100vh;
   display: flex;
@@ -8293,6 +8296,9 @@ body {
     padding-left: 0.5rem;
     padding-right: 0.5rem; } }
 
+.page-container:last-child {
+  padding-bottom: 3rem; }
+
 .page-container .page-list-tabs .tab-pane {
   margin-top: 1rem;
   padding: 0 0.8rem; }
@@ -8323,20 +8329,18 @@ body {
   .stores-listing .col-info {
     text-align: right; }
 
-.stores-table th .icon-asc, .stores-table th .icon-desc {
-  display: none; }
-
-.stores-table th.sorting_asc .icon-asc {
-  display: inline-block; }
-
-.stores-table th.sorting_desc .icon-desc {
-  display: inline-block; }
-
-.stores-table th[data-sort="yes"] {
-  cursor: pointer; }
-
-.stores-table.dataTable .head-esk8 {
-  min-width: 96px; }
+.stores-table {
+  border-bottom: 2px solid #e9ecef; }
+  .stores-table th .icon-asc, .stores-table th .icon-desc {
+    display: none; }
+  .stores-table th.sorting_asc .icon-asc {
+    display: inline-block; }
+  .stores-table th.sorting_desc .icon-desc {
+    display: inline-block; }
+  .stores-table th[data-sort="yes"] {
+    cursor: pointer; }
+  .stores-table.dataTable .head-esk8 {
+    min-width: 96px; }
 
 @keyframes blink {
   0% {
