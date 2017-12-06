@@ -1,5 +1,8 @@
 .page-container {
-    padding-bottom: 3rem;
+
+    &:last-child {
+        padding-bottom: 3rem;
+    }
 
     .page-list-tabs {
 
