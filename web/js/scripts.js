@@ -60,4 +60,12 @@ $(function() {
             }
         }
     } );
+
+    $(document).on('lity:open', function(event, instance) {
+        // Add caption div to the lightbox
+        if ($(instance.opener()).data('caption')){
+            const $captionDiv = $('<div></div>').addClass('lity-caption').html($(instance.opener()).data('caption'));
+            $(instance.element()).find('.lity-container').append($captionDiv);
+        }
+    });
 });
