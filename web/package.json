@@ -1,7 +1,7 @@
 {
   "name": "esk8-bible-frontend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Esk8 Bible Frontend - Frontend setup of the Esk8 Bible site",
   "main": "gulpfile.js",
   "dependencies": {
     "bootstrap": "^4.0.0-beta.2",
