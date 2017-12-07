@@ -19,7 +19,7 @@ $(function() {
         renderer: 'bootstrap'
     } );
 
-    $('.stores-table').DataTable( {
+    $('.dynamic-table').DataTable( {
         initComplete: function () {
             let nbFilters = 0;
             this.api().columns().every( function () {

@@ -11,3 +11,34 @@
         color: $link-color;
     }
 }
+
+.dynamic-table {
+    border-bottom: 2px solid $table-border-color;
+
+    th {
+        .icon-asc, .icon-desc {
+            display: none;
+        }
+
+        &.sorting_asc {
+            .icon-asc {
+                display: inline-block;
+            }
+        }
+        &.sorting_desc {
+            .icon-desc {
+                display: inline-block;
+            }
+        }
+
+        &[data-sort="yes"] {
+            cursor: pointer;
+        }
+    }
+
+    .link-fa {
+        .fa {
+            font-size: 22px;
+        }
+    }
+}

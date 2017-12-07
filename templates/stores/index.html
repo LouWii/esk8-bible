@@ -14,7 +14,7 @@
 
 <div class="stores-listing">
     {% if storeEntries|length > 0 %}
-    <table class="table stores-table table-hover">
+    <table class="table table-hover stores-table dynamic-table">
         <thead>
             <tr class="table-filtering" style="display: none;">
                 <th>Filtering:</th>
@@ -53,7 +53,11 @@
             {% for storeEntry in storeEntries %}
             <tr>
                 <td>{{storeEntry.title}}</td>
-                <td><a href="{{storeEntry.storeURL}}" target="_blank"><i class="fa fa-globe" aria-hidden="true"></i></a></td>
+                <td>
+                    <a class="link-fa" href="{{storeEntry.storeURL}}" target="_blank">
+                        <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                </td>
                 <td>{{storeEntry.geographicalZone.label}}</td>
                 <td>{{storeEntry.country}}</td>
                 <td>{% if storeEntry.specializedInEsk8 %}Yes{%else%}No{%endif%}</td>
