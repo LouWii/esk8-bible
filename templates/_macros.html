@@ -13,22 +13,22 @@
         {% elseif block.type == "blockSlider" %}
 
         {% elseif block.type == "blockImage" %}
+            {% if block.caption != "" %}
+            {% set imageCaption = block.caption %}
+            {% elseif block.image.one().caption != "" %}
+            {% set imageCaption = block.image.one().caption %}
+            {% endif %}
+
             <div class="block-image">
-                <a href="{{block.image.one().url}}" target="_blank">
+                <a href="{{block.image.one().url}}" target="_blank" data-lity data-caption="{{imageCaption|escape}}">
                     <picture>
                         <img src="{{block.image.one().getUrl("pageBodyImageBlockThumbnail")}}" alt="{{block.image.one().imageAlt}}" />
                     </picture>
                 </a>
 
-                {% if block.caption != "" %}
                 <div class="image-caption">
-                    {{ block.caption }}
+                    {{ imageCaption }}
                 </div>
-                {% elseif block.image.one().caption != "" %}
-                <div class="image-caption">
-                    {{ block.image.one().caption }}
-                </div>
-                {% endif %}
 
             </div>
         {% elseif block.type == "blockPageList" %}
