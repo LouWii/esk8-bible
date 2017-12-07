@@ -30,8 +30,20 @@
                 {% set prov = '' %}
                 {% if communityEntry.location.parts['country_short'] == 'CA' or communityEntry.location.parts['country_short'] == 'US' %}{% set prov = ', ' ~ communityEntry.location.parts['administrative_area_level_1_short'] %}{% endif %}
                 <tr>
-                    <td>{{communityEntry.title}}</td>
-                    <td><a href="{{communityEntry.communityUrl}}" target="_blank"><i class="fa fa-globe" aria-hidden="true"></i></a></td>
+                    <td>
+                        {{communityEntry.title}}
+                    </td>
+                    <td>
+                        <a href="{{communityEntry.communityUrl}}" target="_blank">
+                            {% if 'facebook.com' in communityEntry.communityUrl %}
+                            <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                            {% elseif 'meetup.com' in communityEntry.communityUrl %}
+                            <i class="fa fa-meetup" aria-hidden="true"></i>
+                            {% else %}
+                            <i class="fa fa-globe" aria-hidden="true"></i>
+                            {% endif %}
+                        </a>
+                    </td>
                     <td>
                         {{city}}{{prov}}
                     </td>
