@@ -2,6 +2,10 @@
     margin-top: -1.5rem;
 }
 
+.homepage-body {
+    padding: 2rem 0;
+}
+
 .hero {
     margin-bottom: 2rem;;
     position: relative;
@@ -50,7 +54,7 @@
         padding: 1rem 0;
 
         p {
-            padding: 0 2.2rem;
+            padding: 0.5rem 2rem;
             text-align: justify;
             text-align-last: center;
         }
@@ -62,12 +66,34 @@
 }
 
 .commandments {
-    padding: 1rem 2rem;
+    padding: 0 2rem 1rem;
 
     .commandments-content {
         margin: 0 auto;
         text-align: center;
+
+        .list {
+            margin-top: 1.5rem;
+        }
     }
+}
+
+.side-cards {
+    .card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@include media-breakpoint-down('lg') {
+    .hero {
+        .info-blocks {
+            p {
+                padding: 0.5rem 0;
+                text-align: center;
+            }
+        }
+    }
+    
 }
 
 @include media-breakpoint-down('md') {

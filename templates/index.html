@@ -65,16 +65,36 @@
         </div>
     </div>
 
-    
-
-    <div class="commandments">
-        <div class="commandments-content">
-            <h2>The 10 commandments of esk8</h2>
-            <div class="list">
-                {{entry.tenCommandments}}
+    <div class="homepage-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="commandments">
+                        <div class="commandments-content">
+                            <h2>The 10 commandments of esk8</h2>
+                            <div class="list">
+                                {{entry.tenCommandments}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 side-cards">
+                    {% for cardBlock in entry.sideCards.all() %}
+                        {% if cardBlock.type == 'blockCard' %}
+                        <div class="card">
+                            <div class="card-body">
+                                {{cardBlock.body}}
+                                <a href="{{cardBlock.pageLink.one().url}}" class="card-link">{% if cardBlock.linkLabel != "" %}{{cardBlock.linkLabel}}{% else %}{{cardBlock.pageLink.one().title}}{% endif %}</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
+
+    
 
 </div>
 
