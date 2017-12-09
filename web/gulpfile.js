@@ -13,7 +13,7 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('./css'));
 });
 
-gulp.task('minify-css', () => {
+gulp.task('minify-css', ['sass'], () => {
   return gulp.src('css/style.css')
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(rename({
