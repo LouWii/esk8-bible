@@ -1,5 +1,7 @@
 {% extends "_layout" %}
 
+{% import "_macros.html" as macros %}
+
 {% block inner_page %}
 
 <div class="main-container homepage-container">
@@ -17,48 +19,11 @@
 
             <div class="info-blocks container">
                 <div class="row">
+                    {% for cardBlock in entry.heroCards.type('blockCard').all() %}
                     <div class="col-md">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>
-                                    {% if entry.infoBlock1Icon != "" %}<i class="fa {{entry.infoBlock1Icon}}" aria-hidden="true"></i>{% endif %}
-                                    {{entry.infoBlock1Title}}
-                                </h4>
-                                <p>{{entry.infoBlock1Text}}</p>
-                                {% if entry.infoBlock1LinkPage.one() %}
-                                <a href="{{entry.infoBlock1LinkPage.one().url}}" class="card-link">{% if entry.infoBlock1LinkLabel != "" %}{{entry.infoBlock1LinkLabel}}{% else %}{{entry.infoBlock1LinkPage.one().title}}{% endif %}</a>
-                                {% endif %}
-                            </div>
-                        </div>
+                        {{ macros.bootstrapCard(cardBlock) }}
                     </div>
-                    <div class="col-md">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>
-                                    {% if entry.infoBlock2Icon != "" %}<i class="fa {{entry.infoBlock2Icon}}" aria-hidden="true"></i>{% endif %}
-                                    {{entry.infoBlock2Title}}
-                                </h4>
-                                <p>{{entry.infoBlock2Text}}</p>
-                                {% if entry.infoBlock2LinkPage.one() %}
-                                <a href="{{entry.infoBlock2LinkPage.one().url}}" class="card-link">{% if entry.infoBlock2LinkLabel != "" %}{{entry.infoBlock2LinkLabel}}{% else %}{{entry.infoBlock2LinkPage.one().title}}{% endif %}</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>
-                                    {% if entry.infoBlock3Icon != "" %}<i class="fa {{entry.infoBlock3Icon}}" aria-hidden="true"></i>{% endif %}
-                                    {{entry.infoBlock3Title}}
-                                </h4>
-                                <p>{{entry.infoBlock3Text}}</p>
-                                {% if entry.infoBlock3LinkPage.one() %}
-                                <a href="{{entry.infoBlock3LinkPage.one().url}}" class="card-link">{% if entry.infoBlock3LinkLabel != "" %}{{entry.infoBlock3LinkLabel}}{% else %}{{entry.infoBlock3LinkPage.one().title}}{% endif %}</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
 
@@ -79,15 +44,8 @@
                     </div>
                 </div>
                 <div class="col-md-3 side-cards">
-                    {% for cardBlock in entry.sideCards.all() %}
-                        {% if cardBlock.type == 'blockCard' %}
-                        <div class="card">
-                            <div class="card-body">
-                                {{cardBlock.body}}
-                                <a href="{{cardBlock.pageLink.one().url}}" class="card-link">{% if cardBlock.linkLabel != "" %}{{cardBlock.linkLabel}}{% else %}{{cardBlock.pageLink.one().title}}{% endif %}</a>
-                            </div>
-                        </div>
-                        {% endif %}
+                    {% for cardBlock in entry.sideCards.type('blockCard').all() %}
+                        {{macros.bootstrapCard(cardBlock)}}
                     {% endfor %}
                 </div>
             </div>

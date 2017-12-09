@@ -68,6 +68,31 @@
 
 {% endmacro %}
 
+{% macro bootstrapCard(cardBlock) %}
+
+    {% if cardBlock.type == 'blockCard' %}
+    <div class="card">
+        <div class="card-body">
+            {% if cardBlock.cardTitleIcon != '' or cardBlock.cardTitle != '' %}
+            <h4>
+                {% if cardBlock.cardTitleIcon != "" %}<i class="fa {{cardBlock.cardTitleIcon}}" aria-hidden="true"></i>{% endif %}
+                {{cardBlock.cardTitle}}
+            </h4>
+            {% endif %}
+
+            {{cardBlock.cardBody}}
+
+            {% if cardBlock.cardLinkPage.one() %}
+            <a href="{{cardBlock.cardLinkPage.one().url}}" class="card-link">{% if cardBlock.cardLinkLabel != "" %}{{cardBlock.cardLinkLabel}}{% else %}{{cardBlock.cardLinkPage.one().title}}{% endif %}</a>
+            {% endif %}
+        </div>
+    </div>
+    {% else %}
+    <p class="error">Not a <em>blockCard</em></p>
+    {% endif %}
+
+{% endmacro %}
+
 {# showEntryFields(entry) #}
 {% macro showEntryFields(entry) %}
 
