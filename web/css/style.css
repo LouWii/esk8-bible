@@ -8431,6 +8431,9 @@ body {
 .homepage-container {
   margin-top: -1.5rem; }
 
+.homepage-body {
+  padding: 2rem 0; }
+
 .hero {
   margin-bottom: 2rem;
   position: relative;
@@ -8465,17 +8468,27 @@ body {
   .hero .info-blocks {
     padding: 1rem 0; }
     .hero .info-blocks p {
-      padding: 0 2.2rem;
+      padding: 0.5rem 1.5rem;
       text-align: justify;
       text-align-last: center; }
     .hero .info-blocks h4 {
       text-align: center; }
 
 .commandments {
-  padding: 1rem 2rem; }
+  padding: 0 2rem 1rem; }
   .commandments .commandments-content {
     margin: 0 auto;
     text-align: center; }
+    .commandments .commandments-content .list {
+      margin-top: 1.5rem; }
+
+.side-cards .card {
+  margin-bottom: 1.5rem; }
+
+@media (max-width: 1199px) {
+  .hero .info-blocks p {
+    padding: 0.5rem 0;
+    text-align: center; } }
 
 @media (max-width: 991px) {
   .hero-content h1 .typed-in::before {
