@@ -8,12 +8,14 @@
     "datatables.net-bs4": "^1.10.16",
     "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
     "jquery": "^3.2.1",
     "lity": "^2.3.0",
     "popper.js": "^1.12.9",
     "typed.js": "^2.0.6"
   },
   "devDependencies": {
+    "gulp-clean-css": "^3.9.0",
     "gulp-sass": "^3.1.0"
   },
   "scripts": {
