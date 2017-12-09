@@ -8467,6 +8467,11 @@ body {
         color: #fff; }
   .hero .info-blocks {
     padding: 1rem 0; }
+    .hero .info-blocks .card {
+      box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
+      transition: box-shadow .2s; }
+      .hero .info-blocks .card:hover {
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.8); }
     .hero .info-blocks p {
       padding: 0.5rem 1.5rem;
       text-align: justify;

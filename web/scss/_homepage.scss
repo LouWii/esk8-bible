@@ -53,6 +53,17 @@
     .info-blocks {
         padding: 1rem 0;
 
+        .card {
+            // background-color: transparentize($color: #000000, $amount: .5);
+            // color: #fff;
+            box-shadow: 4px 4px 6px transparentize($color: #000000, $amount: .2);
+            transition: box-shadow .2s;
+
+            &:hover {
+                box-shadow: 0px 0px 4px transparentize($color: #000000, $amount: .2);
+            }
+        }
+
         p {
             padding: 0.5rem 1.5rem;
             text-align: justify;
