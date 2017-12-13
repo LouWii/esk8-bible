@@ -20,7 +20,7 @@
             {% endif %}
 
             <div class="block-image">
-                <a href="{{block.image.one().url}}" target="_blank" data-lity data-caption="{{imageCaption|escape}}">
+                <a href="{{block.image.one().getUrl("pageBodyImageBlockBig")}}" target="_blank" data-lity data-caption="{{imageCaption|escape}}">
                     <picture>
                         <img src="{{block.image.one().getUrl("pageBodyImageBlockThumbnail")}}" alt="{{block.image.one().imageAlt}}" />
                     </picture>
