@@ -11,6 +11,36 @@
             </div>
 
         {% elseif block.type == "blockSlider" %}
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+
+                    {% for image in block.images.all() %}
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                        <div class="block-image">
+
+                            <a href="{{image.getUrl("pageBodyImageBlockBig")}}" target="_blank" data-lity data-caption="{{image.caption|escape}}">
+                                <picture>
+                                    <img class="" src="{{ image.getUrl("pageBodyImageBlockThumbnail") }}" alt="{{ image.imageAlt }}">
+                                </picture>
+                            </a>
+
+                            <div class="image-caption">
+                                {{ image.caption }}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
 
         {% elseif block.type == "blockImage" %}
             {% if block.caption != "" %}
