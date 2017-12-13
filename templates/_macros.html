@@ -79,7 +79,10 @@
                 <div class="page-list-tabs">
                     <nav class="nav nav-tabs" role="tablist">
                         {% for page in block.pages.all() %}
-                        <a class="nav-item nav-link {% if loop.first %}active{% endif %}" id="nav-{{ page.slug }}-tab" data-toggle="tab" href="#nav-{{ page.slug }}" role="tab" aria-controls="nav-{{ page.slug }}" aria-selected="false">{{ page.title }}</a>
+                        <a class="nav-item nav-link nav-item-has-open {% if loop.first %}active{% endif %}" id="nav-{{ page.slug }}-tab" data-toggle="tab" href="#nav-{{ page.slug }}" role="tab" aria-controls="nav-{{ page.slug }}" aria-selected="false">{{ page.title }}</a>
+                        <a class="nav-item-link-open" href="{{ page.url }}">
+                            <i class="fa fa-external-link" aria-hidden="true"></i>
+                        </a>
                         {% endfor %}
                     </nav>
                     <div class="tab-content">
