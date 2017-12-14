@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1a69a49817eef79ce35d14c0fcf7634",
+    "content-hash": "4cf5a06516905631d23cf4b67b7cb86d",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -300,11 +300,6 @@
         {
             "name": "craftcms/cms",
             "version": "3.0.0-RC1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/craftcms/cms.git",
-                "reference": "c269bee9d8e7def9470b2e41d0a5b09c08c7f594"
-            },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/craftcms/cms/zipball/c269bee9d8e7def9470b2e41d0a5b09c08c7f594",
@@ -381,11 +376,6 @@
         {
             "name": "craftcms/oauth2-craftid",
             "version": "1.0.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/craftcms/oauth2-craftid.git",
-                "reference": "3f18364139d72d83fb50546d85130beaaa868836"
-            },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/craftcms/oauth2-craftid/zipball/3f18364139d72d83fb50546d85130beaaa868836",
@@ -467,11 +457,11 @@
         },
         {
             "name": "craftcms/redactor",
-            "version": "1.0.0",
+            "version": "1.0.0.1",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/redactor/zipball/78acbe7d24092f8ed6ef1c096a02a3e560a571f2",
-                "reference": "78acbe7d24092f8ed6ef1c096a02a3e560a571f2",
+                "url": "https://api.github.com/repos/craftcms/redactor/zipball/0225ce422ab76a21b003d5dde6a7a3813a05b4ca",
+                "reference": "0225ce422ab76a21b003d5dde6a7a3813a05b4ca",
                 "shasum": ""
             },
             "require": {
@@ -512,16 +502,12 @@
                 "source": "https://github.com/craftcms/redactor",
                 "docs": "https://github.com/craftcms/redactor",
                 "rss": "https://github.com/craftcms/redactor/commits/master.atom"
-            }
+            },
+            "time": "2017-12-11T03:18:41+00:00"
         },
         {
             "name": "craftcms/server-check",
             "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/craftcms/server-check.git",
-                "reference": "6e7ecc427b5252b8b878f028a45738e19e7968b9"
-            },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/craftcms/server-check/zipball/6e7ecc427b5252b8b878f028a45738e19e7968b9",
@@ -2378,11 +2364,6 @@
         {
             "name": "yiisoft/yii2-debug",
             "version": "2.0.13",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "b37f414959c2fafefb332020b42037cd17c1cb7f"
-            },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/b37f414959c2fafefb332020b42037cd17c1cb7f",
