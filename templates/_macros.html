@@ -57,7 +57,7 @@
                 </a>
 
                 <div class="image-caption">
-                    {{ imageCaption }}
+                    {{ imageCaption }}{% if block.image.one().credits != '' %} <div class="link-popover" data-container="body" data-toggle="popover" data-placement="top">credits<div class="popover-body">{{block.image.one().credits}}</div></div>{% endif %}
                 </div>
 
             </div>

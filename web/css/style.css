@@ -8224,6 +8224,14 @@ a.text-dark:focus, a.text-dark:hover {
   margin-right: 13px;
   padding-top: 10px; }
 
+.link-popover {
+  display: inline;
+  font-size: 12px;
+  color: rgba(33, 37, 41, 0.5);
+  cursor: pointer; }
+  .link-popover .popover-body {
+    display: none; }
+
 .dynamic-table {
   border-bottom: 2px solid #e9ecef; }
   .dynamic-table th .icon-asc, .dynamic-table th .icon-desc {

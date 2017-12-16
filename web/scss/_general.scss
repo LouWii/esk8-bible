@@ -38,6 +38,17 @@
     }
 }
 
+.link-popover {
+    display: inline;
+    font-size: 12px;
+    color: transparentize($body-color, 0.5);
+    cursor: pointer;
+
+    .popover-body {
+        display: none;
+    }
+}
+
 .dynamic-table {
     border-bottom: 2px solid $table-border-color;
 
