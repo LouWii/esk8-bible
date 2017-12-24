@@ -164,7 +164,7 @@ b,
 strong {
   font-weight: bolder; }
 
-small {
+small, .eboards-table td .eboard-brand {
   font-size: 80%; }
 
 sub,
@@ -406,7 +406,7 @@ hr {
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1); }
 
-small,
+small, .eboards-table td .eboard-brand,
 .small {
   font-size: 80%;
   font-weight: 400; }
@@ -8572,6 +8572,10 @@ body {
 
 .stores-table th, .stores-table td {
   padding: 0.75rem 0.45rem; }
+
+.eboards-table td .eboard-brand {
+  display: block;
+  color: #868e96; }
 
 @keyframes blink {
   0% {

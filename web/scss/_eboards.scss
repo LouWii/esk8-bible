@@ -1,0 +1,10 @@
+.eboards-table {
+    
+    td {
+        .eboard-brand {
+            @extend small;
+            display: block;
+            color: $gray-600;
+        }
+    }
+}
