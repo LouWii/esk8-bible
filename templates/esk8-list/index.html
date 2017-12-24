@@ -22,7 +22,39 @@
                     <i class="fa fa-chevron-up icon-asc" aria-hidden="true"></i>
                     <i class="fa fa-chevron-down icon-desc" aria-hidden="true"></i>
                 </th>
-                <th><i class="fa fa-globe" aria-hidden="true" title="Website access"></i></th>
+                <th>
+                    <i class="fa fa-globe" aria-hidden="true" title="Website access"></i>
+                </th>
+                <th class="head-price" data-sort="yes">
+                    <i class="fa fa-usd" aria-hidden="true" title="Price"></i> <small>Price</small>
+                    <i class="fa fa-chevron-up icon-asc" aria-hidden="true"></i>
+                    <i class="fa fa-chevron-down icon-desc" aria-hidden="true"></i>
+                </th>
+                <th class="head-country" data-sort="yes">
+                    <small>Country</small>
+                    <i class="fa fa-chevron-up icon-asc" aria-hidden="true"></i>
+                    <i class="fa fa-chevron-down icon-desc" aria-hidden="true"></i>
+                </th>
+                <th class="head-speed" data-sort="yes">
+                    <i class="fa fa-tachometer" aria-hidden="true" title="Speed"></i> <small>Speed</small>
+                    <i class="fa fa-chevron-up icon-asc" aria-hidden="true"></i>
+                    <i class="fa fa-chevron-down icon-desc" aria-hidden="true"></i>
+                </th>
+                <th class="head-range" data-sort="yes">
+                    Range
+                    <i class="fa fa-chevron-up icon-asc" aria-hidden="true"></i>
+                    <i class="fa fa-chevron-down icon-desc" aria-hidden="true"></i>
+                </th>
+                <th class="head-charging-time" data-sort="yes">
+                    <i class="fa fa-plug" aria-hidden="true" title="Charging Time"></i>
+                    <i class="fa fa-chevron-up icon-asc" aria-hidden="true"></i>
+                    <i class="fa fa-chevron-down icon-desc" aria-hidden="true"></i>
+                </th>
+                <th class="head-waterproofing" data-sort="yes">
+                    <i class="fa fa-tint" aria-hidden="true" title="Waterproofing"></i> <small>Waterproofing</small>
+                    <i class="fa fa-chevron-up icon-asc" aria-hidden="true"></i>
+                    <i class="fa fa-chevron-down icon-desc" aria-hidden="true"></i>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -36,6 +68,24 @@
                     <a class="link-fa" href="{{eboardEntry.boardLink}}" target="_blank">
                         <i class="fa fa-external-link" aria-hidden="true"></i>
                     </a>
+                </td>
+                <td>
+                    {{ macros.displayValueOrUnknown(eboardEntry.price) }}
+                </td>
+                <td>
+                    {{ macros.displayValueOrUnknown(eboardEntry.country) }}
+                </td>
+                <td>
+                    {{ macros.displayValueOrUnknown(eboardEntry.speed, '', 'km/h') }}
+                </td>
+                <td>
+                    {{ macros.displayValueOrUnknown(eboardEntry.range, '', 'km') }}
+                </td>
+                <td>
+                    {{ macros.displayValueOrUnknown(eboardEntry.chargingTime) }}
+                </td>
+                <td>
+                    {{ eboardEntry.waterproofing.label }}
                 </td>
             </tr>
             {% endfor %}
