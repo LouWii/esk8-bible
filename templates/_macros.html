@@ -161,7 +161,7 @@
 
 {% endmacro %}
 
-{% macro displayValueOrUnknown(value, prefix, suffix) %}
+{% macro displayValueOrUnknown(value, prefix = '', suffix = '') %}
 {% if value %}
 {{prefix}}{{value}}{{suffix}}
 {% else %}
