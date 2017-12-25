@@ -1,10 +1,17 @@
 .eboards-table {
     
     td {
+        vertical-align: middle;
+
         .eboard-brand {
             @extend small;
             display: block;
             color: $gray-600;
+        }
+        
+        .eboard-dimension {
+            @extend small;
+            display: block;
         }
     }
 }

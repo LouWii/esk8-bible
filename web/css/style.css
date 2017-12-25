@@ -164,7 +164,7 @@ b,
 strong {
   font-weight: bolder; }
 
-small, .eboards-table td .eboard-brand {
+small, .eboards-table td .eboard-brand, .eboards-table td .eboard-dimension {
   font-size: 80%; }
 
 sub,
@@ -406,7 +406,7 @@ hr {
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1); }
 
-small, .eboards-table td .eboard-brand,
+small, .eboards-table td .eboard-brand, .eboards-table td .eboard-dimension,
 .small {
   font-size: 80%;
   font-weight: 400; }
@@ -8573,9 +8573,13 @@ body {
 .stores-table th, .stores-table td {
   padding: 0.75rem 0.45rem; }
 
-.eboards-table td .eboard-brand {
-  display: block;
-  color: #868e96; }
+.eboards-table td {
+  vertical-align: middle; }
+  .eboards-table td .eboard-brand {
+    display: block;
+    color: #868e96; }
+  .eboards-table td .eboard-dimension {
+    display: block; }
 
 @keyframes blink {
   0% {

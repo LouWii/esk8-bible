@@ -41,7 +41,7 @@
                     <i class="fa fa-chevron-down icon-desc" aria-hidden="true"></i>
                 </th>
                 <th class="head-range" data-sort="yes">
-                    Range
+                    <small>Range</small>
                     <i class="fa fa-chevron-up icon-asc" aria-hidden="true"></i>
                     <i class="fa fa-chevron-down icon-desc" aria-hidden="true"></i>
                 </th>
@@ -54,6 +54,9 @@
                     <i class="fa fa-tint" aria-hidden="true" title="Waterproofing"></i> <small>Waterproofing</small>
                     <i class="fa fa-chevron-up icon-asc" aria-hidden="true"></i>
                     <i class="fa fa-chevron-down icon-desc" aria-hidden="true"></i>
+                </th>
+                <th>
+                    <small>Dimensions</small>
                 </th>
             </tr>
         </thead>
@@ -86,6 +89,20 @@
                 </td>
                 <td>
                     {{ eboardEntry.waterproofing.label }}
+                </td>
+                <td>
+                    <span class="eboard-dimension">
+                        <i class="fa fa-arrows-v" aria-hidden="true" title="Board length"></i>
+                        {{ macros.displayValueOrUnknown(eboardEntry.boardLength, '', 'mm') }}
+                    </span>
+                    <span class="eboard-dimension">
+                        <i class="fa fa-arrows-h" aria-hidden="true" title="Board width"></i>
+                        {{ macros.displayValueOrUnknown(eboardEntry.boardWidth, '', 'mm') }}
+                    </span>
+                    <span class="eboard-dimension">
+                        <i class="fa fa-long-arrow-up" aria-hidden="true" title="Board height"></i>
+                        {{ macros.displayValueOrUnknown(eboardEntry.boardHeight, '', 'mm') }}
+                    </span>
                 </td>
             </tr>
             {% endfor %}
