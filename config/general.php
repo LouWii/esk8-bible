@@ -33,9 +33,9 @@ return [
         // Dev Mode (see https://craftcms.com/support/dev-mode)
         'devMode' => true,
 
-        // More: https://craftcms.com/docs/multi-environment-configs
+        // More: https://craftcms.com/docs/multi-environment-configs#example-multi-environment-asset-source-settings
         // Doesn't work in Craft3 ?
-        'environmentVariables' => array(
+        'aliases' => array(
             'basePath' => '/Users/louis/Documents/WebProjects/esk8/web/',
             'baseUrl'  => 'http://esk8.dev/',
         )
