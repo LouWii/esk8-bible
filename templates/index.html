@@ -32,23 +32,29 @@
 
     <div class="homepage-body">
         <div class="container">
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="commandments">
-                        <div class="commandments-content">
-                            <h2>The 10 commandments of esk8</h2>
-                            <div class="list">
-                                {{entry.tenCommandments}}
-                            </div>
-                        </div>
+
+            <div class="commandments">
+                <div class="commandments-content">
+                    <div class="commandments-hero-image">
+                        <img src="/images/esk8-bible-logo-250-transparent.png" alt="esk8 bible logo" />
+                    </div>
+                    <h2>The 10 commandments of esk8</h2>
+                    <div class="list">
+                        {{entry.tenCommandments}}
                     </div>
                 </div>
-                <div class="col-md-3 side-cards">
+            </div>
+
+            <div class="side-cards">
+
+                <div class="side-cards-list">
                     {% for cardBlock in entry.sideCards.type('blockCard').all() %}
                         {{macros.bootstrapCard(cardBlock)}}
                     {% endfor %}
                 </div>
+
             </div>
+
         </div>
     </div>
 

@@ -43,7 +43,6 @@
             margin: -1.5rem 0 2rem;
 
             p {
-                
                 display: inline;
                 color: #fff;
             }
@@ -83,16 +82,49 @@
         margin: 0 auto;
         text-align: center;
 
+        h2 {
+            font-size: 2.2rem;
+        }
+
+        .commandments-hero-image {
+            margin-bottom: 2rem;
+
+            img {
+                max-height: 200px;
+            }
+        }
+
         .list {
             margin-top: 1.5rem;
+
+            p {
+                font-size: 1.3rem;
+                font-style: italic;
+                font-family: serif;
+            }
         }
     }
 }
 
 .side-cards {
-    .card {
-        margin-bottom: 1.5rem;
+    margin-top: 2rem;
+
+    .side-cards-list {
+        text-align: center;
+
+        .card {
+            margin-bottom: 1.5rem;
+            margin-right: 1.5rem;
+            width: 300px;
+            display: inline-block;
+            vertical-align:top;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
     }
+
 }
 
 @include media-breakpoint-down('lg') {
