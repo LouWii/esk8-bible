@@ -1,9 +1,14 @@
 // Bootstrap variable overrides
 $body-bg: #FFF;
 $table-hover-bg: transparentize(#000, .98);
+$headings-font-family: 'Lato', sans-serif;
+$headings-font-weight: 400;
 
 // Font awesome variable overrides
 $fa-font-path: "/node_modules/font-awesome/fonts";
+
+// Lato font variable overrides
+$lato-font-path: '/node_modules/lato-font/fonts';
 
 // Site variables
 $color-accent-dark: #24526d;
