@@ -55,12 +55,12 @@ $(function() {
                         var val = $.fn.dataTable.util.escapeRegex(
                             $(this).val()
                         );
- 
+
                         column
                             .search( val ? '^'+val+'$' : '', true, false )
                             .draw();
                     } );
- 
+
                     column.data().unique().sort().each( function ( d, j ) {
                         select.append( '<option value="'+d+'">'+d+'</option>' )
                     } );
@@ -81,4 +81,50 @@ $(function() {
             $(instance.element()).find('.lity-container').append($captionDiv);
         }
     });
+
+    if ($('.vesc-log-chart-container .chart-container').length && window.labels && window.datasets) {
+      // $("#vescLogChart").css('width', window.labels.length * 8+'px');
+      const chartCanva = $('<canvas id="vescLogChart"></canvas>');
+      chartCanva.css('width', window.labels.length * 8+'px');
+      chartCanva.css('height', 300+'px');
+      $('.vesc-log-chart-container .chart-container').append(chartCanva);
+      const ctx = document.getElementById("vescLogChart").getContext('2d');
+      let chartDataset = [];
+
+      const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: window.labels,
+          datasets: chartDataset
+        },
+        options: {
+          responsive: false,
+          tooltips: {
+            mode: 'index',
+            intersect: false,
+          },
+          hover: {
+            mode: 'nearest',
+            intersect: true
+          },
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero:true
+              }
+            }]
+          }
+        }
+      });
+
+      const defaultData = ['MotorCurrent', 'BatteryCurrent', 'Speed'];
+
+      for (let i = 0; i < window.datasets.length; i++) {
+        if ($.inArray(window.datasets[i].label, defaultData)) {
+            chartDataset.push(window.datasets[i]);
+        }
+      }
+
+      myChart.update();
+    }
 });
