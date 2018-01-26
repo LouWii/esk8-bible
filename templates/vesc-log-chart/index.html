@@ -1,0 +1,33 @@
+{% extends "_layout" %}
+
+{% import "_macros.html" as macros %}
+
+{% block content %}
+
+<h1>{{ entry.title }}</h1>
+
+<div class="page-container">
+  {{ macros.pageBody(entry.body) }}
+</div>
+
+
+{% for error in craft.vescLogInterpreter.vescLogDataErrors %}
+<div class="alert alert-danger" role="alert">
+  {{error}}
+</div>
+{% endfor %}
+
+{% if craft.vescLogInterpreter.vescLogDataDatasets|length > 30 %}
+<div class="vesc-log-chart-container">
+  <script type="text/javascript">
+    window.labels = {{ craft.vescLogInterpreter.vescLogDataAxisLabels|raw }}
+    window.datasets = {{ craft.vescLogInterpreter.vescLogDataDatasets|raw }};
+  </script>
+
+  <div class="chart-container">
+    <!-- <canvas id="vescLogChart"></canvas> -->
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}
