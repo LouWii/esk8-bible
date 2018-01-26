@@ -8755,6 +8755,13 @@ body {
   .eboards-table td .eboard-dimension {
     display: block; }
 
+.vesc-log-chart-container .chart-container {
+  overflow: auto; }
+
+#vescLogChart {
+  width: 100%;
+  height: 200px; }
+
 @keyframes blink {
   0% {
     opacity: 1; }
