@@ -83,7 +83,15 @@ $(function() {
     });
 
     if ($('.vesc-log-chart-container .chart-container').length && window.labels && window.datasets) {
-      // $("#vescLogChart").css('width', window.labels.length * 8+'px');
+
+      // Setup horizontal scrolling
+      const $chartContainer = $('.vesc-log-chart-container .chart-container');
+      $chartContainer.on('mousewheel DOMMouseScroll', function(event) {
+        var delta = Math.max(-1, Math.min(1, (event.originalEvent.wheelDelta || -event.originalEvent.detail)));
+        $(this).scrollLeft( $(this).scrollLeft() - ( delta * 50 ) );
+        event.preventDefault();
+      });
+
       const chartCanva = $('<canvas id="vescLogChart"></canvas>');
       chartCanva.css('width', window.labels.length * 8+'px');
       chartCanva.css('height', 300+'px');
@@ -91,7 +99,7 @@ $(function() {
       const ctx = document.getElementById("vescLogChart").getContext('2d');
       let chartDataset = [];
 
-      const myChart = new Chart(ctx, {
+      const vescChart = new Chart(ctx, {
         type: 'line',
         data: {
           labels: window.labels,
@@ -108,6 +116,9 @@ $(function() {
             intersect: true
           },
           scales: {
+            xAxes: [{
+              type: 'time',
+            }],
             yAxes: [{
               ticks: {
                 beginAtZero:true
@@ -117,14 +128,39 @@ $(function() {
         }
       });
 
-      const defaultData = ['MotorCurrent', 'BatteryCurrent', 'Speed'];
-
+      $filtersContainer = $('.chart-filters-container');
+      // Add default data to the chart dataset
       for (let i = 0; i < window.datasets.length; i++) {
-        if ($.inArray(window.datasets[i].label, defaultData)) {
-            chartDataset.push(window.datasets[i]);
+        let checkedState = '';
+        if (window.datasets[i].label === 'InpVoltage'
+          || window.datasets[i].label === 'MotorCurrent'
+          || window.datasets[i].label === 'Speed') {
+            checkedState = 'checked="checked"';
         }
+        $filterRow = $('<div class="filter-row"></div>');
+        $filterRow.append('<label for="dataset-id-'+i+'" class="filter-label">'+window.datasets[i].label+'</label>');
+        $filterRow.append('<span class="filter-trigger"><input id="dataset-id-'+i+'" type="checkbox" name="datasetName" value="'+window.datasets[i].label+'" '+checkedState+' /></span>');
+        $filtersContainer.append($filterRow);
       }
 
-      myChart.update();
+      filterChartUpdate();
+
+      $('.chart-loading-container').hide();
+      $('.chart-container, .chart-filters-container').fadeIn();
+
+      $('.chart-filters-container input').on('change', function(event){
+        filterChartUpdate();
+      });
+
+      function filterChartUpdate() {
+        let newDataset = [];
+        for (let i = 0; i < window.datasets.length; i++) {
+          if ($('.chart-filters-container input[value="'+window.datasets[i].label+'"]').is(':checked')) {
+            newDataset.push(window.datasets[i]);
+          }
+        }
+        vescChart.data.datasets = newDataset;
+        vescChart.update();
+      }
     }
 });
