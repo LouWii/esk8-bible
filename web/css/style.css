@@ -8777,10 +8777,12 @@ body {
   margin-bottom: 12px; }
 
 @media (max-width: 767px) {
-  .vesc-log-chart-container .chart-filters-container .filter-row {
-    padding: 6px 0; }
-  .vesc-log-chart-container .chart-filters-container .filter-label {
-    font-size: 1rem; } }
+  .vesc-log-chart-container .chart-filters-container {
+    padding: 12px; }
+    .vesc-log-chart-container .chart-filters-container .filter-row {
+      padding: 6px 0; }
+    .vesc-log-chart-container .chart-filters-container .filter-label {
+      font-size: 1rem; } }
 
 @keyframes blink {
   0% {
