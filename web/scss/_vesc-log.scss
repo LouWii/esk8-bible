@@ -1,11 +1,54 @@
 .vesc-log-chart-container {
 
+  .chart-loading-container {
+    text-align: center;
+    font-size: 1.8rem;
+  }
+
   .chart-container {
     overflow: auto;
+    margin-bottom: 4px;
+  }
+
+  .chart-filters-container {
+    @extend .row;
+    margin-bottom: 24px;
+    padding: 12px 0;
+    background-color: #eee;
+
+    .filter-row {
+      @extend .col-md-4;
+      @extend .col-lg-3;
+      @extend .row;
+    }
+
+    .filter-label {
+      @extend .col-8;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    .filter-trigger {
+      @extend .col-4;
+    }
   }
 }
 
 #vescLogChart {
   width: 100%;
   height: 200px;
+  margin-bottom: 12px;
+}
+
+@include media-breakpoint-down('sm') {
+  .vesc-log-chart-container {
+
+    .chart-filters-container {
+      .filter-row {
+        padding: 6px 0;
+      }
+      .filter-label {
+        font-size: 1rem;
+      }
+    }
+  }
 }
