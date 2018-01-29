@@ -85,15 +85,19 @@ $(function() {
     if ($('.vesc-log-chart-container .chart-container').length && window.labels && window.datasets) {
 
       // Setup horizontal scrolling
+      const chartCanva = $('<canvas id="vescLogChart"></canvas>');
       const $chartContainer = $('.vesc-log-chart-container .chart-container');
+      const $filtersContainer = $('.chart-filters-container');
+
       $chartContainer.on('mousewheel DOMMouseScroll', function(event) {
         var delta = Math.max(-1, Math.min(1, (event.originalEvent.wheelDelta || -event.originalEvent.detail)));
         $(this).scrollLeft( $(this).scrollLeft() - ( delta * 50 ) );
         event.preventDefault();
       });
 
-      const chartCanva = $('<canvas id="vescLogChart"></canvas>');
-      chartCanva.css('width', window.labels.length * 8+'px');
+      window.currentChartPart = 0;
+
+      chartCanva.css('width', window.labels[window.currentChartPart].length * 8+'px');
       chartCanva.css('height', 300+'px');
       $('.vesc-log-chart-container .chart-container').append(chartCanva);
       const ctx = document.getElementById("vescLogChart").getContext('2d');
@@ -102,7 +106,7 @@ $(function() {
       const vescChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: window.labels,
+          labels: window.labels[window.currentChartPart],
           datasets: chartDataset
         },
         options: {
@@ -128,35 +132,68 @@ $(function() {
         }
       });
 
-      $filtersContainer = $('.chart-filters-container');
-      // Add default data to the chart dataset
-      for (let i = 0; i < window.datasets.length; i++) {
+      if (window.labels.length > 1) {
+        // Chart in multiple parts
+        const $charPartsButtonsContainer = $('<div class="chart-parts-actions-container"></div>');
+        const $chartPartsButtons = $('<div class="chart-parts-actions-buttons"></div>')
+        for (let i = 0; i < window.labels.length; i++) {
+          const $buttonPart = $('<button class="btn btn-secondary '+(i==0?'active':'')+'" data-part-id="'+i+'">Part '+(i+1)+'</button>');
+          $chartPartsButtons.append($buttonPart);
+        }
+        $charPartsButtonsContainer.append($chartPartsButtons);
+
+        $filtersContainer.append($charPartsButtonsContainer);
+
+        $chartPartsButtons.find('button').on('click', function(e){
+          e.preventDefault();
+
+          const partId = parseInt($(this).data('part-id'), 10);
+          if (!$(this).hasClass('active')) {
+            window.currentChartPart = partId;
+
+            vescChart.data.labels = window.labels[window.currentChartPart];
+            filterChartUpdate();
+
+            $(this).parent().find('button').removeClass('active');
+            $(this).addClass('active');
+          }
+        });
+      }
+
+      // Setup filters
+      for (let i = 0; i < window.datasets[window.currentChartPart].length; i++) {
         let checkedState = '';
-        if (window.datasets[i].label === 'InpVoltage'
-          || window.datasets[i].label === 'MotorCurrent'
-          || window.datasets[i].label === 'Speed') {
+        if (window.datasets[window.currentChartPart][i].label === 'InpVoltage'
+          || window.datasets[window.currentChartPart][i].label === 'MotorCurrent'
+          || window.datasets[window.currentChartPart][i].label === 'Speed') {
             checkedState = 'checked="checked"';
         }
         $filterRow = $('<div class="filter-row"></div>');
-        $filterRow.append('<label for="dataset-id-'+i+'" class="filter-label">'+window.datasets[i].label+'</label>');
-        $filterRow.append('<span class="filter-trigger"><input id="dataset-id-'+i+'" type="checkbox" name="datasetName" value="'+window.datasets[i].label+'" '+checkedState+' /></span>');
+        $filterRow.append('<label for="dataset-id-'+i+'" class="filter-label">'+window.datasets[window.currentChartPart][i].label+'</label>');
+        $filterRow.append('<span class="filter-trigger"><input id="dataset-id-'+i+'" type="checkbox" name="datasetName" value="'+window.datasets[window.currentChartPart][i].label+'" '+checkedState+' /></span>');
         $filtersContainer.append($filterRow);
       }
 
       filterChartUpdate();
 
+      // UI update once everything is setup and ready
       $('.chart-loading-container').hide();
       $('.chart-container, .chart-filters-container').fadeIn();
 
+      // Filter events init
       $('.chart-filters-container input').on('change', function(event){
         filterChartUpdate();
       });
 
+      /**
+       * Update the whole chart using filters
+       * @return void
+       */
       function filterChartUpdate() {
         let newDataset = [];
-        for (let i = 0; i < window.datasets.length; i++) {
-          if ($('.chart-filters-container input[value="'+window.datasets[i].label+'"]').is(':checked')) {
-            newDataset.push(window.datasets[i]);
+        for (let i = 0; i < window.datasets[window.currentChartPart].length; i++) {
+          if ($('.chart-filters-container input[value="'+window.datasets[window.currentChartPart][i].label+'"]').is(':checked')) {
+            newDataset.push(window.datasets[window.currentChartPart][i]);
           }
         }
         vescChart.data.datasets = newDataset;

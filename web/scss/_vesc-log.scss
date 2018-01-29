@@ -16,6 +16,17 @@
     padding: 12px 0;
     background-color: #eee;
 
+    .chart-parts-actions-container {
+      display: flex;
+      flex: 1 1 100%;
+      padding: 0 12px 12px 12px;
+
+      .chart-parts-actions-buttons {
+        @extend .btn-group;
+        margin: 0 auto;
+      }
+    }
+
     .filter-row {
       @extend .col-md-4;
       @extend .col-lg-3;

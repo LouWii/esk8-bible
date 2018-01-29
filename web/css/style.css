@@ -2110,31 +2110,51 @@ tbody.collapse.show {
   color: #868e96;
   white-space: nowrap; }
 
-.btn-group,
+.btn-group, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons,
 .btn-group-vertical {
   position: relative;
   display: inline-flex;
   vertical-align: middle; }
-  .btn-group > .btn,
+  .btn-group > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn,
   .btn-group-vertical > .btn {
     position: relative;
     flex: 0 1 auto; }
-    .btn-group > .btn:hover,
+    .btn-group > .btn:hover, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:hover,
     .btn-group-vertical > .btn:hover {
       z-index: 2; }
-    .btn-group > .btn:focus, .btn-group > .btn:active, .btn-group > .btn.active,
+    .btn-group > .btn:focus, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:focus, .btn-group > .btn:active, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:active, .btn-group > .btn.active, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn.active,
     .btn-group-vertical > .btn:focus,
     .btn-group-vertical > .btn:active,
     .btn-group-vertical > .btn.active {
       z-index: 2; }
-  .btn-group .btn + .btn,
-  .btn-group .btn + .btn-group,
-  .btn-group .btn-group + .btn,
-  .btn-group .btn-group + .btn-group,
+  .btn-group .btn + .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons .btn + .btn,
+  .btn-group .btn + .btn-group, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons .btn + .btn-group,
+  .btn-group .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .btn + .chart-parts-actions-buttons, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group .btn + .chart-parts-actions-buttons, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons .btn + .chart-parts-actions-buttons,
+  .btn-group .btn-group + .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons .btn-group + .btn,
+  .btn-group .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons + .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group .chart-parts-actions-buttons + .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons .chart-parts-actions-buttons + .btn,
+  .btn-group .btn-group + .btn-group, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons .btn-group + .btn-group,
+  .btn-group .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons + .btn-group, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group .chart-parts-actions-buttons + .btn-group, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons .chart-parts-actions-buttons + .btn-group,
+  .btn-group .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .btn-group + .chart-parts-actions-buttons, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group .btn-group + .chart-parts-actions-buttons, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons .btn-group + .chart-parts-actions-buttons,
+  .btn-group .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons + .chart-parts-actions-buttons, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group .chart-parts-actions-buttons + .chart-parts-actions-buttons, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons .chart-parts-actions-buttons + .chart-parts-actions-buttons,
   .btn-group-vertical .btn + .btn,
   .btn-group-vertical .btn + .btn-group,
+  .btn-group-vertical .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .btn + .chart-parts-actions-buttons, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-vertical .btn + .chart-parts-actions-buttons,
   .btn-group-vertical .btn-group + .btn,
-  .btn-group-vertical .btn-group + .btn-group {
+  .btn-group-vertical .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons + .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-vertical .chart-parts-actions-buttons + .btn,
+  .btn-group-vertical .btn-group + .btn-group,
+  .btn-group-vertical .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons + .btn-group, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-vertical .chart-parts-actions-buttons + .btn-group,
+  .btn-group-vertical .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .btn-group + .chart-parts-actions-buttons, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-vertical .btn-group + .chart-parts-actions-buttons,
+  .btn-group-vertical .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons + .chart-parts-actions-buttons, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-vertical .chart-parts-actions-buttons + .chart-parts-actions-buttons {
     margin-left: -1px; }
 
 .btn-toolbar {
@@ -2144,32 +2164,33 @@ tbody.collapse.show {
   .btn-toolbar .input-group {
     width: auto; }
 
-.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
   border-radius: 0; }
 
-.btn-group > .btn:first-child {
+.btn-group > .btn:first-child, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:first-child {
   margin-left: 0; }
-  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0; }
 
-.btn-group > .btn:last-child:not(:first-child),
-.btn-group > .dropdown-toggle:not(:first-child) {
+.btn-group > .btn:last-child:not(:first-child), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:last-child:not(:first-child),
+.btn-group > .dropdown-toggle:not(:first-child), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .dropdown-toggle:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
 
-.btn-group > .btn-group {
+.btn-group > .btn-group, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn-group, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .btn-group > .chart-parts-actions-buttons, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .chart-parts-actions-buttons {
   float: left; }
 
-.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn {
+.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn-group:not(:first-child):not(:last-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .btn-group > .chart-parts-actions-buttons:not(:first-child):not(:last-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .chart-parts-actions-buttons:not(:first-child):not(:last-child) > .btn {
   border-radius: 0; }
 
-.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child,
-.btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
+.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn-group:first-child:not(:last-child) > .btn:last-child, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .btn-group > .chart-parts-actions-buttons:first-child:not(:last-child) > .btn:last-child, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .chart-parts-actions-buttons:first-child:not(:last-child) > .btn:last-child,
+.btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn-group:first-child:not(:last-child) > .dropdown-toggle, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+.btn-group > .chart-parts-actions-buttons:first-child:not(:last-child) > .dropdown-toggle, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .chart-parts-actions-buttons:first-child:not(:last-child) > .dropdown-toggle {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
-.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child {
+.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn-group:last-child:not(:first-child) > .btn:first-child, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .btn-group > .chart-parts-actions-buttons:last-child:not(:first-child) > .btn:first-child, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .chart-parts-actions-buttons:last-child:not(:first-child) > .btn:first-child {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
 
@@ -2192,12 +2213,19 @@ tbody.collapse.show {
   align-items: flex-start;
   justify-content: center; }
   .btn-group-vertical .btn,
-  .btn-group-vertical .btn-group {
+  .btn-group-vertical .btn-group,
+  .btn-group-vertical .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-vertical .chart-parts-actions-buttons {
     width: 100%; }
   .btn-group-vertical > .btn + .btn,
-  .btn-group-vertical > .btn + .btn-group,
-  .btn-group-vertical > .btn-group + .btn,
-  .btn-group-vertical > .btn-group + .btn-group {
+  .btn-group-vertical > .btn + .btn-group, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-vertical > .btn + .chart-parts-actions-buttons,
+  .btn-group-vertical > .btn-group + .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-vertical > .chart-parts-actions-buttons + .btn,
+  .btn-group-vertical > .btn-group + .btn-group, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-vertical > .chart-parts-actions-buttons + .btn-group, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-vertical > .btn-group + .chart-parts-actions-buttons, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-vertical > .chart-parts-actions-buttons + .chart-parts-actions-buttons {
     margin-top: -1px;
     margin-left: 0; }
   .btn-group-vertical > .btn:not(:first-child):not(:last-child) {
@@ -2208,20 +2236,23 @@ tbody.collapse.show {
   .btn-group-vertical > .btn:last-child:not(:first-child) {
     border-top-left-radius: 0;
     border-top-right-radius: 0; }
-  .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn {
+  .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .btn-group-vertical > .chart-parts-actions-buttons:not(:first-child):not(:last-child) > .btn {
     border-radius: 0; }
-  .btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child,
-  .btn-group-vertical > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
+  .btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .btn-group-vertical > .chart-parts-actions-buttons:first-child:not(:last-child) > .btn:last-child,
+  .btn-group-vertical > .btn-group:first-child:not(:last-child) > .dropdown-toggle, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-vertical > .chart-parts-actions-buttons:first-child:not(:last-child) > .dropdown-toggle {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0; }
-  .btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child {
+  .btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .btn-group-vertical > .chart-parts-actions-buttons:last-child:not(:first-child) > .btn:first-child {
     border-top-left-radius: 0;
     border-top-right-radius: 0; }
 
 [data-toggle="buttons"] > .btn input[type="radio"],
 [data-toggle="buttons"] > .btn input[type="checkbox"],
-[data-toggle="buttons"] > .btn-group > .btn input[type="radio"],
-[data-toggle="buttons"] > .btn-group > .btn input[type="checkbox"] {
+[data-toggle="buttons"] > .btn-group > .btn input[type="radio"], .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+[data-toggle="buttons"] > .chart-parts-actions-buttons > .btn input[type="radio"],
+[data-toggle="buttons"] > .btn-group > .btn input[type="checkbox"], .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+[data-toggle="buttons"] > .chart-parts-actions-buttons > .btn input[type="checkbox"] {
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none; }
@@ -2284,10 +2315,12 @@ tbody.collapse.show {
 .input-group .form-control:not(:last-child),
 .input-group-addon:not(:last-child),
 .input-group-btn:not(:last-child) > .btn,
-.input-group-btn:not(:last-child) > .btn-group > .btn,
+.input-group-btn:not(:last-child) > .btn-group > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+.input-group-btn:not(:last-child) > .chart-parts-actions-buttons > .btn,
 .input-group-btn:not(:last-child) > .dropdown-toggle,
 .input-group-btn:not(:first-child) > .btn:not(:last-child):not(.dropdown-toggle),
-.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > .btn {
+.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+.input-group-btn:not(:first-child) > .chart-parts-actions-buttons:not(:last-child) > .btn {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
@@ -2297,10 +2330,12 @@ tbody.collapse.show {
 .input-group .form-control:not(:first-child),
 .input-group-addon:not(:first-child),
 .input-group-btn:not(:first-child) > .btn,
-.input-group-btn:not(:first-child) > .btn-group > .btn,
+.input-group-btn:not(:first-child) > .btn-group > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+.input-group-btn:not(:first-child) > .chart-parts-actions-buttons > .btn,
 .input-group-btn:not(:first-child) > .dropdown-toggle,
 .input-group-btn:not(:last-child) > .btn:not(:first-child),
-.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > .btn {
+.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+.input-group-btn:not(:last-child) > .chart-parts-actions-buttons:not(:first-child) > .btn {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
 
@@ -2321,19 +2356,25 @@ tbody.collapse.show {
   .input-group-btn:first-child > .btn + .btn {
     margin-left: 0; }
   .input-group-btn:not(:last-child) > .btn,
-  .input-group-btn:not(:last-child) > .btn-group {
+  .input-group-btn:not(:last-child) > .btn-group, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .input-group-btn:not(:last-child) > .chart-parts-actions-buttons {
     margin-right: -1px; }
   .input-group-btn:not(:first-child) > .btn,
-  .input-group-btn:not(:first-child) > .btn-group {
+  .input-group-btn:not(:first-child) > .btn-group, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .input-group-btn:not(:first-child) > .chart-parts-actions-buttons {
     z-index: 2;
     margin-left: 0; }
     .input-group-btn:not(:first-child) > .btn:first-child,
-    .input-group-btn:not(:first-child) > .btn-group:first-child {
+    .input-group-btn:not(:first-child) > .btn-group:first-child, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+    .input-group-btn:not(:first-child) > .chart-parts-actions-buttons:first-child {
       margin-left: -1px; }
     .input-group-btn:not(:first-child) > .btn:focus, .input-group-btn:not(:first-child) > .btn:active, .input-group-btn:not(:first-child) > .btn:hover,
-    .input-group-btn:not(:first-child) > .btn-group:focus,
-    .input-group-btn:not(:first-child) > .btn-group:active,
-    .input-group-btn:not(:first-child) > .btn-group:hover {
+    .input-group-btn:not(:first-child) > .btn-group:focus, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+    .input-group-btn:not(:first-child) > .chart-parts-actions-buttons:focus,
+    .input-group-btn:not(:first-child) > .btn-group:active, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+    .input-group-btn:not(:first-child) > .chart-parts-actions-buttons:active,
+    .input-group-btn:not(:first-child) > .btn-group:hover, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+    .input-group-btn:not(:first-child) > .chart-parts-actions-buttons:hover {
       z-index: 3; }
 
 .custom-control {
@@ -8342,6 +8383,9 @@ a.text-dark:focus, a.text-dark:hover {
   text-rendering: optimizeLegibility;
   src: url("/node_modules/lato-font/fonts/lato-black-italic/lato-black-italic.woff2") format("woff2"), url("/node_modules/lato-font/fonts/lato-black-italic/lato-black-italic.woff") format("woff"); }
 
+button {
+  cursor: pointer; }
+
 .typed-cursor {
   opacity: 1;
   font-weight: 400;
@@ -8767,6 +8811,12 @@ body {
   margin-bottom: 24px;
   padding: 12px 0;
   background-color: #eee; }
+  .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container {
+    display: flex;
+    flex: 1 1 100%;
+    padding: 0 12px 12px 12px; }
+    .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons {
+      margin: 0 auto; }
   .vesc-log-chart-container .chart-filters-container .filter-label {
     font-size: 0.9rem;
     margin: 0; }
