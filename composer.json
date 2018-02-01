@@ -47,7 +47,7 @@
   },
   "repositories": [
     {
-      "type": "git",
+      "type": "vcs",
       "url": "https://github.com/LouWii/vesc-log-interpreter.git"
     }
   ]
