@@ -11,11 +11,23 @@
 </div>
 
 
-{% for error in craft.vescLogInterpreter.vescLogDataErrors %}
-<div class="alert alert-danger" role="alert">
-  {{error}}
-</div>
-{% endfor %}
+{% if craft.vescLogInterpreter.vescLogDataErrors|length == 1 and craft.vescLogInterpreter.vescLogDataErrors[0] == "No log to look for." %}
+  <h2>Upload a log file</h2>
+  <form action="{{ craft.vescLogInterpreter.formActionUrl }}" class="form form-inline form-vesc-log" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+    <input type="hidden" name="{{ craft.app.config.general.csrfTokenName }}" value="{{ craft.app.request.csrfToken }}" />
+    <input type="hidden" name="redirect" value="/vesc-log-chart" />
+    <div class="form-group">
+      <input type="file" class="form-control-file" id="vescLogFile" name="vescLogFile">
+    </div>
+    <button type="submit" class="btn btn-primary">Send file</button>
+  </form>
+{% else %}
+  {% for error in craft.vescLogInterpreter.vescLogDataErrors %}
+  <div class="alert alert-danger" role="alert">
+    {{error}}
+  </div>
+  {% endfor %}
+{% endif %}
 
 {% if craft.vescLogInterpreter.vescLogDataDatasets|length > 30 %}
 <div class="vesc-log-chart-container">

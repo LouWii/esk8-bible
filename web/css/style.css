@@ -8799,6 +8799,9 @@ body {
   .eboards-table td .eboard-dimension {
     display: block; }
 
+.form-vesc-log .form-group input[type="file"] {
+  margin-right: 8px; }
+
 .vesc-log-chart-container .chart-loading-container {
   text-align: center;
   font-size: 1.8rem; }
