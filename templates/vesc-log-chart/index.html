@@ -6,9 +6,11 @@
 
 <h1>{{ entry.title }}</h1>
 
+{% if craft.vescLogInterpreter.vescLogDataDatasets|length < 30 %}
 <div class="page-container">
   {{ macros.pageBody(entry.body) }}
 </div>
+{% endif %}
 
 
 {% if craft.vescLogInterpreter.vescLogDataErrors|length == 1 and craft.vescLogInterpreter.vescLogDataErrors[0] == "No log to look for." %}
