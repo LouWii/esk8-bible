@@ -50,6 +50,6 @@ return [
     // Production environment settings
     'production' => [
         // Base site URL
-        'siteUrl' => null,
+        'siteUrl' => 'https://esk8bible.com',
     ],
 ];
