@@ -4,6 +4,9 @@
 {% if entry is defined %}
   {% set title = entry.title %}
   {% set entrySlug = entry.slug %}
+  {% if entry.summary != '' %}
+  {% set ogdescription  = entry.summary %}
+  {% endif %}
 {% endif %}
 
 {% set globalConfiguration = craft.entries.section('globalConfiguration').one() %}
@@ -28,6 +31,14 @@
 
         {# CSS #}
         <link rel="stylesheet" href="/css/style.min.css"/>
+
+        {# Social tags #}
+        <meta property="og:title" content="{% if title is defined %}{{title}}{% else %}Esk8 Bible{% endif %}" />
+        <meta property="og:type" content="{% if ogtype is defined %}{{ogtype}}{% else %}website{% endif %}" />
+        <meta property="og:description" content="{% if ogdescription is defined %}{{ogdescription}}{% else %}Esk8 Bible contains all you need to know about electric skateboards, what skate to buy, how it works, how to build one, shops and more.{% endif %}" />
+        <meta property="og:img" content="{{ siteUrl }}images/facebook-share-logo.png" />
+        <meta property="og:image:width" content="600" />
+        <meta property="og:image:height" content="315" />
 
         {% block head_css %}
         {% endblock %}
