@@ -2,9 +2,15 @@
 
 {% set entrySlug = "" %}
 {% if entry is defined %}
+  {% if entry.seoPageTitle != '' %}
+  {% set title = entry.seoPageTitle %}
+  {% else %}
   {% set title = entry.title %}
+  {% endif %}
   {% set entrySlug = entry.slug %}
-  {% if entry.summary != '' %}
+  {% if entry.seoPageDescription != '' %}
+  {% set ogdescription  = entry.seoPageDescription %}
+  {% elseif entry.summary != '' %}
   {% set ogdescription  = entry.summary %}
   {% endif %}
 {% endif %}
@@ -18,6 +24,8 @@
         {# Required meta tags #}
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <meta name="description" content="{% if ogdescription is defined %}{{ogdescription}}{% else %}Esk8 Bible contains all you need to know about electric skateboards, what skate to buy, how it works, how to build one, shops and more.{% endif %}" />
 
         {# Favicons mess #}
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
