@@ -18,5 +18,6 @@
 	ExpiresByType image/png "access plus 2592000 seconds"
 	ExpiresByType text/css "access plus 604800 seconds"
 	ExpiresByType text/javascript "access plus 86400 seconds"
+	ExpiresByType application/javascript "access plus 86400 seconds"
 	ExpiresByType application/x-javascript "access plus 86400 seconds"
 </IfModule>
