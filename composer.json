@@ -21,13 +21,12 @@
   "minimum-stability": "beta",
   "require": {
     "php": ">=7.0.0",
-    "craftcms/cms": "3.0.0-RC8",
+    "craftcms/cms": "3.0.0-RC11",
     "vlucas/phpdotenv": "^2.4.0",
-    "roave/security-advisories": "dev-master",
     "ether/simplemap": "3.3.1",
     "craftcms/redactor": "1.0.1",
     "louwii/vesc-log-interpreter": "^1.0.0",
-    "dolphiq/sitemap": "v1.0.7"
+    "dolphiq/sitemap": "1.0.9"
   },
   "autoload": {
     "psr-4": {
@@ -51,5 +50,7 @@
       "type": "vcs",
       "url": "https://github.com/LouWii/vesc-log-interpreter.git"
     }
-  ]
+  ],
+  "require-dev": {
+  }
 }
