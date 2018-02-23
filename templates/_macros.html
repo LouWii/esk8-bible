@@ -168,3 +168,15 @@
 <span title="Unknown">?</span>
 {% endif %}
 {% endmacro %}
+
+{% macro errorList(errors) %}
+    {% if errors %}
+    <div class="alert alert-danger" role="alert">
+        <ul class="errors">
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+{% endmacro %}
