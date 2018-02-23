@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "10508d1675baf6fca514bb1bff4e1fe9",
+    "content-hash": "cfba0964d597339a70ff9204cd8f0ff0",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -136,10 +136,6 @@
                 "symfony/finder": "^2.7 || ^3.0",
                 "symfony/process": "^2.7 || ^3.0"
             },
-            "require-dev": {
-                "phpunit/phpunit": "^4.5 || ^5.0.5",
-                "phpunit/phpunit-mock-objects": "^2.3 || ^3.0"
-            },
             "suggest": {
                 "ext-openssl": "Enabling the openssl extension allows you to access https URLs for repositories and packages",
                 "ext-zip": "Enabling the zip extension allows you to unzip archives",
@@ -159,7 +155,6 @@
                     "Composer\\": "src/Composer"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -299,11 +294,11 @@
         },
         {
             "name": "craftcms/cms",
-            "version": "3.0.0-RC11",
+            "version": "3.0.0-RC12",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/cms/zipball/37924d5262fb334aa7d4e5e638b99bf5d48f761f",
-                "reference": "37924d5262fb334aa7d4e5e638b99bf5d48f761f",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/a6b33ecbdda3f9e38087bc94c49424c4b48bc2c0",
+                "reference": "a6b33ecbdda3f9e38087bc94c49424c4b48bc2c0",
                 "shasum": ""
             },
             "require": {
@@ -373,7 +368,7 @@
                 "docs": "https://github.com/craftcms/docs",
                 "rss": "https://github.com/craftcms/cms/releases.atom"
             },
-            "time": "2018-02-20T20:39:15+00:00"
+            "time": "2018-02-22T21:34:48+00:00"
         },
         {
             "name": "craftcms/oauth2-craftid",
@@ -516,7 +511,6 @@
                     "server/requirements"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
