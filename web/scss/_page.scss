@@ -12,6 +12,10 @@
         }
     }
 
+    .list-group ~ .block-body {
+        margin-top: 1rem;
+    }
+
     .block-body {
 
         table {

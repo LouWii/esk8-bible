@@ -8762,6 +8762,9 @@ body {
   margin-top: 1rem;
   padding: 0 0.8rem; }
 
+.page-container .list-group ~ .block-body {
+  margin-top: 1rem; }
+
 .page-container .block-image {
   text-align: center;
   margin-bottom: 1rem;
