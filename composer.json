@@ -24,7 +24,7 @@
     "craftcms/cms": "^3.0.0-RC12",
     "vlucas/phpdotenv": "^2.4.0",
     "ether/simplemap": "3.3.1",
-    "craftcms/redactor": "1.0.1",
+    "craftcms/redactor": "2.3.2",
     "louwii/vesc-log-interpreter": "^1.0.0",
     "dolphiq/sitemap": "1.0.9",
     "craftcms/contact-form": "2.2.4"
