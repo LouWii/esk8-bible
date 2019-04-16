@@ -35,6 +35,8 @@ npm install
 
 ### Frontend css and JS
 
-Run `gulp sass` to compile sass files to css
+Run `gulp sass` to compile sass files to css.
+
+Run `gulp minify-css` to compile sass into minified css file.
 
 Run `gulp scripts` to build all JS.
