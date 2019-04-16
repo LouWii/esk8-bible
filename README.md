@@ -30,3 +30,11 @@ Install frontend dependencies
 cd web
 npm install
 ```
+
+## Developers
+
+### Frontend css and JS
+
+Run `gulp sass` to compile sass files to css
+
+Run `gulp scripts` to build all JS.
