@@ -47,25 +47,24 @@
             position: relative;
             padding-right: calc(.75rem + .55rem + 16px);
 
-            &:after {
-                @include fa-icon();
-                display: block;
-                content: $fa-var-chevron-up;
+            .fa {
+                animation: .5s rotate-x-0 forwards;
                 position: absolute;
-                top: .6rem;
-                transition: transform .5s;
                 right: .75rem;
+                top: calc(50% - 6px);
             }
 
             &.collapsed {
-                &:after {
-                    transform: rotate3d(1, 0, 0, 180deg);
+                .fa {
+                    animation: .5s rotate-x-180 forwards;
                 }
             }
         }
         .collapse-body {
             @extend .border;
             @extend .rounded;
+            overflow-x: auto;
+            margin-bottom: 1rem;
             padding: 1rem;
         }
     }

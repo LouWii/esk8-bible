@@ -38,7 +38,7 @@
         <meta name="theme-color" content="#ffffff">
 
         {# CSS #}
-        <link rel="stylesheet" href="/css/style.min.css?v=100"/>
+        <link rel="stylesheet" href="/css/style.min.css?v=101"/>
 
         {# Social tags #}
         <meta property="og:title" content="{% if title is defined %}{{title}}{% else %}Esk8 Bible{% endif %}" />
@@ -98,7 +98,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-2">
-                        <p class="notice">&copy; {% if now|date('Y') != '2017' %}2017 - {% endif %}{{ now|date('Y') }} esk8 Bible. Use of this material is prohibited without permission. <br/>Made with ❤️ in 🇨🇦</p>
+                        <p class="notice">&copy; {% if now|date('Y') != '2017' %}2017 - {% endif %}{{ now|date('Y') }} esk8 Bible. Use of this material without permission is prohibited. <br/>Made with ❤️ in 🇨🇦</p>
                     </div>
                     <div class="col-sm-3">
                         {{ macros.displayFooterLinksList(globalConfiguration.footerLinksColumn1.all()) }}

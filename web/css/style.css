@@ -9961,23 +9961,17 @@ body {
 .page-container .page-collapse .collapse-trigger {
   position: relative;
   padding-right: calc(.75rem + .55rem + 16px); }
-  .page-container .page-collapse .collapse-trigger:after {
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    display: block;
-    content: "";
+  .page-container .page-collapse .collapse-trigger .fa {
+    animation: .5s rotate-x-0 forwards;
     position: absolute;
-    top: .6rem;
-    transition: transform .5s;
-    right: .75rem; }
-  .page-container .page-collapse .collapse-trigger.collapsed:after {
-    transform: rotate3d(1, 0, 0, 180deg); }
+    right: .75rem;
+    top: calc(50% - 6px); }
+  .page-container .page-collapse .collapse-trigger.collapsed .fa {
+    animation: .5s rotate-x-180 forwards; }
 
 .page-container .page-collapse .collapse-body {
+  overflow-x: auto;
+  margin-bottom: 1rem;
   padding: 1rem; }
 
 .stores-listing, .communities-listing {
@@ -10066,3 +10060,15 @@ body {
     opacity: 1; }
   100% {
     opacity: 0; } }
+
+@keyframes rotate-x-0 {
+  0% {
+    transform: rotate3d(1, 0, 0, 180deg); }
+  100% {
+    transform: rotate3d(1, 0, 0, 0deg); } }
+
+@keyframes rotate-x-180 {
+  0% {
+    transform: rotate3d(1, 0, 0, 0deg); }
+  100% {
+    transform: rotate3d(1, 0, 0, 180deg); } }

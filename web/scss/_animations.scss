@@ -27,3 +27,21 @@
         opacity: 0;
     }
 }
+
+@keyframes rotate-x-0 {
+    0% {
+        transform: rotate3d(1, 0, 0, 180deg);
+    }
+    100% {
+        transform: rotate3d(1, 0, 0, 0deg);
+    }
+}
+
+@keyframes rotate-x-180 {
+    0% {
+        transform: rotate3d(1, 0, 0, 0deg);
+    }
+    100% {
+        transform: rotate3d(1, 0, 0, 180deg);
+    }
+}
