@@ -95,6 +95,20 @@
                 </div>
             {% endif %}
 
+        {% elseif block.type == "blockCollapse" %}
+            <div class="page-collapse">
+                <p class="collapse-trigger-container">
+                    <button type="button" class="collapse-trigger collapsed"
+                        data-toggle="collapse" data-target="#{{ block.label|kebab }}-{{block.id}}" aria-expanded="false" aria-controls="{{ block.label|kebab }}-{{block.id}}">
+                        {{ block.label }}
+                    </button>
+                </p>
+                <div class="collapse-body collapse" id="{{ block.label|kebab }}-{{block.id}}">
+                    <div class="block-body">
+                        {{ block.collapseBody }}
+                    </div>
+                </div>
+            </div>
         {% endif %}
 
     {% endfor %}

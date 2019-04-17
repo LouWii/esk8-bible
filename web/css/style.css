@@ -1666,7 +1666,7 @@ textarea.form-control {
     .form-inline .custom-control-label {
       margin-bottom: 0; } }
 
-.btn {
+.btn, .page-container .page-collapse .collapse-trigger {
   display: inline-block;
   font-weight: 400;
   color: #212529;
@@ -1681,19 +1681,21 @@ textarea.form-control {
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
   @media (prefers-reduced-motion: reduce) {
-    .btn {
+    .btn, .page-container .page-collapse .collapse-trigger {
       transition: none; } }
-  .btn:hover {
+  .btn:hover, .page-container .page-collapse .collapse-trigger:hover {
     color: #212529;
     text-decoration: none; }
-  .btn:focus, .btn.focus {
+  .btn:focus, .page-container .page-collapse .collapse-trigger:focus, .btn.focus, .page-container .page-collapse .focus.collapse-trigger {
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
-  .btn.disabled, .btn:disabled {
+  .btn.disabled, .page-container .page-collapse .disabled.collapse-trigger, .btn:disabled, .page-container .page-collapse .collapse-trigger:disabled {
     opacity: 0.65; }
 
-a.btn.disabled,
-fieldset:disabled a.btn {
+a.btn.disabled, .page-container .page-collapse a.disabled.collapse-trigger,
+fieldset:disabled a.btn,
+fieldset:disabled .page-container .page-collapse a.collapse-trigger, .page-container .page-collapse
+fieldset:disabled a.collapse-trigger {
   pointer-events: none; }
 
 .btn-primary {
@@ -1880,25 +1882,27 @@ fieldset:disabled a.btn {
     .show > .btn-dark.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(82, 88, 93, 0.5); }
 
-.btn-outline-primary {
+.btn-outline-primary, .page-container .page-collapse .collapse-trigger {
   color: #007bff;
   border-color: #007bff; }
-  .btn-outline-primary:hover {
+  .btn-outline-primary:hover, .page-container .page-collapse .collapse-trigger:hover {
     color: #fff;
     background-color: #007bff;
     border-color: #007bff; }
-  .btn-outline-primary:focus, .btn-outline-primary.focus {
+  .btn-outline-primary:focus, .page-container .page-collapse .collapse-trigger:focus, .btn-outline-primary.focus, .page-container .page-collapse .focus.collapse-trigger {
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
-  .btn-outline-primary.disabled, .btn-outline-primary:disabled {
+  .btn-outline-primary.disabled, .page-container .page-collapse .disabled.collapse-trigger, .btn-outline-primary:disabled, .page-container .page-collapse .collapse-trigger:disabled {
     color: #007bff;
     background-color: transparent; }
-  .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
-  .show > .btn-outline-primary.dropdown-toggle {
+  .btn-outline-primary:not(:disabled):not(.disabled):active, .page-container .page-collapse .collapse-trigger:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .page-container .page-collapse .collapse-trigger:not(:disabled):not(.disabled).active,
+  .show > .btn-outline-primary.dropdown-toggle, .page-container .page-collapse
+  .show > .dropdown-toggle.collapse-trigger {
     color: #fff;
     background-color: #007bff;
     border-color: #007bff; }
-    .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
-    .show > .btn-outline-primary.dropdown-toggle:focus {
+    .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .page-container .page-collapse .collapse-trigger:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus, .page-container .page-collapse .collapse-trigger:not(:disabled):not(.disabled).active:focus,
+    .show > .btn-outline-primary.dropdown-toggle:focus, .page-container .page-collapse
+    .show > .dropdown-toggle.collapse-trigger:focus {
       box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
 
 .btn-outline-secondary {
@@ -2062,13 +2066,13 @@ fieldset:disabled a.btn {
     color: #6c757d;
     pointer-events: none; }
 
-.btn-lg, .btn-group-lg > .btn {
+.btn-lg, .btn-group-lg > .btn, .page-container .page-collapse .btn-group-lg > .collapse-trigger {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem; }
 
-.btn-sm, .btn-group-sm > .btn {
+.btn-sm, .btn-group-sm > .btn, .page-container .page-collapse .btn-group-sm > .collapse-trigger {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -2312,17 +2316,22 @@ input[type="button"].btn-block {
   position: relative;
   display: inline-flex;
   vertical-align: middle; }
-  .btn-group > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn,
-  .btn-group-vertical > .btn {
+  .btn-group > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn, .page-container .page-collapse .btn-group > .collapse-trigger, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse .chart-parts-actions-buttons > .collapse-trigger, .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .collapse-trigger,
+  .btn-group-vertical > .btn, .page-container .page-collapse
+  .btn-group-vertical > .collapse-trigger {
     position: relative;
     flex: 1 1 auto; }
-    .btn-group > .btn:hover, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:hover,
-    .btn-group-vertical > .btn:hover {
+    .btn-group > .btn:hover, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:hover, .page-container .page-collapse .btn-group > .collapse-trigger:hover, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse .chart-parts-actions-buttons > .collapse-trigger:hover, .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .collapse-trigger:hover,
+    .btn-group-vertical > .btn:hover, .page-container .page-collapse
+    .btn-group-vertical > .collapse-trigger:hover {
       z-index: 1; }
-    .btn-group > .btn:focus, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:focus, .btn-group > .btn:active, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:active, .btn-group > .btn.active, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn.active,
-    .btn-group-vertical > .btn:focus,
-    .btn-group-vertical > .btn:active,
-    .btn-group-vertical > .btn.active {
+    .btn-group > .btn:focus, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:focus, .page-container .page-collapse .btn-group > .collapse-trigger:focus, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse .chart-parts-actions-buttons > .collapse-trigger:focus, .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .collapse-trigger:focus, .btn-group > .btn:active, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:active, .page-container .page-collapse .btn-group > .collapse-trigger:active, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse .chart-parts-actions-buttons > .collapse-trigger:active, .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .collapse-trigger:active, .btn-group > .btn.active, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn.active, .page-container .page-collapse .btn-group > .active.collapse-trigger, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse .chart-parts-actions-buttons > .active.collapse-trigger, .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .active.collapse-trigger,
+    .btn-group-vertical > .btn:focus, .page-container .page-collapse
+    .btn-group-vertical > .collapse-trigger:focus,
+    .btn-group-vertical > .btn:active, .page-container .page-collapse
+    .btn-group-vertical > .collapse-trigger:active,
+    .btn-group-vertical > .btn.active, .page-container .page-collapse
+    .btn-group-vertical > .active.collapse-trigger {
       z-index: 1; }
 
 .btn-toolbar {
@@ -2332,20 +2341,26 @@ input[type="button"].btn-block {
   .btn-toolbar .input-group {
     width: auto; }
 
-.btn-group > .btn:not(:first-child), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:not(:first-child),
+.btn-group > .btn:not(:first-child), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:not(:first-child), .page-container .page-collapse .btn-group > .collapse-trigger:not(:first-child), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse .chart-parts-actions-buttons > .collapse-trigger:not(:first-child), .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .collapse-trigger:not(:first-child),
 .btn-group > .btn-group:not(:first-child), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn-group:not(:first-child), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
 .btn-group > .chart-parts-actions-buttons:not(:first-child), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .chart-parts-actions-buttons:not(:first-child) {
   margin-left: -1px; }
 
-.btn-group > .btn:not(:last-child):not(.dropdown-toggle), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:not(:last-child):not(.dropdown-toggle), .page-container .page-collapse .btn-group > .collapse-trigger:not(:last-child):not(.dropdown-toggle), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse .chart-parts-actions-buttons > .collapse-trigger:not(:last-child):not(.dropdown-toggle), .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .collapse-trigger:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-group:not(:last-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn-group:not(:last-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
-.btn-group > .chart-parts-actions-buttons:not(:last-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .chart-parts-actions-buttons:not(:last-child) > .btn {
+.btn-group > .chart-parts-actions-buttons:not(:last-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .chart-parts-actions-buttons:not(:last-child) > .btn, .page-container .page-collapse
+.btn-group > .btn-group:not(:last-child) > .collapse-trigger, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse .chart-parts-actions-buttons > .btn-group:not(:last-child) > .collapse-trigger, .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn-group:not(:last-child) > .collapse-trigger, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse
+.btn-group > .chart-parts-actions-buttons:not(:last-child) > .collapse-trigger, .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+.btn-group > .chart-parts-actions-buttons:not(:last-child) > .collapse-trigger, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse .chart-parts-actions-buttons > .chart-parts-actions-buttons:not(:last-child) > .collapse-trigger, .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .chart-parts-actions-buttons:not(:last-child) > .collapse-trigger {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
-.btn-group > .btn:not(:first-child), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:not(:first-child),
+.btn-group > .btn:not(:first-child), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn:not(:first-child), .page-container .page-collapse .btn-group > .collapse-trigger:not(:first-child), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse .chart-parts-actions-buttons > .collapse-trigger:not(:first-child), .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .collapse-trigger:not(:first-child),
 .btn-group > .btn-group:not(:first-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn-group:not(:first-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
-.btn-group > .chart-parts-actions-buttons:not(:first-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .chart-parts-actions-buttons:not(:first-child) > .btn {
+.btn-group > .chart-parts-actions-buttons:not(:first-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .chart-parts-actions-buttons:not(:first-child) > .btn, .page-container .page-collapse
+.btn-group > .btn-group:not(:first-child) > .collapse-trigger, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse .chart-parts-actions-buttons > .btn-group:not(:first-child) > .collapse-trigger, .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .btn-group:not(:first-child) > .collapse-trigger, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse
+.btn-group > .chart-parts-actions-buttons:not(:first-child) > .collapse-trigger, .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+.btn-group > .chart-parts-actions-buttons:not(:first-child) > .collapse-trigger, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse .chart-parts-actions-buttons > .chart-parts-actions-buttons:not(:first-child) > .collapse-trigger, .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons > .chart-parts-actions-buttons:not(:first-child) > .collapse-trigger {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
 
@@ -2359,11 +2374,11 @@ input[type="button"].btn-block {
   .dropleft .dropdown-toggle-split::before {
     margin-right: 0; }
 
-.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split {
+.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .page-container .page-collapse .btn-group-sm > .collapse-trigger + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem; }
 
-.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split {
+.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, .page-container .page-collapse .btn-group-lg > .collapse-trigger + .dropdown-toggle-split {
   padding-right: 0.75rem;
   padding-left: 0.75rem; }
 
@@ -2371,35 +2386,51 @@ input[type="button"].btn-block {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center; }
-  .btn-group-vertical > .btn,
+  .btn-group-vertical > .btn, .page-container .page-collapse .btn-group-vertical > .collapse-trigger,
   .btn-group-vertical > .btn-group, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
   .btn-group-vertical > .chart-parts-actions-buttons {
     width: 100%; }
-  .btn-group-vertical > .btn:not(:first-child),
+  .btn-group-vertical > .btn:not(:first-child), .page-container .page-collapse .btn-group-vertical > .collapse-trigger:not(:first-child),
   .btn-group-vertical > .btn-group:not(:first-child), .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
   .btn-group-vertical > .chart-parts-actions-buttons:not(:first-child) {
     margin-top: -1px; }
-  .btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle),
+  .btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle), .page-container .page-collapse .btn-group-vertical > .collapse-trigger:not(:last-child):not(.dropdown-toggle),
   .btn-group-vertical > .btn-group:not(:last-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
-  .btn-group-vertical > .chart-parts-actions-buttons:not(:last-child) > .btn {
+  .btn-group-vertical > .chart-parts-actions-buttons:not(:last-child) > .btn, .page-container .page-collapse
+  .btn-group-vertical > .btn-group:not(:last-child) > .collapse-trigger, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse
+  .btn-group-vertical > .chart-parts-actions-buttons:not(:last-child) > .collapse-trigger, .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-vertical > .chart-parts-actions-buttons:not(:last-child) > .collapse-trigger {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0; }
-  .btn-group-vertical > .btn:not(:first-child),
+  .btn-group-vertical > .btn:not(:first-child), .page-container .page-collapse .btn-group-vertical > .collapse-trigger:not(:first-child),
   .btn-group-vertical > .btn-group:not(:first-child) > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
-  .btn-group-vertical > .chart-parts-actions-buttons:not(:first-child) > .btn {
+  .btn-group-vertical > .chart-parts-actions-buttons:not(:first-child) > .btn, .page-container .page-collapse
+  .btn-group-vertical > .btn-group:not(:first-child) > .collapse-trigger, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse
+  .btn-group-vertical > .chart-parts-actions-buttons:not(:first-child) > .collapse-trigger, .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-vertical > .chart-parts-actions-buttons:not(:first-child) > .collapse-trigger {
     border-top-left-radius: 0;
     border-top-right-radius: 0; }
 
-.btn-group-toggle > .btn,
+.btn-group-toggle > .btn, .page-container .page-collapse .btn-group-toggle > .collapse-trigger,
 .btn-group-toggle > .btn-group > .btn, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
-.btn-group-toggle > .chart-parts-actions-buttons > .btn {
+.btn-group-toggle > .chart-parts-actions-buttons > .btn, .page-container .page-collapse
+.btn-group-toggle > .btn-group > .collapse-trigger, .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse
+.btn-group-toggle > .chart-parts-actions-buttons > .collapse-trigger, .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+.btn-group-toggle > .chart-parts-actions-buttons > .collapse-trigger {
   margin-bottom: 0; }
-  .btn-group-toggle > .btn input[type="radio"],
-  .btn-group-toggle > .btn input[type="checkbox"],
+  .btn-group-toggle > .btn input[type="radio"], .page-container .page-collapse .btn-group-toggle > .collapse-trigger input[type="radio"],
+  .btn-group-toggle > .btn input[type="checkbox"], .page-container .page-collapse
+  .btn-group-toggle > .collapse-trigger input[type="checkbox"],
   .btn-group-toggle > .btn-group > .btn input[type="radio"], .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
-  .btn-group-toggle > .chart-parts-actions-buttons > .btn input[type="radio"],
+  .btn-group-toggle > .chart-parts-actions-buttons > .btn input[type="radio"], .page-container .page-collapse
+  .btn-group-toggle > .btn-group > .collapse-trigger input[type="radio"], .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse
+  .btn-group-toggle > .chart-parts-actions-buttons > .collapse-trigger input[type="radio"], .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-toggle > .chart-parts-actions-buttons > .collapse-trigger input[type="radio"],
   .btn-group-toggle > .btn-group > .btn input[type="checkbox"], .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
-  .btn-group-toggle > .chart-parts-actions-buttons > .btn input[type="checkbox"] {
+  .btn-group-toggle > .chart-parts-actions-buttons > .btn input[type="checkbox"], .page-container .page-collapse
+  .btn-group-toggle > .btn-group > .collapse-trigger input[type="checkbox"], .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .page-container .page-collapse
+  .btn-group-toggle > .chart-parts-actions-buttons > .collapse-trigger input[type="checkbox"], .page-container .page-collapse .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container
+  .btn-group-toggle > .chart-parts-actions-buttons > .collapse-trigger input[type="checkbox"] {
     position: absolute;
     clip: rect(0, 0, 0, 0);
     pointer-events: none; }
@@ -2459,21 +2490,39 @@ input[type="button"].btn-block {
 .input-group-prepend,
 .input-group-append {
   display: flex; }
-  .input-group-prepend .btn,
-  .input-group-append .btn {
+  .input-group-prepend .btn, .input-group-prepend .page-container .page-collapse .collapse-trigger, .page-container .page-collapse .input-group-prepend .collapse-trigger,
+  .input-group-append .btn,
+  .input-group-append .page-container .page-collapse .collapse-trigger, .page-container .page-collapse
+  .input-group-append .collapse-trigger {
     position: relative;
     z-index: 2; }
-    .input-group-prepend .btn:focus,
-    .input-group-append .btn:focus {
+    .input-group-prepend .btn:focus, .input-group-prepend .page-container .page-collapse .collapse-trigger:focus, .page-container .page-collapse .input-group-prepend .collapse-trigger:focus,
+    .input-group-append .btn:focus,
+    .input-group-append .page-container .page-collapse .collapse-trigger:focus, .page-container .page-collapse
+    .input-group-append .collapse-trigger:focus {
       z-index: 3; }
-  .input-group-prepend .btn + .btn,
+  .input-group-prepend .btn + .btn, .input-group-prepend .page-container .page-collapse .collapse-trigger + .btn, .page-container .page-collapse .input-group-prepend .collapse-trigger + .btn, .input-group-prepend .page-container .page-collapse .btn + .collapse-trigger, .page-container .page-collapse .input-group-prepend .btn + .collapse-trigger, .input-group-prepend .page-container .page-collapse .collapse-trigger + .collapse-trigger, .page-container .page-collapse .input-group-prepend .collapse-trigger + .collapse-trigger,
   .input-group-prepend .btn + .input-group-text,
+  .input-group-prepend .page-container .page-collapse .collapse-trigger + .input-group-text, .page-container .page-collapse
+  .input-group-prepend .collapse-trigger + .input-group-text,
   .input-group-prepend .input-group-text + .input-group-text,
   .input-group-prepend .input-group-text + .btn,
+  .input-group-prepend .page-container .page-collapse .input-group-text + .collapse-trigger, .page-container .page-collapse
+  .input-group-prepend .input-group-text + .collapse-trigger,
   .input-group-append .btn + .btn,
+  .input-group-append .page-container .page-collapse .collapse-trigger + .btn, .page-container .page-collapse
+  .input-group-append .collapse-trigger + .btn,
+  .input-group-append .page-container .page-collapse .btn + .collapse-trigger, .page-container .page-collapse
+  .input-group-append .btn + .collapse-trigger,
+  .input-group-append .page-container .page-collapse .collapse-trigger + .collapse-trigger, .page-container .page-collapse
+  .input-group-append .collapse-trigger + .collapse-trigger,
   .input-group-append .btn + .input-group-text,
+  .input-group-append .page-container .page-collapse .collapse-trigger + .input-group-text, .page-container .page-collapse
+  .input-group-append .collapse-trigger + .input-group-text,
   .input-group-append .input-group-text + .input-group-text,
-  .input-group-append .input-group-text + .btn {
+  .input-group-append .input-group-text + .btn,
+  .input-group-append .page-container .page-collapse .input-group-text + .collapse-trigger, .page-container .page-collapse
+  .input-group-append .input-group-text + .collapse-trigger {
     margin-left: -1px; }
 
 .input-group-prepend {
@@ -2508,8 +2557,10 @@ input[type="button"].btn-block {
 .input-group-lg > .custom-select,
 .input-group-lg > .input-group-prepend > .input-group-text,
 .input-group-lg > .input-group-append > .input-group-text,
-.input-group-lg > .input-group-prepend > .btn,
-.input-group-lg > .input-group-append > .btn {
+.input-group-lg > .input-group-prepend > .btn, .page-container .page-collapse
+.input-group-lg > .input-group-prepend > .collapse-trigger,
+.input-group-lg > .input-group-append > .btn, .page-container .page-collapse
+.input-group-lg > .input-group-append > .collapse-trigger {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
@@ -2523,8 +2574,10 @@ input[type="button"].btn-block {
 .input-group-sm > .custom-select,
 .input-group-sm > .input-group-prepend > .input-group-text,
 .input-group-sm > .input-group-append > .input-group-text,
-.input-group-sm > .input-group-prepend > .btn,
-.input-group-sm > .input-group-append > .btn {
+.input-group-sm > .input-group-prepend > .btn, .page-container .page-collapse
+.input-group-sm > .input-group-prepend > .collapse-trigger,
+.input-group-sm > .input-group-append > .btn, .page-container .page-collapse
+.input-group-sm > .input-group-append > .collapse-trigger {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -2534,20 +2587,24 @@ input[type="button"].btn-block {
 .input-group-sm > .custom-select {
   padding-right: 1.75rem; }
 
-.input-group > .input-group-prepend > .btn,
+.input-group > .input-group-prepend > .btn, .page-container .page-collapse .input-group > .input-group-prepend > .collapse-trigger,
 .input-group > .input-group-prepend > .input-group-text,
-.input-group > .input-group-append:not(:last-child) > .btn,
+.input-group > .input-group-append:not(:last-child) > .btn, .page-container .page-collapse
+.input-group > .input-group-append:not(:last-child) > .collapse-trigger,
 .input-group > .input-group-append:not(:last-child) > .input-group-text,
-.input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle), .page-container .page-collapse
+.input-group > .input-group-append:last-child > .collapse-trigger:not(:last-child):not(.dropdown-toggle),
 .input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
-.input-group > .input-group-append > .btn,
+.input-group > .input-group-append > .btn, .page-container .page-collapse .input-group > .input-group-append > .collapse-trigger,
 .input-group > .input-group-append > .input-group-text,
-.input-group > .input-group-prepend:not(:first-child) > .btn,
+.input-group > .input-group-prepend:not(:first-child) > .btn, .page-container .page-collapse
+.input-group > .input-group-prepend:not(:first-child) > .collapse-trigger,
 .input-group > .input-group-prepend:not(:first-child) > .input-group-text,
-.input-group > .input-group-prepend:first-child > .btn:not(:first-child),
+.input-group > .input-group-prepend:first-child > .btn:not(:first-child), .page-container .page-collapse
+.input-group > .input-group-prepend:first-child > .collapse-trigger:not(:first-child),
 .input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
@@ -3482,7 +3539,7 @@ input[type="button"].btn-block {
   .badge:empty {
     display: none; }
 
-.btn .badge {
+.btn .badge, .page-container .page-collapse .collapse-trigger .badge {
   position: relative;
   top: -1px; }
 
@@ -4635,7 +4692,7 @@ button.bg-dark:focus {
 .bg-transparent {
   background-color: transparent !important; }
 
-.border {
+.border, .page-container .page-collapse .collapse-body {
   border: 1px solid #dee2e6 !important; }
 
 .border-top {
@@ -4695,7 +4752,7 @@ button.bg-dark:focus {
 .rounded-sm {
   border-radius: 0.2rem !important; }
 
-.rounded {
+.rounded, .page-container .page-collapse .collapse-body {
   border-radius: 0.25rem !important; }
 
 .rounded-top {
@@ -6980,7 +7037,7 @@ a.text-dark:hover, a.text-dark:focus {
   *::after {
     text-shadow: none !important;
     box-shadow: none !important; }
-  a:not(.btn) {
+  a:not(.btn):not(.page-container .page-collapse .collapse-trigger) {
     text-decoration: underline; }
   abbr[title]::after {
     content: " (" attr(title) ")"; }
@@ -9900,6 +9957,28 @@ body {
   .page-container .block-image .image-caption {
     font-size: 0.9rem;
     padding: 0.2rem; }
+
+.page-container .page-collapse .collapse-trigger {
+  position: relative;
+  padding-right: calc(.75rem + .55rem + 16px); }
+  .page-container .page-collapse .collapse-trigger:after {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: block;
+    content: "";
+    position: absolute;
+    top: .6rem;
+    transition: transform .5s;
+    right: .75rem; }
+  .page-container .page-collapse .collapse-trigger.collapsed:after {
+    transform: rotate3d(1, 0, 0, 180deg); }
+
+.page-container .page-collapse .collapse-body {
+  padding: 1rem; }
 
 .stores-listing, .communities-listing {
   margin: 2.5rem 0; }

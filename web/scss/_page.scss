@@ -39,4 +39,34 @@
             padding: 0.2rem;
         }
     }
+
+    .page-collapse {
+        .collapse-trigger {
+            @extend .btn;
+            @extend .btn-outline-primary;
+            position: relative;
+            padding-right: calc(.75rem + .55rem + 16px);
+
+            &:after {
+                @include fa-icon();
+                display: block;
+                content: $fa-var-chevron-up;
+                position: absolute;
+                top: .6rem;
+                transition: transform .5s;
+                right: .75rem;
+            }
+
+            &.collapsed {
+                &:after {
+                    transform: rotate3d(1, 0, 0, 180deg);
+                }
+            }
+        }
+        .collapse-body {
+            @extend .border;
+            @extend .rounded;
+            padding: 1rem;
+        }
+    }
 }
