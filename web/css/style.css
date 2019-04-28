@@ -9818,6 +9818,20 @@ body {
     margin-right: 0.7rem; }
   .navbar .navbar-brand:hover img {
     transform: scale(1.1, 1.1); }
+  .navbar .dropdown-menu .sub-nav {
+    margin-left: 2.2rem; }
+    .navbar .dropdown-menu .sub-nav .nav-link {
+      color: #212529;
+      font-size: 95%;
+      font-style: italic;
+      padding-bottom: 4px;
+      padding-top: 4px; }
+      .navbar .dropdown-menu .sub-nav .nav-link:hover {
+        background-color: #f8f9fa; }
+
+@media (min-width: 768px) {
+  .navbar .dropdown-menu .sub-nav {
+    margin-left: 1.8rem; } }
 
 .main-container {
   flex: 2; }

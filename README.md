@@ -37,7 +37,7 @@ npm install
 
 Using Bootstrap 4.3, jQuery 3.2, font awesome 4.7, chart.js 2.7, database.net 1.10, typed.js 2.0 and more
 
-Run `gulp sass` to compile sass files to css.
+Run `gulp sass` to compile sass files to css. `gulp sass:watch` to watch for changes and auto compile
 
 Run `gulp minify-css` to compile sass into minified css file.
 

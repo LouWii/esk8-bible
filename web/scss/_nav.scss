@@ -15,5 +15,32 @@
             }
         }
     }
+
+    .dropdown-menu {
+        .sub-nav {
+            margin-left: 2.2rem;
+
+            .nav-link {
+                color: $body-color;
+                font-size: 95%;
+                font-style: italic;
+                padding-bottom: 4px;
+                padding-top: 4px; 
+
+                &:hover {
+                    background-color: $gray-100;
+                }
+            }
+        }
+    }
 }
 
+@include media-breakpoint-up(md) {
+    .navbar {
+        .dropdown-menu {
+            .sub-nav {
+                margin-left: 1.8rem;
+            }
+        }
+    }
+}

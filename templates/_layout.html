@@ -38,7 +38,7 @@
         <meta name="theme-color" content="#ffffff">
 
         {# CSS #}
-        <link rel="stylesheet" href="/css/style.min.css?v=101"/>
+        <link rel="stylesheet" href="/css/style.min.css?v=102"/>
 
         {# Social tags #}
         <meta property="og:title" content="{% if title is defined %}{{title}}{% else %}Esk8 Bible{% endif %}" />
@@ -59,7 +59,7 @@
                     {{ siteName }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -76,7 +76,25 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     {% for dropdownMenuItem in menuItemBlock.menuItems.all() %}
-                                    <a class="dropdown-item {% if entrySlug == dropdownMenuItem.slug %}active{% endif %}" href="{{ dropdownMenuItem.url }}">{{ dropdownMenuItem.title }}</a>
+                                        <a class="dropdown-item {% if entrySlug == dropdownMenuItem.slug %}active{% endif %}" href="{{ dropdownMenuItem.url }}">
+                                            {{ dropdownMenuItem.title }}
+                                        </a>
+                                        {% set itemSubPages %}
+                                            {% for dropdownMenuItemSubList in dropdownMenuItem.body.type('blockPageList').all() %}
+                                                {% if dropdownMenuItemSubList.showInSubMenus == "yes" %}
+                                                {% for subListPage in dropdownMenuItemSubList.pages.all() %}
+                                                    <a class="nav-link" href="{{ subListPage.url }}">
+                                                        {{ subListPage.title }}
+                                                    </a>
+                                                {% endfor %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endset %}
+                                        {% if itemSubPages|trim is not empty %}
+                                        <nav class="nav sub-nav flex-column">
+                                            {{ itemSubPages }}
+                                        </nav>
+                                        {% endif %}
                                     {% endfor %}
                                 </div>
                             </li>
