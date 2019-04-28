@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac65a9ef4ac1134ab1017d965b1ac7bb",
+    "content-hash": "40020ae0e28cd22f00911d6b7feef1cf",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -323,16 +323,16 @@
         },
         {
             "name": "craftcms/cms",
-            "version": "3.1.22",
+            "version": "3.1.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/craftcms/cms.git",
-                "reference": "868202831139e51b9d60d9738147ac9635bc760c"
+                "reference": "40add5d4d5784caf54f49b3fdf3a4cb46fcd9abe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/cms/zipball/868202831139e51b9d60d9738147ac9635bc760c",
-                "reference": "868202831139e51b9d60d9738147ac9635bc760c",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/40add5d4d5784caf54f49b3fdf3a4cb46fcd9abe",
+                "reference": "40add5d4d5784caf54f49b3fdf3a4cb46fcd9abe",
                 "shasum": ""
             },
             "require": {
@@ -361,7 +361,7 @@
                 "seld/cli-prompt": "^1.0.3",
                 "symfony/yaml": "^3.2|^4.0",
                 "true/punycode": "^2.1.0",
-                "twig/twig": "^2.7.2",
+                "twig/twig": "~2.7.2",
                 "yii2tech/ar-softdelete": "^1.0.2",
                 "yiisoft/yii2": "~2.0.17.0",
                 "yiisoft/yii2-debug": "^2.0.10",
@@ -407,7 +407,7 @@
                 "craftcms",
                 "yii2"
             ],
-            "time": "2019-04-10T17:10:47+00:00"
+            "time": "2019-04-16T16:41:36+00:00"
         },
         {
             "name": "craftcms/contact-form",
@@ -985,29 +985,33 @@
         },
         {
             "name": "ether/simplemap",
-            "version": "3.3.1",
+            "version": "3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ethercreative/simplemap.git",
-                "reference": "6accd7e6c5ee155397ed0b31bec3a5eb223c60f4"
+                "reference": "cea5a8bd8468674bc9ca2854d6bd9b22e43d64b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ethercreative/simplemap/zipball/6accd7e6c5ee155397ed0b31bec3a5eb223c60f4",
-                "reference": "6accd7e6c5ee155397ed0b31bec3a5eb223c60f4",
+                "url": "https://api.github.com/repos/ethercreative/simplemap/zipball/cea5a8bd8468674bc9ca2854d6bd9b22e43d64b7",
+                "reference": "cea5a8bd8468674bc9ca2854d6bd9b22e43d64b7",
                 "shasum": ""
             },
             "require": {
-                "craftcms/cms": "^3.0.0-beta.20"
+                "craftcms/cms": "^3.1.0",
+                "ext-json": "*",
+                "ext-openssl": "*",
+                "guzzlehttp/guzzle": "^6.3.3",
+                "mapkit/jwt": "^1.1.2"
             },
             "type": "craft-plugin",
             "extra": {
                 "handle": "simplemap",
-                "name": "SimpleMap",
+                "name": "Maps",
                 "developer": "Ether Creative",
                 "developerUrl": "https://ethercreative.co.uk",
                 "class": "ether\\simplemap\\SimpleMap",
-                "schemaVersion": "3.0.0"
+                "schemaVersion": "3.4.1"
             },
             "autoload": {
                 "psr-4": {
@@ -1018,8 +1022,8 @@
             "license": [
                 "MIT"
             ],
-            "description": "A beautifully simple Google Map field type.",
-            "time": "2018-01-30T20:24:08+00:00"
+            "description": "A beautifully simple Map field type for Craft CMS 3",
+            "time": "2019-04-05T17:02:13+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -1575,6 +1579,39 @@
                 "source": "https://github.com/LouWii/vesc-log-interpreter/tree/1.0.0"
             },
             "time": "2018-01-29T04:39:00+00:00"
+        },
+        {
+            "name": "mapkit/jwt",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/includable/mapkit-jwt.git",
+                "reference": "20d7f8b2c599c683441d402f0d1cc0631808e97a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/includable/mapkit-jwt/zipball/20d7f8b2c599c683441d402f0d1cc0631808e97a",
+                "reference": "20d7f8b2c599c683441d402f0d1cc0631808e97a",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mapkit\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Schoffelen",
+                    "email": "thomas@includable.com"
+                }
+            ],
+            "description": "Simple class to create MapKit and MusicKit JWT tokens.",
+            "time": "2019-01-02T12:18:36+00:00"
         },
         {
             "name": "mikehaertl/php-shellcommand",
