@@ -38,15 +38,16 @@
         <tbody>
             {% for communityEntry in communitiesEntries %}
                 {% set city = '' %}
-                {% if communityEntry.location.parts['locality'] != "" %}
-                    {% set city = communityEntry.location.parts['locality'] %}
-                {% elseif communityEntry.location.parts['political'] != "" %}
-                    {% set city = communityEntry.location.parts['political'] %}
+                {{communityEntry.location.parts.city}}
+                {% if communityEntry.location.parts.city != "" %}
+                    {% set city = communityEntry.location.parts.city %}
                 {% else %}
                     {% set city = '?' %}
                 {% endif %}
                 {% set prov = '' %}
-                {% if communityEntry.location.parts['country_short'] == 'CA' or communityEntry.location.parts['country_short'] == 'US' %}{% set prov = ', ' ~ communityEntry.location.parts['administrative_area_level_1_short'] %}{% endif %}
+                {% if communityEntry.location.parts.country|lower == 'canada' or communityEntry.location.parts.country|lower == 'usa' %}
+                    {% set prov = ', ' ~ communityEntry.location.parts.state %}
+                {% endif %}
                 <tr>
                     <td>
                         {{communityEntry.title}}
@@ -66,7 +67,7 @@
                         {{city}}{{prov}}
                     </td>
                     <td>
-                        {{communityEntry.location.parts['country']}}
+                        {{communityEntry.location.parts.country}}
                     </td>
                 </tr>
             {% endfor %}
