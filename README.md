@@ -28,7 +28,32 @@ Install frontend dependencies
 
 ```
 cd web
+sudo npm install gulp-cli -g
 npm install
+```
+
+(if problems, delete `node_modules`, `package-lock.json` and run `npm install` again)
+
+
+### Apache config
+
+This is a quick and dirty example config for Apache server.
+
+```
+<VirtualHost *:80>
+    ServerAdmin admin@host.com
+    DocumentRoot "/home/louwii/Dev/esk8-bible/web"
+    ServerName esk8.local
+
+    <Directory /home/louwii/Dev/esk8-bible/web>
+          Options Indexes FollowSymLinks
+          AllowOverride All
+          Require all granted
+    </Directory>
+
+    ErrorLog "/var/log/httpd/esk8.local-error_log"
+    CustomLog "/var/log/httpd/esk8.local-access_log" common
+</VirtualHost>
 ```
 
 ## Developers
