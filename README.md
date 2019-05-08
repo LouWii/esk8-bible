@@ -34,6 +34,7 @@ npm install
 
 (if problems, delete `node_modules`, `package-lock.json` and run `npm install` again)
 
+Copy `.env.example` and rename it to `.env`. Edit with correct configuration.
 
 ### Apache config
 
