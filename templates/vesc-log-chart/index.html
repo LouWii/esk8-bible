@@ -226,37 +226,22 @@ var geoloc = {{ geoLoc|json_encode()|raw }};
 
 </script>
 
+<script type="text/javascript" src="/js/vesclog.js"></script>
+
 <script type="text/javascript">
 
 if (typeof geoloc !== 'undefined') {
 
-  $('#map').show();
+  // var lineString = new H.geo.LineString();
 
-  // Step 1: initialize communication with the platform
-  var platform = new H.service.Platform({
-    app_id: 'HVXTIlBr8Z8VkkUyHHnB',
-    app_code: 'gojPcpBVi5iBujJYIL0n0A',
-    useCIT: true,
-    useHTTPS: true
-  });
-  var defaultLayers = platform.createDefaultLayers();
+  // for (var i = 0; i < geoloc.length; i += 3) {
+  //   // lineString.pushPoint({lat: geoloc[i].coordinates.latitude, lng: geoloc[i].coordinates.longitude});
+  //   lineString.pushLatLngAlt(geoloc[i].coordinates.latitude, geoloc[i].coordinates.longitude);
+  // }
 
-  //Step 2: initialize a map - center it over first point in geoloc array
-  var map = new H.Map(document.getElementById('map'),
-    defaultLayers.normal.map,{
-    center: {lat: geoloc[0].coordinates.latitude, lng: geoloc[0].coordinates.longitude},
-    zoom: 13
-  });
-
-  var lineString = new H.geo.LineString();
-
-  for (var i = 0; i < geoloc.length; i += 2) {
-    lineString.pushPoint({lat: geoloc[i].coordinates.latitude, lng: geoloc[i].coordinates.longitude});
-  }
-
-  map.addObject(new H.map.Polyline(
-    lineString, { style: { lineWidth: 2 }}
-  ));
+  // map.addObject(new H.map.Polyline(
+  //   lineString, { style: { lineWidth: 3 }}
+  // ));
 }
 </script>
 
