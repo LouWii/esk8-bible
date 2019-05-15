@@ -2,6 +2,8 @@
 
 {% import "_macros.html" as macros %}
 
+{% set geoLoc = craft.vescLogInterpreter.vesLogDataGeolocation %}
+
 {% block content %}
 
 <h1>{{ entry.title }}</h1>
@@ -12,8 +14,15 @@
 </div>
 {% endif %}
 
+{% if craft.vescLogInterpreter.vescLogDataFound %}
+  {# If we found data, display the eventual error messages #}
 
-{% if craft.vescLogInterpreter.vescLogDataErrors|length == 1 and craft.vescLogInterpreter.vescLogDataErrors[0] == "No log to look for." %}
+  {% for error in craft.vescLogInterpreter.vescLogDataErrors %}
+    <div class="alert alert-danger" role="alert">
+      {{error}}
+    </div>
+  {% endfor %}
+{% else %}
   <h2>Upload a log file</h2>
   <form action="{{ craft.vescLogInterpreter.formActionUrl }}" class="form form-inline form-vesc-log" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
     <input type="hidden" name="{{ craft.app.config.general.csrfTokenName }}" value="{{ craft.app.request.csrfToken }}" />
@@ -21,17 +30,154 @@
     <div class="form-group">
       <input type="file" class="form-control-file" id="vescLogFile" name="vescLogFile">
     </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="yes" name="sum-up" id="summary-check">
+      <label class="form-check-label" for="summary-check">
+        Sum up
+      </label>
+    </div>
     <button type="submit" class="btn btn-primary">Send file</button>
   </form>
-{% else %}
-  {% for error in craft.vescLogInterpreter.vescLogDataErrors %}
-  <div class="alert alert-danger" role="alert">
-    {{error}}
-  </div>
-  {% endfor %}
 {% endif %}
 
 {% if craft.vescLogInterpreter.vescLogDataDatasets|length > 30 %}
+
+{% set duration = craft.vescLogInterpreter.vescLogDataDuration %}
+{% if duration is not null %}
+  {% if duration.format('%h') != '0' %}
+    {% set durationStr = duration.format('%h hrs %i min') %}
+  {% else %}
+    {% set durationStr = duration.format('%i min') %}
+  {% endif %}
+{% else %}
+  {% set durationStr = '?' %}
+{% endif %}
+
+{% if craft.vescLogInterpreter.vescLogDataMaxValues('Fault') > 0 %}
+  <div class="alert alert-danger" role="alert">
+    Your log data indicates {{ craft.vescLogInterpreter.vescLogDataMaxValues('Fault') }} fault(s).
+  </div>
+{% endif %}
+
+<div class="vesc-log-values">
+  <div class="row">
+    <div class="value-container">
+      <div class="label">Speed</div>
+      <div class="row-value">
+        <span class="sub-label">Max</span>
+        <span class="log-value">
+          {% if craft.vescLogInterpreter.vescLogDataMaxValues('GPSSpeed') != 0 %}
+          {{ craft.vescLogInterpreter.vescLogDataMaxValues('GPSSpeed') }} Km/h
+          {% else %}
+          {{ craft.vescLogInterpreter.vescLogDataMaxValues('Speed') }} Km/h
+          {% endif %}
+        </span>
+      </div>
+      <div class="row-value">
+        <span class="sub-label">Av.</span>
+        <span class="log-value">
+          {% if craft.vescLogInterpreter.vescLogDataAverageValues('GPSSpeed') != 0 %}
+          {{ craft.vescLogInterpreter.vescLogDataAverageValues('GPSSpeed') }} Km/h
+          {% else %}
+          {{ craft.vescLogInterpreter.vescLogDataAverageValues('Speed') }} Km/h
+          {% endif %}
+        </span>
+      </div>
+    </div>
+    <div class="value-container">
+      <div class="label">Distance</div>
+      <div class="row-value">{{ craft.vescLogInterpreter.vescLogDataMaxValues('Distance') }} Km</div>
+      <div class="label">Duration</div>
+      <div class="row-value">{{ durationStr }}</div>
+    </div>
+    <div class="value-container">
+      <div class="label">Current</div>
+      <div class="row-value">
+        <span class="sub-label">Max</span>
+        <span class="log-value">
+          {{ craft.vescLogInterpreter.vescLogDataMaxValues('BatteryCurrent') }} A
+        </span>
+      </div>
+      <div class="row-value">
+        <span class="sub-label">Av.</span>
+        <span class="log-value">
+          {{ craft.vescLogInterpreter.vescLogDataAverageValues('BatteryCurrent') }} A
+        </span>
+      </div>
+      <div class="row-value">
+        <span class="sub-label">Min</span>
+        <span class="log-value">
+        {{ craft.vescLogInterpreter.vescLogDataMinValues('BatteryCurrent') }} A
+      </span>
+      </div>
+    </div>
+    <div class="value-container">
+      <div class="label">Motor Current</div>
+      <div class="row-value">
+        <span class="sub-label">Max</span> {{ craft.vescLogInterpreter.vescLogDataMaxValues('MotorCurrent') }} A
+      </div>
+      <div class="row-value">
+        <span class="sub-label">Av.</span> {{ craft.vescLogInterpreter.vescLogDataAverageValues('MotorCurrent') }} A
+      </div>
+      <div class="row-value">
+        <span class="sub-label">Min</span> {{ craft.vescLogInterpreter.vescLogDataMinValues('MotorCurrent') }} A
+      </div>
+    </div>
+
+    <div class="value-container">
+      <div class="label">Voltage</div>
+      <div class="row-value">
+        <span class="sub-label">Max</span> {{ craft.vescLogInterpreter.vescLogDataMaxValues('InpVoltage') }} V
+      </div>
+      <div class="row-value">
+        <span class="sub-label">Av.</span> {{ craft.vescLogInterpreter.vescLogDataAverageValues('InpVoltage') }} V
+      </div>
+      <div class="row-value">
+        <span class="sub-label">Min</span> {{ craft.vescLogInterpreter.vescLogDataMinValues('InpVoltage') }} V
+      </div>
+    </div>
+    <div class="value-container">
+      <div class="label">Temp</div>
+      <div class="row-value">
+        <span class="sub-label">Max</span> {{ craft.vescLogInterpreter.vescLogDataMaxValues('TempPcb') }}&deg; C
+      </div>
+      <div class="row-value">
+        <span class="sub-label">Av.</span> {{ craft.vescLogInterpreter.vescLogDataAverageValues('TempPcb') }}&deg; C
+      </div>
+      <div class="row-value">
+        <span class="sub-label">Min</span> {{ craft.vescLogInterpreter.vescLogDataMinValues('TempPcb') }}&deg; C
+      </div>
+    </div>
+    <div class="value-container">
+      <div class="label">Energy</div>
+      <div class="row-value">
+        <span class="sub-label"></span> {{ craft.vescLogInterpreter.vescLogDataMaxValues('WattHours') }} Wh
+      </div>
+      <div class="row-value">
+        <span class="sub-label"></span> {{ craft.vescLogInterpreter.vescLogDataMaxValues('AmpHours') }} Ah
+      </div>
+    </div>
+    <div class="value-container">
+      <div class="label">Regen.</div>
+      <div class="row-value">
+        <span class="sub-label"></span> {{ craft.vescLogInterpreter.vescLogDataMaxValues('WattHoursCharged') }} Wh
+      </div>
+      <div class="row-value">
+        <span class="sub-label"></span> {{ craft.vescLogInterpreter.vescLogDataMaxValues('AmpHoursCharged') }} Ah
+      </div>
+    </div>
+    <div class="value-container">
+      <div class="label">Duty Cycle</div>
+      <div class="row-value">
+        <span class="sub-label">Max</span> {{ craft.vescLogInterpreter.vescLogDataMaxValues('DutyCycle') }} %
+      </div>
+      <div class="row-value">
+        <span class="sub-label">Av.</span> {{ craft.vescLogInterpreter.vescLogDataAverageValues('DutyCycle') }} %
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="vesc-log-chart-container">
   <script type="text/javascript">
     window.labels = {{ craft.vescLogInterpreter.vescLogDataAxisLabels|raw }}
@@ -49,6 +195,71 @@
 
   </div>
 </div>
+
+
+{% if geoLoc is not null %}
+
+<div id="map" style="width: 600px; height: 400px; background: #eee; display: none;"></div>
+
+{% else %}
+No geoloc 
+{% endif %}
+
+{% endif %}
+
+
+
+{% endblock %}
+
+
+{% block footer_js %}
+
+{% if geoLoc is not null %}
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+
+<script type="text/javascript">
+
+var geoloc = {{ geoLoc|json_encode()|raw }};
+
+</script>
+
+<script type="text/javascript">
+
+if (typeof geoloc !== 'undefined') {
+
+  $('#map').show();
+
+  // Step 1: initialize communication with the platform
+  var platform = new H.service.Platform({
+    app_id: 'HVXTIlBr8Z8VkkUyHHnB',
+    app_code: 'gojPcpBVi5iBujJYIL0n0A',
+    useCIT: true,
+    useHTTPS: true
+  });
+  var defaultLayers = platform.createDefaultLayers();
+
+  //Step 2: initialize a map - center it over first point in geoloc array
+  var map = new H.Map(document.getElementById('map'),
+    defaultLayers.normal.map,{
+    center: {lat: geoloc[0].coordinates.latitude, lng: geoloc[0].coordinates.longitude},
+    zoom: 13
+  });
+
+  var lineString = new H.geo.LineString();
+
+  for (var i = 0; i < geoloc.length; i += 2) {
+    lineString.pushPoint({lat: geoloc[i].coordinates.latitude, lng: geoloc[i].coordinates.longitude});
+  }
+
+  map.addObject(new H.map.Polyline(
+    lineString, { style: { lineWidth: 2 }}
+  ));
+}
+</script>
+
 {% endif %}
 
 {% endblock %}

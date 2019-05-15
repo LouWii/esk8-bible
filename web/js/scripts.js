@@ -97,7 +97,7 @@ $(function() {
 
       window.currentChartPart = 0;
 
-      chartCanva.css('width', window.labels[window.currentChartPart].length * 8+'px');
+      chartCanva.css('width', window.labels[window.currentChartPart].length * 2+'px');
       chartCanva.css('height', 300+'px');
       $('.vesc-log-chart-container .chart-container').append(chartCanva);
       const ctx = document.getElementById("vescLogChart").getContext('2d');
