@@ -67,8 +67,10 @@ function VescGeoloc (appId, appCode, mapElement, mapOptions) {
     }
 
     this.removeHightlightPoint = function () {
-        this.map.removeObject(this.highlightedPointMarker);
-        this.highlightedPointMarker = null;
+        if (this.highlightedPointMarker) {
+            this.map.removeObject(this.highlightedPointMarker);
+            this.highlightedPointMarker = null;
+        }
     }
 }
 

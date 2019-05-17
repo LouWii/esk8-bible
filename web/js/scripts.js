@@ -170,7 +170,6 @@ $(function() {
             }]
           },
           onHover: function(event, payload) {
-            console.log(event);
             if (event.type === 'mouseout') {
               $chartContainer.trigger('chartjs.mouseout');
             }
