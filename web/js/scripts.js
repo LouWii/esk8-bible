@@ -98,7 +98,13 @@ $(function() {
       window.currentChartPart = 0;
 
       // Setup chart container styling (manually set the width for best look)
-      chartCanva.css('width', window.labels[window.currentChartPart].length * 4+'px');
+      var calculatedWidth = window.labels[window.currentChartPart].length * 4;
+      if (calculatedWidth < $('main').width()) {
+        chartCanva.css('width', '100%');
+      } else {
+        chartCanva.css('width', calculatedWidth+'px');
+      }
+      
       chartCanva.css('height', 300+'px');
       $('.vesc-log-chart-container .chart-container').append(chartCanva);
       const ctx = document.getElementById("vescLogChart").getContext('2d');
