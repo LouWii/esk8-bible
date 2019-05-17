@@ -64,6 +64,10 @@
 
 .vesc-log-chart-container {
 
+  &:last-child {
+    margin-bottom: 1.5rem;
+  }
+
   .chart-loading-container {
     text-align: center;
     font-size: 1.8rem;
@@ -75,8 +79,9 @@
   }
 
   .chart-filters-container {
-    @extend .row;
-    margin-bottom: 24px;
+    @include make-row();
+    margin-left: 0;
+    margin-right: 0;
     padding: 12px 0;
     background-color: #eee;
 
@@ -112,6 +117,16 @@
   width: 100%;
   height: 200px;
   margin-bottom: 12px;
+}
+
+#vesc-geoloc-map {
+  background: #eee;
+  height: 400px;
+  width: 100%;
+
+  &:last-child {
+    margin-bottom: 1.5rem;
+  }
 }
 
 @include media-breakpoint-down('sm') {

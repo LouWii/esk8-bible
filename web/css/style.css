@@ -470,7 +470,7 @@ pre {
   margin-right: auto;
   margin-left: auto; }
 
-.row, .vesc-log-chart-container .chart-filters-container, .vesc-log-chart-container .chart-filters-container .filter-row {
+.row, .vesc-log-chart-container .chart-filters-container .filter-row {
   display: flex;
   flex-wrap: wrap;
   margin-right: -15px;
@@ -10038,7 +10038,7 @@ body {
 .form-vesc-log .form-group input[type="file"] {
   margin-right: 8px; }
 
-.vesc-log-values .row, .vesc-log-values .vesc-log-chart-container .chart-filters-container, .vesc-log-chart-container .vesc-log-values .chart-filters-container, .vesc-log-values .vesc-log-chart-container .chart-filters-container .filter-row, .vesc-log-chart-container .chart-filters-container .vesc-log-values .filter-row {
+.vesc-log-values .row, .vesc-log-values .vesc-log-chart-container .chart-filters-container .filter-row, .vesc-log-chart-container .chart-filters-container .vesc-log-values .filter-row {
   justify-content: center; }
 
 .vesc-log-values .value-container {
@@ -10078,6 +10078,9 @@ body {
   .vesc-log-values .value-container .sub-label {
     font-size: 80%; }
 
+.vesc-log-chart-container:last-child {
+  margin-bottom: 1.5rem; }
+
 .vesc-log-chart-container .chart-loading-container {
   text-align: center;
   font-size: 1.8rem; }
@@ -10087,7 +10090,12 @@ body {
   margin-bottom: 4px; }
 
 .vesc-log-chart-container .chart-filters-container {
-  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  margin-left: 0;
+  margin-right: 0;
   padding: 12px 0;
   background-color: #eee; }
   .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container {
@@ -10104,6 +10112,13 @@ body {
   width: 100%;
   height: 200px;
   margin-bottom: 12px; }
+
+#vesc-geoloc-map {
+  background: #eee;
+  height: 400px;
+  width: 100%; }
+  #vesc-geoloc-map:last-child {
+    margin-bottom: 1.5rem; }
 
 @media (max-width: 767.98px) {
   .vesc-log-chart-container .chart-filters-container {

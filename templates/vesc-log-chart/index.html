@@ -199,7 +199,7 @@
 
 {% if geoLoc is not null %}
 
-<div id="map" style="width: 600px; height: 400px; background: #eee; display: none;"></div>
+<div id="vesc-geoloc-map" style="display: none;"></div>
 
 {% else %}
 No geoloc 
@@ -227,23 +227,6 @@ var geoloc = {{ geoLoc|json_encode()|raw }};
 </script>
 
 <script type="text/javascript" src="/js/vesclog.js"></script>
-
-<script type="text/javascript">
-
-if (typeof geoloc !== 'undefined') {
-
-  // var lineString = new H.geo.LineString();
-
-  // for (var i = 0; i < geoloc.length; i += 3) {
-  //   // lineString.pushPoint({lat: geoloc[i].coordinates.latitude, lng: geoloc[i].coordinates.longitude});
-  //   lineString.pushLatLngAlt(geoloc[i].coordinates.latitude, geoloc[i].coordinates.longitude);
-  // }
-
-  // map.addObject(new H.map.Polyline(
-  //   lineString, { style: { lineWidth: 3 }}
-  // ));
-}
-</script>
 
 {% endif %}
 
