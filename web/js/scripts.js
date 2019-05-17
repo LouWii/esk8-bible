@@ -97,14 +97,41 @@ $(function() {
 
       window.currentChartPart = 0;
 
-      chartCanva.css('width', window.labels[window.currentChartPart].length * 2+'px');
+      // Setup chart container styling (manually set the width for best look)
+      chartCanva.css('width', window.labels[window.currentChartPart].length * 4+'px');
       chartCanva.css('height', 300+'px');
       $('.vesc-log-chart-container .chart-container').append(chartCanva);
       const ctx = document.getElementById("vescLogChart").getContext('2d');
       let chartDataset = [];
 
+      // Setup custom chart with a vertical line on hover
+      Chart.defaults.LineWithLine = Chart.defaults.line;
+      Chart.controllers.LineWithLine = Chart.controllers.line.extend({
+        draw: function(ease) {
+            Chart.controllers.line.prototype.draw.call(this, ease);
+
+            if (this.chart.tooltip._active && this.chart.tooltip._active.length) {
+              var activePoint = this.chart.tooltip._active[0],
+                  ctx = this.chart.ctx,
+                  x = activePoint.tooltipPosition().x,
+                  topY = this.chart.scales['y-axis-0'].top,
+                  bottomY = this.chart.scales['y-axis-0'].bottom;
+
+              // draw line
+              ctx.save();
+              ctx.beginPath();
+              ctx.moveTo(x, topY);
+              ctx.lineTo(x, bottomY);
+              ctx.lineWidth = 2;
+              ctx.strokeStyle = '#07C';
+              ctx.stroke();
+              ctx.restore();
+            }
+        }
+      });
+
       const vescChart = new Chart(ctx, {
-        type: 'line',
+        type: 'LineWithLine',
         data: {
           labels: window.labels[window.currentChartPart],
           datasets: chartDataset
@@ -112,8 +139,21 @@ $(function() {
         options: {
           responsive: false,
           tooltips: {
-            mode: 'index',
+            mode: 'nearest',
             intersect: false,
+            axis: 'x',
+            custom: function(tooltipModel) {
+              if (tooltipModel.title) {
+
+              }
+            },
+            callbacks: {
+              afterFooter: function(tooltipItem, data) {
+                if (tooltipItem.length) {
+                  $chartContainer.trigger('chartjs.point.index', tooltipItem[0].index);
+                }
+              }
+            }
           },
           hover: {
             mode: 'nearest',
@@ -128,6 +168,12 @@ $(function() {
                 beginAtZero:true
               }
             }]
+          },
+          onHover: function(event, payload) {
+            console.log(event);
+            if (event.type === 'mouseout') {
+              $chartContainer.trigger('chartjs.mouseout');
+            }
           }
         }
       });
