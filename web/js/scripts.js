@@ -98,7 +98,7 @@ $(function() {
       window.currentChartPart = 0;
 
       // Setup chart container styling (manually set the width for best look)
-      var calculatedWidth = window.labels[window.currentChartPart].length * 4;
+      var calculatedWidth = window.labels[window.currentChartPart].length * 2;
       if (calculatedWidth < $('main').width()) {
         chartCanva.css('width', '100%');
       } else {
@@ -219,8 +219,12 @@ $(function() {
           || window.datasets[window.currentChartPart][i].label === 'Speed') {
             checkedState = 'checked="checked"';
         }
+        let origLabel = window.datasets[window.currentChartPart][i].label;
+        if (typeof window.labelTranslations[origLabel] === 'string') {
+          origLabel = window.labelTranslations[origLabel];
+        }
         $filterRow = $('<div class="filter-row"></div>');
-        $filterRow.append('<label for="dataset-id-'+i+'" class="filter-label">'+window.datasets[window.currentChartPart][i].label+'</label>');
+        $filterRow.append('<label for="dataset-id-'+i+'" class="filter-label">'+origLabel+'</label>');
         $filterRow.append('<span class="filter-trigger"><input id="dataset-id-'+i+'" type="checkbox" name="datasetName" value="'+window.datasets[window.currentChartPart][i].label+'" '+checkedState+' /></span>');
         $filtersContainer.append($filterRow);
       }
@@ -229,7 +233,7 @@ $(function() {
 
       // UI update once everything is setup and ready
       $('.chart-loading-container').hide();
-      $('.chart-container, .chart-filters-container').fadeIn();
+      $('.chart-container, .chart-filters-collapse').fadeIn();
 
       // Filter events init
       $('.chart-filters-container input').on('change', function(event){

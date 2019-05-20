@@ -188,17 +188,27 @@
   <script type="text/javascript">
     window.labels = {{ craft.vescLogInterpreter.vescLogDataAxisLabels|raw }}
     window.datasets = {{ craft.vescLogInterpreter.vescLogDataDatasets|raw }};
+    window.labelTranslations = {{ craft.vescLogInterpreter.vescLogCsvLabelJsonTranslations|raw }};
   </script>
 
   <div class="chart-loading-container">
     <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
     Loading...
   </div>
+  <div class="chart-filters-collapse page-collapse">
+    <div class="collapse-trigger-container">
+      <button type="button" class="collapse-trigger collapsed" data-toggle="collapse" data-target="#chart-filters" aria-expanded="false" aria-controls="chart-filters">
+        Show/hide chart data <i class="fa fa-chevron-up" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div id="chart-filters" class="collapse-body collapse">
+      <div class="chart-filters-container">
+
+      </div>
+    </div>
+  </div>
   <div class="chart-container" style="display: none;">
     <!-- <canvas id="vescLogChart"></canvas> -->
-  </div>
-  <div class="chart-filters-container" style="display: none;">
-
   </div>
 </div>
 

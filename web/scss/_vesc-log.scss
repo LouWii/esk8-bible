@@ -78,12 +78,28 @@
     margin-bottom: 4px;
   }
 
+  .chart-filters-collapse {
+    display: none;
+
+    .collapse-trigger-container {
+      margin-bottom: 0.5rem;
+    }
+
+    .collapse-body {
+      margin-bottom: 0.5rem;
+    }
+  }
+
   .chart-filters-container {
     @include make-row();
     margin-left: 0;
     margin-right: 0;
     padding: 12px 0;
     background-color: #eee;
+
+    &:not(.show) {
+      
+    }
 
     .chart-parts-actions-container {
       display: flex;
