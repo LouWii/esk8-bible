@@ -15,15 +15,17 @@
 {% endif %}
 
 {% if craft.vescLogInterpreter.vescLogDataFound %}
-  {# If we found data, display the eventual error messages #}
+  {# We found data #}
 
+{% else %}
+  <h2>Upload a log file</h2>
+  
   {% for error in craft.vescLogInterpreter.vescLogDataErrors %}
     <div class="alert alert-danger" role="alert">
       {{error}}
     </div>
   {% endfor %}
-{% else %}
-  <h2>Upload a log file</h2>
+
   <form action="{{ craft.vescLogInterpreter.formActionUrl }}" class="form form-vesc-log" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
     <input type="hidden" name="{{ craft.app.config.general.csrfTokenName }}" value="{{ craft.app.request.csrfToken }}" />
     <input type="hidden" name="redirect" value="/vesc-log-chart" />
