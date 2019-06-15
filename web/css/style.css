@@ -10118,7 +10118,7 @@ body {
 #vescLogChart {
   width: 100%;
   height: 200px;
-  margin-bottom: 12px; }
+  margin: 0 auto 12px; }
 
 #vesc-geoloc-map {
   background: #eee;

@@ -85,28 +85,27 @@ $(function() {
     if ($('.vesc-log-chart-container .chart-container').length && window.labels && window.datasets) {
 
       // Setup horizontal scrolling
-      const chartCanva = $('<canvas id="vescLogChart"></canvas>');
+      const chartCanvas = $('<canvas id="vescLogChart"></canvas>');
       const $chartContainer = $('.vesc-log-chart-container .chart-container');
       const $filtersContainer = $('.chart-filters-container');
 
       $chartContainer.on('mousewheel DOMMouseScroll', function(event) {
-        var delta = Math.max(-1, Math.min(1, (event.originalEvent.wheelDelta || -event.originalEvent.detail)));
-        $(this).scrollLeft( $(this).scrollLeft() - ( delta * 50 ) );
-        event.preventDefault();
+        var canvasWidth = $(this).find('canvas').width();
+        if (canvasWidth > $(this).width()) {
+          var delta = Math.max(-1, Math.min(1, (event.originalEvent.wheelDelta || -event.originalEvent.detail)));
+          $(this).scrollLeft( $(this).scrollLeft() - ( delta * 50 ) );
+          event.preventDefault();
+        }
       });
 
       window.currentChartPart = 0;
 
       // Setup chart container styling (manually set the width for best look)
       var calculatedWidth = window.labels[window.currentChartPart].length * 2;
-      if (calculatedWidth < $('main').width()) {
-        chartCanva.css('width', '100%');
-      } else {
-        chartCanva.css('width', calculatedWidth+'px');
-      }
+      chartCanvas.css('width', calculatedWidth+'px');
       
-      chartCanva.css('height', 300+'px');
-      $('.vesc-log-chart-container .chart-container').append(chartCanva);
+      chartCanvas.css('height', 300+'px');
+      $('.vesc-log-chart-container .chart-container').append(chartCanvas);
       const ctx = document.getElementById("vescLogChart").getContext('2d');
       let chartDataset = [];
 
@@ -154,12 +153,35 @@ $(function() {
               }
             },
             callbacks: {
-              afterFooter: function(tooltipItem, data) {
+              label: function (tooltipItem, data) {
+                let labelStr = '';
+                let label = data.datasets[tooltipItem.datasetIndex].label || '';
+                if (label) {
+                  // Try to get translated label
+                  if (typeof window.labelTranslations[label] === 'object'
+                    && typeof window.labelTranslations[label].label === 'string'
+                    && window.labelTranslations[label].label.length != 0
+                  ) {
+                      labelStr = window.labelTranslations[label].label + ': ';
+                  } else {
+                    labelStr = label + ': ';
+                  }
+                }
+                labelStr += tooltipItem.yLabel;
+                if (label && typeof window.labelTranslations[label] === 'object') {
+                  labelStr += ' ' + window.labelTranslations[label].unit;
+                }
+                return labelStr;
+              },
+              afterFooter: function (tooltipItem, data) {
                 if (tooltipItem.length) {
                   $chartContainer.trigger('chartjs.point.index', tooltipItem[0].index);
                 }
               }
             }
+          },
+          legend: {
+            display: false,
           },
           hover: {
             mode: 'nearest',
@@ -170,9 +192,7 @@ $(function() {
               type: 'time',
             }],
             yAxes: [{
-              ticks: {
-                beginAtZero:true
-              }
+              display: false,
             }]
           },
           onHover: function(event, payload) {
@@ -220,8 +240,11 @@ $(function() {
             checkedState = 'checked="checked"';
         }
         let origLabel = window.datasets[window.currentChartPart][i].label;
-        if (typeof window.labelTranslations[origLabel] === 'string') {
-          origLabel = window.labelTranslations[origLabel];
+        if (typeof window.labelTranslations[origLabel] === 'object'
+          && typeof window.labelTranslations[origLabel].label === 'string'
+          && window.labelTranslations[origLabel].label.length != 0
+        ) {
+          origLabel = window.labelTranslations[origLabel].label;
         }
         $filterRow = $('<div class="filter-row"></div>');
         $filterRow.append('<label for="dataset-id-'+i+'" class="filter-label">'+origLabel+'</label>');
