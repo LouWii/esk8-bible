@@ -10078,47 +10078,59 @@ body {
   .vesc-log-values .value-container .sub-label {
     font-size: 80%; }
 
-.vesc-log-chart-container:last-child {
-  margin-bottom: 1.5rem; }
-
-.vesc-log-chart-container .chart-loading-container {
-  text-align: center;
-  font-size: 1.8rem; }
-
-.vesc-log-chart-container .chart-container {
-  overflow: auto;
-  margin-bottom: 4px; }
-
-.vesc-log-chart-container .chart-filters-collapse {
-  display: none; }
-  .vesc-log-chart-container .chart-filters-collapse .collapse-trigger-container {
-    margin-bottom: 0.5rem; }
-  .vesc-log-chart-container .chart-filters-collapse .collapse-body {
-    margin-bottom: 0.5rem; }
-
-.vesc-log-chart-container .chart-filters-container {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-  margin-left: 0;
-  margin-right: 0;
-  padding: 12px 0;
-  background-color: #eee; }
-  .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container {
+.vesc-log-chart-container {
+  position: relative; }
+  .vesc-log-chart-container:last-child {
+    margin-bottom: 1.5rem; }
+  .vesc-log-chart-container .chart-loading-container {
+    text-align: center;
+    font-size: 1.8rem; }
+  .vesc-log-chart-container .chart-container {
+    overflow: auto;
+    margin-bottom: 4px; }
+  .vesc-log-chart-container .chart-filters-collapse {
+    display: none; }
+    .vesc-log-chart-container .chart-filters-collapse .collapse-trigger-container {
+      margin-bottom: 0.5rem; }
+    .vesc-log-chart-container .chart-filters-collapse .collapse-body {
+      margin-bottom: 0.5rem; }
+  .vesc-log-chart-container .chart-filters-container {
     display: flex;
-    flex: 1 1 100%;
-    padding: 0 12px 12px 12px; }
-    .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons {
-      margin: 0 auto; }
-  .vesc-log-chart-container .chart-filters-container .filter-label {
-    font-size: 0.9rem;
-    margin: 0; }
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 12px 0;
+    background-color: #eee; }
+    .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container {
+      display: flex;
+      flex: 1 1 100%;
+      padding: 0 12px 12px 12px; }
+      .vesc-log-chart-container .chart-filters-container .chart-parts-actions-container .chart-parts-actions-buttons {
+        margin: 0 auto; }
+    .vesc-log-chart-container .chart-filters-container .filter-label {
+      font-size: 0.9rem;
+      margin: 0; }
 
 #vescLogChart {
   width: 100%;
   height: 200px;
   margin: 0 auto 12px; }
+
+#chartjs-tooltip {
+  opacity: 1;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 3px;
+  bottom: 60px;
+  pointer-events: none; }
+  #chartjs-tooltip .line-color-key {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px; }
 
 #vesc-geoloc-map {
   background: #eee;
