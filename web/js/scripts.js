@@ -85,26 +85,129 @@ $(function() {
     if ($('.vesc-log-chart-container .chart-container').length && window.labels && window.datasets) {
 
       // Setup horizontal scrolling
-      const chartCanva = $('<canvas id="vescLogChart"></canvas>');
+      const chartCanvas = $('<canvas id="vescLogChart"></canvas>');
       const $chartContainer = $('.vesc-log-chart-container .chart-container');
       const $filtersContainer = $('.chart-filters-container');
 
       $chartContainer.on('mousewheel DOMMouseScroll', function(event) {
-        var delta = Math.max(-1, Math.min(1, (event.originalEvent.wheelDelta || -event.originalEvent.detail)));
-        $(this).scrollLeft( $(this).scrollLeft() - ( delta * 50 ) );
-        event.preventDefault();
+        var canvasWidth = $(this).find('canvas').width();
+        if (canvasWidth > $(this).width()) {
+          var delta = Math.max(-1, Math.min(1, (event.originalEvent.wheelDelta || -event.originalEvent.detail)));
+          $(this).scrollLeft( $(this).scrollLeft() - ( delta * 50 ) );
+          event.preventDefault();
+        }
       });
 
       window.currentChartPart = 0;
 
-      chartCanva.css('width', window.labels[window.currentChartPart].length * 8+'px');
-      chartCanva.css('height', 300+'px');
-      $('.vesc-log-chart-container .chart-container').append(chartCanva);
+      // Setup chart container styling (manually set the width for best look)
+      const pixelsPerPoint = 3;
+      var calculatedWidth = window.labels[window.currentChartPart].length * pixelsPerPoint;
+      chartCanvas.css('width', calculatedWidth+'px');
+      
+      chartCanvas.css('height', 300+'px');
+      $('.vesc-log-chart-container .chart-container').append(chartCanvas);
       const ctx = document.getElementById("vescLogChart").getContext('2d');
       let chartDataset = [];
 
+      // Setup custom chart with a vertical line on hover
+      Chart.defaults.LineWithLine = Chart.defaults.line;
+      Chart.controllers.LineWithLine = Chart.controllers.line.extend({
+        draw: function(ease) {
+            Chart.controllers.line.prototype.draw.call(this, ease);
+
+            if (this.chart.tooltip._active && this.chart.tooltip._active.length) {
+              var activePoint = this.chart.tooltip._active[0],
+                  ctx = this.chart.ctx,
+                  x = activePoint.tooltipPosition().x,
+                  topY = this.chart.scales['y-axis-0'].top,
+                  bottomY = this.chart.scales['y-axis-0'].bottom;
+
+              // draw line
+              ctx.save();
+              ctx.beginPath();
+              ctx.moveTo(x, topY);
+              ctx.lineTo(x, bottomY);
+              ctx.lineWidth = 2;
+              ctx.strokeStyle = '#07C';
+              ctx.stroke();
+              ctx.restore();
+            }
+        }
+      });
+
+      const customTooltips = function(tooltip) {
+        // Tooltip Element
+        var tooltipEl = document.getElementById('chartjs-tooltip');
+
+        if (!tooltipEl) {
+          tooltipEl = document.createElement('div');
+          tooltipEl.id = 'chartjs-tooltip';
+          tooltipEl.innerHTML = '<table></table>';
+          this._chart.canvas.parentNode.appendChild(tooltipEl);
+        }
+
+        var container = tooltipEl.parentElement;
+
+        // Hide if no tooltip
+        if (tooltip.opacity === 0) {
+          tooltipEl.style.opacity = 0;
+          return;
+        }
+
+        // Set caret Position
+        tooltipEl.classList.remove('above', 'below', 'no-transform');
+        if (tooltip.yAlign) {
+          tooltipEl.classList.add(tooltip.yAlign);
+        } else {
+          tooltipEl.classList.add('no-transform');
+        }
+  
+        function getBody(bodyItem) {
+          return bodyItem.lines;
+        }
+
+        // Set Text
+        if (tooltip.body) {
+          var titleLines = tooltip.title || [];
+          var bodyLines = tooltip.body.map(getBody);
+
+          var innerHtml = '<thead>';
+
+          titleLines.forEach(function(title) {
+            innerHtml += '<tr><th>' + title + '</th></tr>';
+          });
+          innerHtml += '</thead><tbody>';
+
+          bodyLines.forEach(function(body, i) {
+            var colors = tooltip.labelColors[i];
+            var style = 'background:' + colors.backgroundColor;
+            style += '; border-color:' + colors.borderColor;
+            style += '; border-width: 2px';
+            var span = '<span class="line-color-key" style="' + style + '"></span>';
+            innerHtml += '<tr><td>' + span + body + '</td></tr>';
+          });
+          innerHtml += '</tbody>';
+  
+          var tableRoot = tooltipEl.querySelector('table');
+          tableRoot.innerHTML = innerHtml;
+        }
+
+        var positionY = this._chart.canvas.offsetTop;
+        var positionX = this._chart.canvas.offsetLeft;
+  
+        // Display, position, and set styles for font
+        tooltipEl.style.opacity = 1;
+        tooltipEl.style.left = positionX + tooltip.caretX - container.scrollLeft + 5 + 'px';
+        // tooltipEl.style.top = positionY + tooltip.caretY + 'px';
+        tooltipEl.style.fontFamily = tooltip._bodyFontFamily;
+        tooltipEl.style.fontSize = tooltip.bodyFontSize + 'px';
+        tooltipEl.style.fontStyle = tooltip._bodyFontStyle;
+        tooltipEl.style.padding = tooltip.yPadding + 'px ' + tooltip.xPadding + 'px';
+      };
+
       const vescChart = new Chart(ctx, {
-        type: 'line',
+        type: 'LineWithLine',
         data: {
           labels: window.labels[window.currentChartPart],
           datasets: chartDataset
@@ -112,8 +215,41 @@ $(function() {
         options: {
           responsive: false,
           tooltips: {
-            mode: 'index',
+            enabled: false,
+            mode: 'nearest',
             intersect: false,
+            axis: 'x',
+            custom: customTooltips,
+            callbacks: {
+              label: function (tooltipItem, data) {
+                let labelStr = '';
+                let label = data.datasets[tooltipItem.datasetIndex].label || '';
+                if (label) {
+                  // Try to get translated label
+                  if (typeof window.labelTranslations[label] === 'object'
+                    && typeof window.labelTranslations[label].label === 'string'
+                    && window.labelTranslations[label].label.length != 0
+                  ) {
+                      labelStr = window.labelTranslations[label].label + ': ';
+                  } else {
+                    labelStr = label + ': ';
+                  }
+                }
+                labelStr += tooltipItem.yLabel;
+                if (label && typeof window.labelTranslations[label] === 'object') {
+                  labelStr += ' ' + window.labelTranslations[label].unit;
+                }
+                return labelStr;
+              },
+              afterFooter: function (tooltipItem, data) {
+                if (tooltipItem.length) {
+                  $chartContainer.trigger('chartjs.point.index', tooltipItem[0].index);
+                }
+              }
+            }
+          },
+          legend: {
+            display: false,
           },
           hover: {
             mode: 'nearest',
@@ -124,10 +260,13 @@ $(function() {
               type: 'time',
             }],
             yAxes: [{
-              ticks: {
-                beginAtZero:true
-              }
+              display: false,
             }]
+          },
+          onHover: function(event, payload) {
+            if (event.type === 'mouseout') {
+              $chartContainer.trigger('chartjs.mouseout');
+            }
           }
         }
       });
@@ -168,8 +307,15 @@ $(function() {
           || window.datasets[window.currentChartPart][i].label === 'Speed') {
             checkedState = 'checked="checked"';
         }
+        let origLabel = window.datasets[window.currentChartPart][i].label;
+        if (typeof window.labelTranslations[origLabel] === 'object'
+          && typeof window.labelTranslations[origLabel].label === 'string'
+          && window.labelTranslations[origLabel].label.length != 0
+        ) {
+          origLabel = window.labelTranslations[origLabel].label;
+        }
         $filterRow = $('<div class="filter-row"></div>');
-        $filterRow.append('<label for="dataset-id-'+i+'" class="filter-label">'+window.datasets[window.currentChartPart][i].label+'</label>');
+        $filterRow.append('<label for="dataset-id-'+i+'" class="filter-label">'+origLabel+'</label>');
         $filterRow.append('<span class="filter-trigger"><input id="dataset-id-'+i+'" type="checkbox" name="datasetName" value="'+window.datasets[window.currentChartPart][i].label+'" '+checkedState+' /></span>');
         $filtersContainer.append($filterRow);
       }
@@ -178,7 +324,7 @@ $(function() {
 
       // UI update once everything is setup and ready
       $('.chart-loading-container').hide();
-      $('.chart-container, .chart-filters-container').fadeIn();
+      $('.chart-container, .chart-filters-collapse').fadeIn();
 
       // Filter events init
       $('.chart-filters-container input').on('change', function(event){

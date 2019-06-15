@@ -5,22 +5,22 @@
   "main": "gulpfile.js",
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "chart.js": "^2.7.1",
-    "datatables.net-bs4": "^1.10.16",
+    "chart.js": "^2.8.0",
+    "datatables.net-bs4": "^1.10.19",
     "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
-    "gulp-rename": "^1.2.2",
+    "gulp-rename": "^1.4.0",
     "gulp-uglify": "^3.0.0",
-    "jquery": "^3.2.1",
+    "jquery": "^3.4.1",
     "lato-font": "^3.0.0",
-    "lity": "^2.3.0",
+    "lity": "^2.3.1",
     "popper.js": "^1.15.0",
-    "typed.js": "^2.0.6"
+    "typed.js": "^2.0.10"
   },
   "devDependencies": {
-    "gulp-clean-css": "^3.9.0",
-    "gulp-sass": "^3.1.0"
+    "gulp-clean-css": "^3.10.0",
+    "gulp-sass": "^3.2.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

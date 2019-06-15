@@ -39,33 +39,33 @@
             padding: 0.2rem;
         }
     }
+}
 
-    .page-collapse {
-        .collapse-trigger {
-            @extend .btn;
-            @extend .btn-outline-primary;
-            position: relative;
-            padding-right: calc(.75rem + .55rem + 16px);
+.page-collapse {
+    .collapse-trigger {
+        @extend .btn;
+        @extend .btn-outline-primary;
+        position: relative;
+        padding-right: calc(.75rem + .55rem + 16px);
 
+        .fa {
+            animation: .5s rotate-x-0 forwards;
+            position: absolute;
+            right: .75rem;
+            top: calc(50% - 6px);
+        }
+
+        &.collapsed {
             .fa {
-                animation: .5s rotate-x-0 forwards;
-                position: absolute;
-                right: .75rem;
-                top: calc(50% - 6px);
-            }
-
-            &.collapsed {
-                .fa {
-                    animation: .5s rotate-x-180 forwards;
-                }
+                animation: .5s rotate-x-180 forwards;
             }
         }
-        .collapse-body {
-            @extend .border;
-            @extend .rounded;
-            overflow-x: auto;
-            margin-bottom: 1rem;
-            padding: 1rem;
-        }
+    }
+    .collapse-body {
+        @extend .border;
+        @extend .rounded;
+        overflow-x: auto;
+        margin-bottom: 1rem;
+        padding: 1rem;
     }
 }
