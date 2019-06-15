@@ -25,7 +25,7 @@
     "vlucas/phpdotenv": "^2.4.0",
     "ether/simplemap": "^3.4",
     "craftcms/redactor": "2.3.2",
-    "louwii/vesc-log-interpreter": "^1.0.0",
+    "louwii/vesc-log-interpreter": "^2.0.0",
     "dolphiq/sitemap": "1.0.9",
     "craftcms/contact-form": "2.2.4"
   },
