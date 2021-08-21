@@ -10,7 +10,7 @@ Clone this repo
 git clone https://github.com/LouWii/esk8-bible.git
 ```
 
-Install PHP dependencies
+Install PHP dependencies (requires `mbstring`, `curl`, `xml` ,`zip`, `gd`)
 
 ```
 cd esk8-bible
@@ -55,6 +55,13 @@ This is a quick and dirty example config for Apache server.
     ErrorLog "/var/log/httpd/esk8.local-error_log"
     CustomLog "/var/log/httpd/esk8.local-access_log" common
 </VirtualHost>
+```
+
+Permissions problem? Add the `www-data` user to the local user:
+
+```
+sudo adduser www-data $(whoami)
+sudo service apache2 reload
 ```
 
 ## Developers
