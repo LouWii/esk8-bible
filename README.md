@@ -38,6 +38,8 @@ Copy `.env.example` and rename it to `.env`. Edit with correct configuration.
 
 ### Apache config
 
+Don't forget to enable `mod_rewrite` with `sudo a2enmod rewrite`.
+
 This is a quick and dirty example config for Apache server.
 
 ```
