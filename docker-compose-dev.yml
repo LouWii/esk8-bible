@@ -1,0 +1,14 @@
+version: '2.4'
+services:
+    esk8dev:
+        build:
+            context: .
+            dockerfile: Dockerfile-dev
+        container_name: esk8dev
+        ports:
+            - 9008:9000
+        volumes:
+            - ./app:/var/www/html
+        extra_hosts:
+            - host.docker.internal:host-gateway
+        restart: unless-stopped
