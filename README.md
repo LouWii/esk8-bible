@@ -2,21 +2,15 @@
 
 A small Craft CMS site project about electric skateboards or _esk8_.
 
-## Docker setup
+## Setup
 
-Run `sudo docker build -t esk8bible .` to build the container
-
-Run `sudo docker run -d -v $(pwd)/html:/var/www/html -p 9008:9000 --name esk8 esk8bible` to run the container
-
-sudo docker run -d --add-host host.docker.internal:host-gateway -p 9008:9000 --name esk8 esk8bible
-
-sudo docker run -d --add-host host.docker.internal:host-gateway -v $(pwd)/app:/var/www/html -p 9008:9000 --name esk8 esk8bible
+### Docker
 
 `sudo docker-compose up -d --build`
 
-**PROBLEM:** For dev, we want to mount the host source files into the docker container, so that when we change the file locally, it gets changed in the container too. But this is a problem for `vendor`, because it does not exist locally since `composer install` ran during container build and is only present there. And for prod, we don't care about this at all.
+## Apache
 
-### Apache
+Don't forget to enable the required apache mods with `sudo a2enmod rewrite proxy proxy_fcgi` and restart `sudo systemctl restart apache2`.
 
 ```
 <VirtualHost *:80>
@@ -38,11 +32,31 @@ sudo docker run -d --add-host host.docker.internal:host-gateway -v $(pwd)/app:/v
 </VirtualHost>
 ```
 
-### Debug
+## Dev
 
-`sudo docker logs -f esk8`
+### Docker
 
-`sudo docker exec -it esk8 /bin/bash`
+Run `sudo docker-compose -f docker-compose-dev.yml up -d --build`
+
+Wait for a bit to get composer stuff installed and npm. For convenience, composer and npm both run when the container goes up, so that both dependencies are installed on the mounted volume. We have to do this because for dev, we replace the entire app folder with the local app folder, mounted as a volume in Docker. We do this so that any local change is reflected in Docker.
+
+There are probably better solutions for this (like putting composer and npm deps outside of the app), but it works for now.
+
+#### Debug
+
+`sudo docker logs -f esk8` or `esk8dev`
+
+`sudo docker exec -it esk8 /bin/bash` or `esk8dev`
+
+#### Other Random Commands
+
+Run `sudo docker build -t esk8bible .` to build the container
+
+Run `sudo docker run -d -v $(pwd)/html:/var/www/html -p 9008:9000 --name esk8 esk8bible` to run the container
+
+sudo docker run -d --add-host host.docker.internal:host-gateway -p 9008:9000 --name esk8 esk8bible
+
+sudo docker run -d --add-host host.docker.internal:host-gateway -v $(pwd)/app:/var/www/html -p 9008:9000 --name esk8 esk8bible
 
 ## Manual Install
 
@@ -79,36 +93,6 @@ npm install
 Copy `.env.example` and rename it to `.env`. Edit with correct configuration.
 
 `host.docker.internal` can be used as db host if the db is running on the host.
-
-### Apache config
-
-Don't forget to enable `mod_rewrite` with `sudo a2enmod rewrite`.
-
-This is a quick and dirty example config for Apache server.
-
-```
-<VirtualHost *:80>
-    ServerAdmin admin@host.com
-    DocumentRoot "/home/louwii/Dev/esk8-bible/web"
-    ServerName esk8.local
-
-    <Directory /home/louwii/Dev/esk8-bible/web>
-          Options Indexes FollowSymLinks
-          AllowOverride All
-          Require all granted
-    </Directory>
-
-    ErrorLog ${APACHE_LOG_DIR}/esk8.local-error_log
-    CustomLog ${APACHE_LOG_DIR}/esk8.local-access_log common
-</VirtualHost>
-```
-
-Permissions problem? Add the `www-data` user to the local user:
-
-```
-sudo adduser www-data $(whoami)
-sudo service apache2 reload
-```
 
 ## Developers
 
