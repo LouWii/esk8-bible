@@ -7,7 +7,10 @@ services:
         ports:
             - 9008:9000
         volumes:
-            #TODO: mount volume for uploads
+            # This is not ideal but it'll do for now. We need uploads through the site to be reflected on the host
+            #  since Apache runs on the host, the path needs to be the same otherwise Apache cannot serve the files
+            # The other option is to create a subdomain for those files, make that vhost point to the different location, and configure Craft to use that sub-domain for uploaded images
+            - ./app/web/assets:/var/www/html/web/assets
         extra_hosts:
             - host.docker.internal:host-gateway
         restart: unless-stopped

@@ -15,7 +15,8 @@ WORKDIR /var/www/html
 COPY app /var/www/html
 
 # Remove the possibility of the vendor dir outside of the container to corrupt things
-RUN rm -rf /var/www/html/vendor
+RUN rm -rf /var/www/html/vendor && \
+    rm -rf /var/www/html/web/node_modules
 
 RUN composer install --quiet && \
     composer dump-autoload --optimize --no-dev --classmap-authoritative && \
@@ -25,7 +26,8 @@ RUN composer install --quiet && \
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 # Install node using https://github.com/nodesource/distributions
-RUN curl -fsSL https://deb.nodesource.com/setup_17.x | bash - && \
+# We are a bit late on nod version, upgrading is breaking things
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs
 
 WORKDIR /var/www/html/web
