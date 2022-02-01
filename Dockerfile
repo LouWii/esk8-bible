@@ -23,20 +23,10 @@ RUN composer install --quiet && \
     chown -R www-data:www-data storage && \
     chown -R www-data:www-data web/cpresources
 
-RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+# TODO: make our own php.ini with best settings
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
-# Install node using https://github.com/nodesource/distributions
-# We are a bit late on nod version, upgrading is breaking things
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
-    apt-get install -y nodejs
-
-WORKDIR /var/www/html/web
-
-# Compile frontend assets
-RUN npm install gulp-cli -g && \
-    npm install
-
-# Remove node to free up space
-RUN apt-get remove --purge -y nodejs
+# Frontend assets are compiled and committed to git
+# Not ideal, but it makes things so much easier, no need to compile them when building the container
 
 WORKDIR /var/www/html
