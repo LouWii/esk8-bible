@@ -21,7 +21,9 @@ RUN rm -rf /var/www/html/vendor && \
 RUN composer install --quiet && \
     composer dump-autoload --optimize --no-dev --classmap-authoritative && \
     chown -R www-data:www-data storage && \
-    chown -R www-data:www-data web/cpresources
+    chown -R www-data:www-data web/cpresources && \
+    chown -R www-data:www-data config/project && \
+    chown -R www-data:www-data web/assets
 
 # TODO: make our own php.ini with best settings
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"

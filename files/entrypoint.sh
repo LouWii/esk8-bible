@@ -8,7 +8,9 @@ cd web
 
 npm install
 
-chmod 777 storage
-chmod 777 web/cpresources
+chown -R www-data:www-data storage
+chown -R www-data:www-data web/cpresources
+chown -R www-data:www-data config/project
+chown -R www-data:www-data web/assets
 
 php-fpm
