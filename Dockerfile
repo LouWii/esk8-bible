@@ -10,6 +10,9 @@ RUN curl -sSLf \
     install-php-extensions imagick intl opcache pdo_mysql zip @composer-1 && \
     mkdir -p /var/www/html
 
+# If you want CraftCMS to be able to backup the database, uncomment this line
+#RUN apt install default-mysql-client
+
 WORKDIR /var/www/html
 
 COPY app /var/www/html
@@ -30,5 +33,3 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Frontend assets are compiled and committed to git
 # Not ideal, but it makes things so much easier, no need to compile them when building the container
-
-WORKDIR /var/www/html

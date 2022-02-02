@@ -10,6 +10,9 @@ RUN curl -sSLf \
     install-php-extensions imagick intl opcache pdo_mysql zip @composer-1 && \
     mkdir -p /var/www/html
 
+# If you want CraftCMS to be able to backup the database, uncomment this line
+#RUN apt install default-mysql-client
+
 # We do not run composer install since it needs to be run once the volume is mounted
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"

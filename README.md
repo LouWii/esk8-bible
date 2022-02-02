@@ -8,7 +8,7 @@ A small Craft CMS site project about electric skateboards or _esk8_.
 
 `sudo docker-compose up -d --build`
 
-## Apache
+### Apache
 
 Don't forget to enable the required apache mods with `sudo a2enmod rewrite proxy proxy_fcgi` and restart `sudo systemctl restart apache2`.
 
@@ -32,6 +32,30 @@ Don't forget to enable the required apache mods with `sudo a2enmod rewrite proxy
 </VirtualHost>
 ```
 
+### `.env` file
+
+Copy `.env.example` and rename it to `.env`. Edit with correct configuration.
+
+`host.docker.internal` can be used as db host if the db is running on the host.
+
+## Known issues
+
+### Cannot backup database on update
+
+It's because `mysqldump` command is not available in the container. It requires a bunch of packages that aren't needed for anything else. In order to keep the container light, we decided to not install the command. But it's simply commented out of the `Dockerfile`, in case we need that command at some point.
+
+### Sending emails
+
+```
+2022-02-01 17:51:40 [-][1][-][trace][yii\base\InlineAction::runWithParams] Running action: craft\contactform\controllers\SendController::actionIndex()
+2022-02-01 17:51:40 [-][1][-][info][yii\mail\BaseMailer::send] Sending email "New message from Esk8 Bible - Test email from dev" to "louwii+esk8bible@protonmail.com"
+2022-02-01 17:51:40 [-][1][-][info][yii\swiftmailer\Mailer::sendMessage] Sending email "New message from Esk8 Bible - Test email from dev" to "louwii+esk8bible@protonmail.com"
+2022-02-01 17:51:40 [-][1][-][warning][application] Error sending email: Expected response code 220 but got an empty respons
+2022-02-01 17:51:40 [-][1][-][info][application] $_GET = [
+    'p' => 'contact'
+]
+```
+
 ## Dev
 
 ### Docker
@@ -42,7 +66,19 @@ Wait for a bit to get composer stuff installed and npm. For convenience, compose
 
 There are probably better solutions for this (like putting composer and npm deps outside of the app), but it works for now.
 
-#### Debug
+### Frontend css and JS
+
+Using Bootstrap 4.3, jQuery 3.2, font awesome 4.7, chart.js 2.7, database.net 1.10, typed.js 2.0 and more
+
+Run `gulp sass` to compile sass files to css. `gulp sass:watch` to watch for changes and auto compile
+
+Run `gulp minify-css` to compile sass into minified css file.
+
+Run `gulp scripts` to build all JS.
+
+**Commit** the built assets, that how they are served in prod. Not the best, but eh.
+
+## Debug
 
 `sudo docker logs -f esk8` or `esk8dev`
 
@@ -57,51 +93,3 @@ Run `sudo docker run -d -v $(pwd)/html:/var/www/html -p 9008:9000 --name esk8 es
 sudo docker run -d --add-host host.docker.internal:host-gateway -p 9008:9000 --name esk8 esk8bible
 
 sudo docker run -d --add-host host.docker.internal:host-gateway -v $(pwd)/app:/var/www/html -p 9008:9000 --name esk8 esk8bible
-
-## Manual Install
-
-Clone this repo
-
-```
-git clone https://github.com/LouWii/esk8-bible.git
-```
-
-Install PHP dependencies (check [Craft Docs](https://craftcms.com/docs/3.x/requirements.html#required-php-extensions))
-
-```
-cd esk8-bible
-composer install
-```
-
-Set proper permissions to app folders (need to be writable by the app)
-
-```
-chmod 777 storage
-chmod 777 web/cpresources
-```
-
-Install frontend dependencies
-
-```
-cd web
-sudo npm install gulp-cli -g
-npm install
-```
-
-(if problems, delete `node_modules`, `package-lock.json` and run `npm install` again)
-
-Copy `.env.example` and rename it to `.env`. Edit with correct configuration.
-
-`host.docker.internal` can be used as db host if the db is running on the host.
-
-## Developers
-
-### Frontend css and JS
-
-Using Bootstrap 4.3, jQuery 3.2, font awesome 4.7, chart.js 2.7, database.net 1.10, typed.js 2.0 and more
-
-Run `gulp sass` to compile sass files to css. `gulp sass:watch` to watch for changes and auto compile
-
-Run `gulp minify-css` to compile sass into minified css file.
-
-Run `gulp scripts` to build all JS.
