@@ -107,14 +107,8 @@ The **FROM** address needs to be one of the validated domain in Sendgrid, otherw
 
 It's because `mysqldump` command is not available in the container. It requires a bunch of packages that aren't needed for anything else. In order to keep the container light, we decided to not install the command. But it's simply commented out of the `Dockerfile`, in case we need that command at some point.
 
-### Sending emails
+### Using  resources from node_modules directly
 
-```
-2022-02-01 17:51:40 [-][1][-][trace][yii\base\InlineAction::runWithParams] Running action: craft\contactform\controllers\SendController::actionIndex()
-2022-02-01 17:51:40 [-][1][-][info][yii\mail\BaseMailer::send] Sending email "New message from Esk8 Bible - Test email from dev" to "louwii+esk8bible@protonmail.com"
-2022-02-01 17:51:40 [-][1][-][info][yii\swiftmailer\Mailer::sendMessage] Sending email "New message from Esk8 Bible - Test email from dev" to "louwii+esk8bible@protonmail.com"
-2022-02-01 17:51:40 [-][1][-][warning][application] Error sending email: Expected response code 220 but got an empty respons
-2022-02-01 17:51:40 [-][1][-][info][application] $_GET = [
-    'p' => 'contact'
-]
-```
+Yeah, that's not good.
+
+Font like `https://esk8bible.com/node_modules/lato-font/fonts/lato-normal/lato-normal.woff2` `https://esk8bible.com/node_modules/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0` are loaded from the node modules folder, but really they should be copied from there into our own frontend resource folder.
