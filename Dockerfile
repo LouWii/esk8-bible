@@ -23,6 +23,8 @@ COPY files/esk8-php.ini ./
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" && \
     mv esk8-php.ini "$PHP_INI_DIR/conf.d/esk8-php.ini"
 
+COPY files/entrypoint-prod.sh /usr/local/bin/entrypoint.sh
+
 COPY app /var/www/html
 
 # Remove the possibility of the vendor dir outside of the container to corrupt things
@@ -38,7 +40,5 @@ RUN composer install --quiet && \
 
 # Frontend assets are compiled in dev env and committed to git
 # Not ideal, but it makes things so much easier, no need to compile them when building the container
-
-COPY files/entrypoint-prod.sh /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT [ "entrypoint.sh" ]
