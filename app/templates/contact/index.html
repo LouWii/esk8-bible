@@ -11,6 +11,7 @@
 
     <form method="post" action="" accept-charset="UTF-8">
         {{ csrfInput() }}
+        {{ craft.contactFormExtensions.recaptcha | raw }}
         <input type="hidden" name="action" value="contact-form/send">
         {{ redirectInput('contact-thanks') }}
 

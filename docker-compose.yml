@@ -15,4 +15,5 @@ services:
             - host.docker.internal:host-gateway
         environment:
             ENVIRONMENT: production
+            SENDGRID_KEY: "${SENDGRID_KEY_ESK8}"
         restart: unless-stopped

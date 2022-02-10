@@ -8,9 +8,40 @@ A small Craft CMS site project about electric skateboards or _esk8_.
 
 `sudo docker-compose up -d --build`
 
+Set a host env var for `SENDGRID_KEY_ESK8` which should contain the Send grid API key.
+
 ### Apache
 
 Don't forget to enable the required apache mods with `sudo a2enmod rewrite proxy proxy_fcgi` and restart `sudo systemctl restart apache2`.
+
+Copy `esk8.conf` to `/etc/apache2/sites-available/` and then enable it.
+
+```
+sudo cp esk8.conf /etc/apache2/sites-available/esk8.conf
+sudo a2ensite esk8
+```
+
+### Iptables
+
+Depending on the `iptables` rules on the host, some rules might need to be added to make everything work properly. The script `iptables-fix.sh` contains a few iptables rules to set things up properly.
+
+### `.env` file
+
+Copy `.env.example` and rename it to `.env`. Edit with correct configuration.
+
+`host.docker.internal` can be used as db host if the db is running on the host.
+
+## Dev
+
+### Docker
+
+Run `sudo docker-compose -f docker-compose-dev.yml up -d --build`
+
+Wait for a bit to get composer stuff installed and npm. For convenience, composer and npm both run when the container goes up, so that both dependencies are installed on the mounted volume. We have to do this because for dev, we replace the entire app folder with the local app folder, mounted as a volume in Docker. We do this so that any local change is reflected in Docker.
+
+There are probably better solutions for this (like putting composer and npm deps outside of the app), but it works for now.
+
+### Apache
 
 ```
 <VirtualHost *:80>
@@ -31,40 +62,6 @@ Don't forget to enable the required apache mods with `sudo a2enmod rewrite proxy
     CustomLog ${APACHE_LOG_DIR}/esk8.local-access_log common
 </VirtualHost>
 ```
-
-### `.env` file
-
-Copy `.env.example` and rename it to `.env`. Edit with correct configuration.
-
-`host.docker.internal` can be used as db host if the db is running on the host.
-
-## Known issues
-
-### Cannot backup database on update
-
-It's because `mysqldump` command is not available in the container. It requires a bunch of packages that aren't needed for anything else. In order to keep the container light, we decided to not install the command. But it's simply commented out of the `Dockerfile`, in case we need that command at some point.
-
-### Sending emails
-
-```
-2022-02-01 17:51:40 [-][1][-][trace][yii\base\InlineAction::runWithParams] Running action: craft\contactform\controllers\SendController::actionIndex()
-2022-02-01 17:51:40 [-][1][-][info][yii\mail\BaseMailer::send] Sending email "New message from Esk8 Bible - Test email from dev" to "louwii+esk8bible@protonmail.com"
-2022-02-01 17:51:40 [-][1][-][info][yii\swiftmailer\Mailer::sendMessage] Sending email "New message from Esk8 Bible - Test email from dev" to "louwii+esk8bible@protonmail.com"
-2022-02-01 17:51:40 [-][1][-][warning][application] Error sending email: Expected response code 220 but got an empty respons
-2022-02-01 17:51:40 [-][1][-][info][application] $_GET = [
-    'p' => 'contact'
-]
-```
-
-## Dev
-
-### Docker
-
-Run `sudo docker-compose -f docker-compose-dev.yml up -d --build`
-
-Wait for a bit to get composer stuff installed and npm. For convenience, composer and npm both run when the container goes up, so that both dependencies are installed on the mounted volume. We have to do this because for dev, we replace the entire app folder with the local app folder, mounted as a volume in Docker. We do this so that any local change is reflected in Docker.
-
-There are probably better solutions for this (like putting composer and npm deps outside of the app), but it works for now.
 
 ### Frontend css and JS
 
@@ -93,3 +90,31 @@ Run `sudo docker run -d -v $(pwd)/html:/var/www/html -p 9008:9000 --name esk8 es
 sudo docker run -d --add-host host.docker.internal:host-gateway -p 9008:9000 --name esk8 esk8bible
 
 sudo docker run -d --add-host host.docker.internal:host-gateway -v $(pwd)/app:/var/www/html -p 9008:9000 --name esk8 esk8bible
+
+## Email
+
+Using Sendgrid SMTP server (has a free tier of 100 emails/day which is way enough here). MSMTP installed in the Docker container to serve as an intermediate between PHP and Sendgrid SMTP.
+
+The **FROM** address needs to be one of the validated domain in Sendgrid, otherwise Sendgrid won't accept the email.
+
+### Debug
+
+`echo "Hello this is sending email using msmtp" | msmtp recipent@domain.com` to send a test email using MSMTP.
+
+## Known issues
+
+### Cannot backup database on update
+
+It's because `mysqldump` command is not available in the container. It requires a bunch of packages that aren't needed for anything else. In order to keep the container light, we decided to not install the command. But it's simply commented out of the `Dockerfile`, in case we need that command at some point.
+
+### Sending emails
+
+```
+2022-02-01 17:51:40 [-][1][-][trace][yii\base\InlineAction::runWithParams] Running action: craft\contactform\controllers\SendController::actionIndex()
+2022-02-01 17:51:40 [-][1][-][info][yii\mail\BaseMailer::send] Sending email "New message from Esk8 Bible - Test email from dev" to "louwii+esk8bible@protonmail.com"
+2022-02-01 17:51:40 [-][1][-][info][yii\swiftmailer\Mailer::sendMessage] Sending email "New message from Esk8 Bible - Test email from dev" to "louwii+esk8bible@protonmail.com"
+2022-02-01 17:51:40 [-][1][-][warning][application] Error sending email: Expected response code 220 but got an empty respons
+2022-02-01 17:51:40 [-][1][-][info][application] $_GET = [
+    'p' => 'contact'
+]
+```

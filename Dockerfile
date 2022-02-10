@@ -1,5 +1,7 @@
 FROM php:7.4-fpm
 
+RUN apt update && apt install -y msmtp
+
 # Use https://github.com/mlocati/docker-php-extension-installer to easily install PHP extensions
 # ctype curl iconv dom json mbstring openssl pcre PDO Reflection spl xml are required by Craft but installed by default
 # intl is recommended, ImageMagick is recommended over GD
@@ -13,7 +15,13 @@ RUN curl -sSLf \
 # If you want CraftCMS to be able to backup the database, uncomment this line
 #RUN apt install default-mysql-client
 
+COPY files/msmtprc /etc/msmtprc
+
 WORKDIR /var/www/html
+
+COPY files/esk8-php.ini ./
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" && \
+    mv esk8-php.ini "$PHP_INI_DIR/conf.d/esk8-php.ini"
 
 COPY app /var/www/html
 
@@ -28,8 +36,9 @@ RUN composer install --quiet && \
     chown -R www-data:www-data config/project && \
     chown -R www-data:www-data web/assets
 
-# TODO: make our own php.ini with best settings
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-
-# Frontend assets are compiled and committed to git
+# Frontend assets are compiled in dev env and committed to git
 # Not ideal, but it makes things so much easier, no need to compile them when building the container
+
+COPY files/entrypoint-prod.sh /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT [ "entrypoint.sh" ]

@@ -1,5 +1,7 @@
 FROM php:7.4-fpm
 
+RUN apt update && apt install -y msmtp
+
 # Use https://github.com/mlocati/docker-php-extension-installer to easily install PHP extensions
 # ctype curl iconv dom json mbstring openssl pcre PDO Reflection spl xml are required by Craft but installed by default
 # intl is recommended, ImageMagick is recommended over GD
@@ -15,7 +17,11 @@ RUN curl -sSLf \
 
 # We do not run composer install since it needs to be run once the volume is mounted
 
-RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+COPY files/msmtprc /etc/msmtprc
+
+COPY files/esk8-php.ini ./
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" && \
+    mv esk8-php.ini "$PHP_INI_DIR/conf.d/esk8-php.ini"
 
 # Install node using https://github.com/nodesource/distributions
 RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
@@ -24,6 +30,6 @@ RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
 # We do not run npm install since it needs to be run once the volume is mounted
 RUN npm install gulp-cli -g
 
-COPY files/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY files/entrypoint-dev.sh /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT [ "entrypoint.sh" ]
